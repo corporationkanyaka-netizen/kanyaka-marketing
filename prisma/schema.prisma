@@ -230,3 +230,32 @@ model Activity {
   @@index([quoteId])
   @@map("activities")
 }
+
+enum WhatsAppMessageStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+/// A message written in the website's WhatsApp chat widget.
+/// Stored first, then delivered to the sales WhatsApp via UltraMsg — so nothing is lost if delivery fails.
+model WhatsAppMessage {
+  id         String                @id @default(uuid(7)) @db.Uuid
+  name       String                @db.VarChar(100)
+  /// Visitor's WhatsApp number, E.164
+  phone      String                @db.VarChar(20)
+  message    String                @db.VarChar(1000)
+  pageUrl    String?               @map("page_url") @db.VarChar(500)
+  status     WhatsAppMessageStatus @default(PENDING)
+  /// UltraMsg message id when sent
+  providerId String?               @map("provider_id") @db.VarChar(64)
+  error      String?               @db.VarChar(300)
+  ipHash     String?               @map("ip_hash") @db.Char(64)
+  createdAt  DateTime              @default(now()) @map("created_at") @db.Timestamptz(3)
+  sentAt     DateTime?             @map("sent_at") @db.Timestamptz(3)
+
+  @@index([createdAt(sort: Desc)])
+  @@index([ipHash, createdAt])
+  @@index([status])
+  @@map("whatsapp_messages")
+}

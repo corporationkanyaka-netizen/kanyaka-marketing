@@ -2,9 +2,10 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@/generated/prisma/client";
 
 // One client per process. In dev, hot reloads re-evaluate modules, so cache it on globalThis
-// to avoid opening a new connection pool on every edit — but rebuild it if DATABASE_URL
-// changes (e.g. after editing .env.development), so the dev server never talks to a stale database.
-const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient; prismaUrl?: string };
+// to avoid opening a new connection pool on every edit — but rebuild it if DATABASE_URL changes
+// (e.g. after editing .env.development) or the client is regenerated after a schema change,
+// so the dev server never uses a stale database or stale models.
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient; prismaUrl?: string; prismaClass?: unknown };
 
 function createClient(connectionString: string) {
   return new PrismaClient({ adapter: new PrismaPg({ connectionString }) });
@@ -14,10 +15,11 @@ function getClient(): PrismaClient {
   const url = process.env.DATABASE_URL;
   if (!url) throw new Error("DATABASE_URL is not set. Copy .env.development.example to .env.development and configure it.");
 
-  if (!globalForPrisma.prisma || globalForPrisma.prismaUrl !== url) {
+  if (!globalForPrisma.prisma || globalForPrisma.prismaUrl !== url || globalForPrisma.prismaClass !== PrismaClient) {
     void globalForPrisma.prisma?.$disconnect();
     globalForPrisma.prisma = createClient(url);
     globalForPrisma.prismaUrl = url;
+    globalForPrisma.prismaClass = PrismaClient;
   }
   return globalForPrisma.prisma;
 }

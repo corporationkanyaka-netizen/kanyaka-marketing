@@ -192,3 +192,16 @@ export const updateQuoteSchema = z.object({
   note: optionalText(2000, "Note"),
   actor: optionalText(80, "Actor"),
 });
+
+// ─────────────────────────── Website WhatsApp chat ───────────────────────────
+
+export const whatsappMessageSchema = z.object({
+  name: text(2, 100, "Name"),
+  phone,
+  message: text(1, 1000, "Message"),
+  pageUrl: z.string().trim().max(500).optional(),
+  /** Honeypot — real users never see or fill this. */
+  website: z.string().max(200).optional(),
+});
+
+export type WhatsAppMessageInput = z.input<typeof whatsappMessageSchema>;
