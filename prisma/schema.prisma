@@ -1,0 +1,232 @@
+// Kanyaka Corporation — enquiries & quotations
+// Docs: https://pris.ly/d/prisma-schema
+//
+// Flow: a buyer submits an enquiry (website form, or staff log a phone/WhatsApp lead)
+//   → customer is matched/created by phone → staff work the enquiry through its status
+//   → one or more priced quotes are issued → every change is written to activities.
+//
+// Money is stored as exact DECIMAL (never float). Totals are computed server-side.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────── Enums ───────────────────────────────
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  QUOTED
+  WON
+  LOST
+  SPAM
+}
+
+enum EnquirySource {
+  CONTACT_PAGE
+  QUOTE_MODAL
+  PRODUCT_PAGE
+  PHONE
+  WHATSAPP
+  EMAIL
+  WALK_IN
+  OTHER
+}
+
+enum QuantityUnit {
+  KG
+  MT
+  BAGS
+  DRUMS
+  CARBOYS
+  LITRES
+  KL
+  TANKERS
+  OTHER
+}
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  CANCELLED
+}
+
+enum ActivityType {
+  CREATED
+  STATUS_CHANGED
+  NOTE
+  CALL
+  WHATSAPP
+  EMAIL
+  QUOTE_CREATED
+  QUOTE_STATUS_CHANGED
+}
+
+// ─────────────────────────────── Models ───────────────────────────────
+
+/// A buying organisation / person, de-duplicated by normalised phone number.
+model Customer {
+  id          String    @id @default(uuid(7)) @db.Uuid
+  /// E.164, e.g. +919030044304
+  phone       String    @unique @db.VarChar(20)
+  name        String    @db.VarChar(100)
+  companyName String    @map("company_name") @db.VarChar(150)
+  email       String?   @db.VarChar(254)
+  /// Indian GST registration number (15 chars), captured by staff when known
+  gstin       String?   @db.VarChar(15)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  enquiries   Enquiry[]
+
+  @@index([companyName])
+  @@map("customers")
+}
+
+/// One request for prices / availability.
+model Enquiry {
+  id        String        @id @default(uuid(7)) @db.Uuid
+  /// Monotonic number used to build the human reference
+  seq       Int           @unique @default(autoincrement())
+  /// Human reference shown to the buyer, e.g. KC-ENQ-2026-00042
+  reference String?       @unique @db.VarChar(24)
+  status    EnquiryStatus @default(NEW)
+  source    EnquirySource
+
+  customerId String   @map("customer_id") @db.Uuid
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Restrict)
+
+  // Contact details exactly as submitted (the customer record may change later)
+  contactName String  @map("contact_name") @db.VarChar(100)
+  companyName String  @map("company_name") @db.VarChar(150)
+  phone       String  @db.VarChar(20)
+  email       String? @db.VarChar(254)
+
+  deliveryLocation String  @map("delivery_location") @db.VarChar(200)
+  message          String? @db.VarChar(2000)
+  wantsCoa         Boolean @default(false) @map("wants_coa")
+
+  /// Client-generated UUID; a retried submit returns the original enquiry
+  idempotencyKey String? @unique @map("idempotency_key") @db.Uuid
+  pageUrl        String? @map("page_url") @db.VarChar(500)
+  /// SHA-256(salt + IP) — raw IP addresses are never stored
+  ipHash         String? @map("ip_hash") @db.Char(64)
+  userAgent      String? @map("user_agent") @db.VarChar(300)
+
+  /// First time staff moved it out of NEW (response-time metric)
+  respondedAt DateTime? @map("responded_at") @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  items      EnquiryItem[]
+  quotes     Quote[]
+  activities Activity[]
+
+  @@index([status, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+  @@index([customerId])
+  @@index([ipHash, createdAt])
+  @@map("enquiries")
+}
+
+/// A chemical requested in an enquiry.
+model EnquiryItem {
+  id           String        @id @default(uuid(7)) @db.Uuid
+  enquiryId    String        @map("enquiry_id") @db.Uuid
+  enquiry      Enquiry       @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  /// Catalogue slug (src/data/products.ts); null for "other chemical"
+  productSlug  String?       @map("product_slug") @db.VarChar(80)
+  /// Name snapshot so history survives catalogue edits
+  productName  String        @map("product_name") @db.VarChar(150)
+  /// Quantity exactly as the buyer typed it, e.g. "10 MT in 50 kg bags"
+  quantityText String        @map("quantity_text") @db.VarChar(100)
+  /// Parsed from quantityText when possible
+  quantity     Decimal?      @db.Decimal(14, 3)
+  unit         QuantityUnit?
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([enquiryId])
+  @@index([productSlug])
+  @@map("enquiry_items")
+}
+
+/// A priced offer sent in reply to an enquiry. An enquiry can have several revisions.
+model Quote {
+  id          String      @id @default(uuid(7)) @db.Uuid
+  seq         Int         @unique @default(autoincrement())
+  /// e.g. KC-QT-2026-00017
+  quoteNumber String?     @unique @map("quote_number") @db.VarChar(24)
+  enquiryId   String      @map("enquiry_id") @db.Uuid
+  enquiry     Enquiry     @relation(fields: [enquiryId], references: [id], onDelete: Restrict)
+  status      QuoteStatus @default(DRAFT)
+  currency    String      @default("INR") @db.Char(3)
+  validUntil  DateTime?   @map("valid_until") @db.Date
+
+  subtotal Decimal @db.Decimal(14, 2)
+  taxTotal Decimal @map("tax_total") @db.Decimal(14, 2)
+  freight  Decimal @default(0) @db.Decimal(14, 2)
+  total    Decimal @db.Decimal(14, 2)
+
+  paymentTerms  String? @map("payment_terms") @db.VarChar(300)
+  deliveryTerms String? @map("delivery_terms") @db.VarChar(300)
+  notes         String? @db.VarChar(2000)
+  createdBy     String? @map("created_by") @db.VarChar(80)
+
+  sentAt    DateTime? @map("sent_at") @db.Timestamptz(3)
+  decidedAt DateTime? @map("decided_at") @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  items      QuoteItem[]
+  activities Activity[]
+
+  @@index([enquiryId])
+  @@index([status, createdAt(sort: Desc)])
+  @@map("quotes")
+}
+
+model QuoteItem {
+  id           String       @id @default(uuid(7)) @db.Uuid
+  quoteId      String       @map("quote_id") @db.Uuid
+  quote        Quote        @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  position     Int          @db.SmallInt
+  productSlug  String?      @map("product_slug") @db.VarChar(80)
+  description  String       @db.VarChar(200)
+  quantity     Decimal      @db.Decimal(14, 3)
+  unit         QuantityUnit
+  unitPrice    Decimal      @map("unit_price") @db.Decimal(14, 2)
+  /// GST % for this line (e.g. 18.00)
+  gstRate      Decimal      @default(18) @map("gst_rate") @db.Decimal(5, 2)
+  lineSubtotal Decimal      @map("line_subtotal") @db.Decimal(14, 2)
+  lineTax      Decimal      @map("line_tax") @db.Decimal(14, 2)
+  lineTotal    Decimal      @map("line_total") @db.Decimal(14, 2)
+
+  @@unique([quoteId, position])
+  @@map("quote_items")
+}
+
+/// Append-only audit trail for an enquiry and its quotes.
+model Activity {
+  id         String       @id @default(uuid(7)) @db.Uuid
+  enquiryId  String       @map("enquiry_id") @db.Uuid
+  enquiry    Enquiry      @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  quoteId    String?      @map("quote_id") @db.Uuid
+  quote      Quote?       @relation(fields: [quoteId], references: [id], onDelete: SetNull)
+  type       ActivityType
+  fromStatus String?      @map("from_status") @db.VarChar(20)
+  toStatus   String?      @map("to_status") @db.VarChar(20)
+  note       String?      @db.VarChar(2000)
+  actor      String?      @db.VarChar(80)
+  createdAt  DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([enquiryId, createdAt])
+  @@index([quoteId])
+  @@map("activities")
+}
