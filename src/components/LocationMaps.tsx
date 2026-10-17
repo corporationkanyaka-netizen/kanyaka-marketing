@@ -70,7 +70,7 @@ export default function LocationMaps() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="flex items-baseline justify-between gap-2">
-                  <span className={`font-semibold ${isActive ? "text-white" : "text-ink-900"}`}>{loc.title}</span>
+                  <span className={`font-medium ${isActive ? "text-white" : "text-ink-900"}`}>{loc.title}</span>
                   {km !== null && (
                     <span className={`shrink-0 font-mono text-xs ${isActive ? "text-slate-400" : "text-slate-500"}`}>
                       ~{Math.round(km)} km
@@ -162,7 +162,7 @@ export default function LocationMaps() {
           <div className="pointer-events-none absolute inset-x-3 top-3 flex items-start justify-between gap-3 sm:inset-x-4 sm:top-4">
             <div className="pointer-events-auto max-w-[75%] rounded-md bg-ink-950/85 px-3.5 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3">
               <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-300">Satellite view</div>
-              <div className="mt-1 font-semibold">{active.title}</div>
+              <div className="mt-1 font-medium">{active.title}</div>
               <div className="mt-0.5 hidden text-sm text-slate-300 sm:block">{active.lines.join(", ")}</div>
               <div className="mt-1 font-mono text-xs text-slate-400">
                 {active.lat.toFixed(6)}, {active.lng.toFixed(6)}
@@ -194,7 +194,7 @@ export default function LocationMaps() {
               href={directionsHref(active)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg transition-colors hover:bg-brand-300"
+              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-medium text-ink-950 shadow-lg transition-colors hover:bg-brand-300"
             >
               <Navigation className="h-4 w-4" />
               Get directions

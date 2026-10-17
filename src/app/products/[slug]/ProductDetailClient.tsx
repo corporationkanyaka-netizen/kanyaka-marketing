@@ -119,17 +119,6 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const whatsappInquiryUrl = `${whatsappBase}${encodeURIComponent(
     `Hello Kanyaka Corporation, I would like to enquire about availability and price for *${product.name}* (${product.grade}).`
   )}`;
-  const whatsappRfqUrl = `${whatsappBase}${encodeURIComponent(
-    `Hello Kanyaka Corporation, I would like a rate for *${product.name}* (${product.grade}).${
-      enquiryRef ? `\n*Enquiry ref:* ${enquiryRef}` : ""
-    }
-*Name:* ${name}
-*Company:* ${company}
-*Phone:* ${phone}
-*Quantity:* ${quantity}
-*Delivery to:* ${location}`
-  )}`;
-  const isBirla = product.manufacturer === "Aditya Birla Chemicals";
 
   // Props cross the server/client boundary as copies, so match by slug rather than reference.
   const indexOfSlug = (slug: string) => productsData.findIndex((p) => p.slug === slug);
@@ -156,7 +145,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
         <div className="absolute -left-40 top-10 -z-10 h-[480px] w-[480px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-24 bottom-0 -z-10 h-[380px] w-[380px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8">
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumb"
@@ -178,7 +167,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="flex flex-wrap items-center gap-2">
-                  {product.isGrasimAuthorized || isBirla ? (
+                  {product.isGrasimAuthorized ? (
                     <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-glow/30 bg-amber-glow/10 px-3 py-1 text-sm font-medium text-amber-glow">
                       <ShieldCheck className="h-4 w-4" />
                       Authorised dealer · {product.manufacturer}
@@ -207,7 +196,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 <div className="mt-7 font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
                   Element {periodicNumber} · {state} · CAS {product.casNumber}
                 </div>
-                <h1 className="mt-4 break-words text-5xl font-semibold leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+                <h1 className="mt-4 break-words text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                   {product.name}
                 </h1>
                 <p className="mt-5 text-lg font-medium text-reagent sm:text-xl">{product.grade}</p>
@@ -222,7 +211,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 <div className="mt-9 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => openQuote(product.name)}
-                    className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                    className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300"
                   >
                     Request a quote
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -252,11 +241,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               <div className="relative mx-auto max-w-md">
                 <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-brand-500/15" />
                 <div
-                  className={`relative overflow-hidden rounded-md bg-gradient-to-br ${tone.tile} p-6 text-ink-900 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/10 sm:p-8`}
+                  className={`relative overflow-hidden rounded-md bg-gradient-to-br ${tone.tile} p-5 text-ink-900 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/10 sm:p-6`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="font-mono leading-tight">
-                      <div className={`text-2xl font-semibold ${tone.text}`}>{periodicNumber}</div>
+                      <div className={`text-2xl font-medium ${tone.text}`}>{periodicNumber}</div>
                       <div className="mt-1 text-sm text-slate-500">CAS {product.casNumber}</div>
                     </div>
                     {hazard ? (
@@ -269,22 +258,22 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
 
                   <div
-                    className={`my-10 font-display font-semibold leading-none tracking-tight sm:my-12 ${
+                    className={`my-10 font-display font-medium leading-none tracking-tight sm:my-12 ${
                       symbol.length > 5 ? "text-[clamp(3rem,13vw,4.75rem)]" : "text-[clamp(3.75rem,19vw,6.5rem)]"
                     }`}
                   >
                     {symbol}
                   </div>
 
-                  <div className="text-lg font-semibold leading-snug">{product.name}</div>
+                  <div className="text-lg font-medium leading-snug">{product.name}</div>
                   <div className="mt-5 grid grid-cols-2 gap-4 border-t border-black/10 pt-5">
                     <div>
                       <div className="text-xs uppercase tracking-[0.14em] text-slate-500">Assay</div>
-                      <div className="mt-1 font-mono text-[15px] font-semibold leading-snug">{product.purity}</div>
+                      <div className="mt-1 font-mono text-[15px] font-medium leading-snug">{product.purity}</div>
                     </div>
                     <div className="text-right">
                       <div className="text-xs uppercase tracking-[0.14em] text-slate-500">State · UN</div>
-                      <div className="mt-1 font-mono text-[15px] font-semibold">
+                      <div className="mt-1 font-mono text-[15px] font-medium">
                         {state}
                         {un ? ` · ${un}` : ""}
                       </div>
@@ -313,12 +302,12 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ OVERVIEW + SPEC SHEET + RFQ ═══════════════ */}
-      <section className="py-14 sm:py-20">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
           <div className="min-w-0 lg:col-span-7">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — Product overview</div>
-              <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
                 About this product.
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-slate-600">{product.detailedDescription}</p>
@@ -331,19 +320,19 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <Reveal delay={100} className="mt-8">
               <div className="relative">
                 <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-ink-900/5" />
-                <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
+                <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-5 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-8">
                   <div className="flex items-start justify-between gap-4 border-b-2 border-ink-900 pb-5">
                     <div className="min-w-0">
                       <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
                         Typical specification
                       </div>
-                      <h3 className="mt-2 text-2xl font-semibold text-ink-900 sm:text-3xl">{product.name}</h3>
+                      <h3 className="mt-2 text-2xl font-medium text-ink-900 sm:text-3xl">{product.name}</h3>
                       <div className="mt-1 text-sm text-slate-500">
                         {product.manufacturer === "Godown stock" ? "From our godown stock" : `Make: ${product.manufacturer}`}
                       </div>
                     </div>
                     <div className="shrink-0 text-right">
-                      <div className="font-display text-3xl font-semibold text-brand-700 sm:text-4xl">{symbol}</div>
+                      <div className="font-display text-3xl font-medium text-brand-700 sm:text-4xl">{symbol}</div>
                       <div className="mt-1 font-mono text-xs text-slate-500">CAS {product.casNumber}</div>
                     </div>
                   </div>
@@ -382,7 +371,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </button>
                   </div>
 
-                  <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-xs font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
+                  <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-xs font-medium uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
                     Typical
                     <br />
                     spec
@@ -396,37 +385,29 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           <aside className="lg:col-span-5">
             <div className="space-y-5 lg:sticky lg:top-28">
               <Reveal delay={150}>
-                <div className="grain relative isolate overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-8">
+                <div className="grain relative isolate overflow-hidden rounded-md bg-ink-900 p-5 text-white sm:p-6">
                   <div className="hex-lattice mask-fade-b absolute inset-0 -z-10" />
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
                     {product.fromGodown ? "Godown stock · near Pashamylaram" : "Supplied against order"}
                   </div>
-                  <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">Request a rate</h3>
+                  <h3 className="mt-3 text-2xl font-medium sm:text-3xl">Request a rate</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-slate-400">
                     Ask for the current price and availability of {product.name}.
                   </p>
 
                   {isSubmitted ? (
-                    <div className="mt-6 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
+                    <div className="mt-6 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
                       <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400" strokeWidth={1.6} />
-                      <h4 className="mt-3 text-lg font-semibold text-white">Thank you, {name}</h4>
+                      <h4 className="mt-3 text-lg font-medium text-white">Thank you, {name}</h4>
                       {enquiryRef && (
                         <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-1.5 font-mono text-sm text-slate-300 ring-1 ring-white/15">
-                          Ref <span className="font-semibold text-white">{enquiryRef}</span>
+                          Ref <span className="font-medium text-white">{enquiryRef}</span>
                         </div>
                       )}
                       <p className="mt-2 text-[15px] leading-relaxed text-slate-300">
-                        Send these details to us on WhatsApp. We will reply with the price and availability.
+                        Your enquiry has been emailed to our sales team. We&apos;ll contact you shortly with the price and
+                        availability.
                       </p>
-                      <a
-                        href={whatsappRfqUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#20ba59]"
-                      >
-                        <MessageCircle className="h-4 w-4" />
-                        Send on WhatsApp
-                      </a>
                     </div>
                   ) : (
                     <form onSubmit={handleInlineSubmit} noValidate className="relative mt-6 space-y-4">
@@ -553,7 +534,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 disabled:cursor-wait disabled:opacity-60"
+                        className="group mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300 disabled:cursor-wait disabled:opacity-60"
                       >
                         {isSubmitting ? (
                           <>
@@ -585,12 +566,12 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </Reveal>
 
               <Reveal delay={200}>
-                <div className="flex gap-4 rounded-md bg-white p-6 ring-1 ring-line">
+                <div className="flex gap-4 rounded-md bg-white p-5 ring-1 ring-line">
                   <div className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
                     <FileCheck className="h-5 w-5" strokeWidth={1.8} />
                   </div>
                   <div>
-                    <div className="font-semibold text-ink-900">Manufacturer COA on request</div>
+                    <div className="font-medium text-ink-900">Manufacturer COA on request</div>
                     <p className="mt-1 text-[15px] leading-relaxed text-slate-600">
                       Specs on this page are typical values. Ask for the manufacturer&apos;s batch Certificate of Analysis
                       when you enquire.
@@ -611,11 +592,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ APPLICATIONS ═══════════════ */}
-      <section className="hex-lattice-light bg-paper-2 py-14 sm:py-20">
+      <section className="hex-lattice-light bg-paper-2 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Applications</div>
-            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
               Where {symbol} goes to work.
             </h2>
           </Reveal>
@@ -623,12 +604,12 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {product.applications.map((app, i) => (
               <Reveal key={i} delay={(i % 3) * 80}>
-                <div className="group flex h-full flex-col rounded-md bg-white p-7 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)] sm:p-8">
+                <div className="group flex h-full flex-col rounded-md bg-white p-6 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)] sm:p-6">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-sm text-slate-400">{String(i + 1).padStart(2, "0")}</span>
                     <span className={`h-2.5 w-2.5 rounded-full ${tone.dot}`} />
                   </div>
-                  <h3 className="mt-8 text-xl font-semibold leading-snug text-ink-900">{app.industry}</h3>
+                  <h3 className="mt-8 text-xl font-medium leading-snug text-ink-900">{app.industry}</h3>
                   <p className="mt-3 text-[15px] leading-relaxed text-slate-600">{app.application}</p>
                 </div>
               </Reveal>
@@ -638,14 +619,14 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ HANDLING + PACKAGING ═══════════════ */}
-      <section className="py-14 sm:py-20">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
-            <div className="h-full rounded-md bg-white p-7 ring-1 ring-line sm:p-10">
+            <div className="h-full rounded-md bg-white p-6 ring-1 ring-line sm:p-8">
               <div className="flex items-start justify-between gap-6">
                 <div>
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — Safety</div>
-                  <h2 className="mt-4 text-3xl font-semibold leading-[1.1] text-ink-900 sm:text-4xl">
+                  <h2 className="mt-4 text-3xl font-medium leading-[1.1] text-ink-900 sm:text-4xl">
                     Handling, storage &amp; safety.
                   </h2>
                 </div>
@@ -669,10 +650,10 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="grain relative isolate h-full overflow-hidden rounded-md bg-ink-900 p-7 text-white sm:p-10">
+            <div className="grain relative isolate h-full overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-8">
               <div className="hex-lattice mask-fade-b absolute inset-0 -z-10" />
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">04 — Supply terms</div>
-              <h2 className="mt-4 text-3xl font-semibold leading-[1.1] sm:text-4xl">Packaging &amp; supply.</h2>
+              <h2 className="mt-4 text-3xl font-medium leading-[1.1] sm:text-4xl">Packaging &amp; supply.</h2>
 
               <div className="mt-8 space-y-6">
                 <div>
@@ -715,14 +696,14 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
 
       {/* ═══════════════ RELATED ═══════════════ */}
       {relatedProducts.length > 0 && (
-        <section className="border-t border-line pb-14 pt-14 sm:pb-20 sm:pt-20">
+        <section className="border-t border-line pb-12 pt-14 sm:pb-16 sm:pt-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <div className="max-w-2xl">
                 <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">
                   Same group · {tone.label}
                 </div>
-                <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+                <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
                   Related chemicals in {product.category}.
                 </h2>
               </div>

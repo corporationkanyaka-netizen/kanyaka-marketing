@@ -35,12 +35,12 @@ const processSteps = [
   {
     icon: Factory,
     title: "From the manufacturer",
-    body: "Authorised dealer of Grasim Industries and Aditya Birla Chemicals, with allied products from Tata, Andhra Sugars, RCF and Kutch Chemicals.",
+    body: "Authorised dealer of Grasim Industries Ltd., with allied products from Tata, Andhra Sugars, TGV, Kutch and other leading manufacturers.",
   },
   {
     icon: Warehouse,
     title: "Stocked at our godown",
-    body: "Grasim and Aditya Birla products are held at our 6,000 sq.ft. warehouse near the Pashamylaram industrial estate.",
+    body: "Grasim products are held at our 6,000 sq.ft. warehouse near the Pashamylaram industrial estate.",
   },
   {
     icon: FileCheck2,
@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="absolute -left-40 top-20 -z-10 h-[520px] w-[520px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-20 bottom-0 -z-10 h-[420px] w-[420px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-16 lg:pt-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-10 pt-8 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-16 lg:pt-14">
           <div className="lg:col-span-6">
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-xs text-slate-300 backdrop-blur">
@@ -88,7 +88,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-7 text-5xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
+              <h1 className="mt-7 text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
                 Pure chemistry.
                 <br />
                 <span className="text-reagent">Delivered on time.</span>
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             <Reveal delay={200}>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
-                Authorised dealer of Grasim Industries and Aditya Birla Chemicals for Telangana &amp; Andhra Pradesh.
+                Authorised dealer of Grasim Industries Ltd. for Telangana &amp; Andhra Pradesh.
                 Caustic soda, aluminium chloride, calcium chloride and {productsData.length - 3} more chemicals — genuine and quality products at a
                 reasonable price.
               </p>
@@ -107,7 +107,7 @@ export default function HomePage() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-all hover:bg-brand-300"
                 >
                   Request a quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -123,13 +123,15 @@ export default function HomePage() {
 
             <Reveal delay={400}>
               <div className="mt-8 border-t border-white/10 pt-6">
-                <div className="text-xs uppercase tracking-[0.2em] text-slate-500">Authorized by</div>
-                <div className="mt-3 flex flex-wrap items-center gap-x-8 gap-y-2 font-display text-lg text-slate-300">
-                  <span>Grasim Industries</span>
-                  <span className="hidden h-1 w-1 rounded-full bg-slate-600 sm:block" />
-                  <span>Aditya Birla Chemicals</span>
-                  <span className="hidden h-1 w-1 rounded-full bg-slate-600 sm:block" />
-                  <span>Tata Chemicals</span>
+                <div className="flex flex-wrap items-baseline gap-x-10 gap-y-4">
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-slate-500">Authorised dealer</div>
+                    <div className="mt-2 font-display text-lg text-slate-200">Grasim Industries Ltd.</div>
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-slate-500">Also supplying</div>
+                    <div className="mt-2 text-[15px] text-slate-400">Tata · Nirma · DCM · TGV · Andhra Sugars</div>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -142,7 +144,7 @@ export default function HomePage() {
 
               <div className="animate-float-slow absolute left-0 top-[14%] hidden rounded-md border border-white/10 bg-ink-900/70 px-4 py-3 backdrop-blur-md sm:block">
                 <div className="font-mono text-[11px] uppercase tracking-wider text-slate-400">Typical assay · NaOH</div>
-                <div className="font-display text-2xl font-semibold">
+                <div className="font-display text-2xl font-medium">
                   98.5<span className="text-brand-300">%</span>
                 </div>
               </div>
@@ -178,7 +180,7 @@ export default function HomePage() {
                 delay={i * 80}
                 className={`border-white/10 py-8 lg:py-10 ${statBorders[i]}`}
               >
-                <div className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">{stat.value}</div>
+                <div className="font-display text-4xl font-medium tracking-tight sm:text-5xl">{stat.value}</div>
                 <div className="mt-2 text-sm text-slate-400">{stat.label}</div>
               </Reveal>
             ))}
@@ -191,7 +193,7 @@ export default function HomePage() {
         <div className="animate-marquee gap-8">
           {[...productsData, ...productsData].map((p, i) => (
             <div key={`${p.id}-${i}`} className="flex shrink-0 items-baseline gap-4">
-              <span className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">{tileSymbol(p)}</span>
+              <span className="font-display text-3xl font-medium tracking-tight text-ink-900 sm:text-4xl">{tileSymbol(p)}</span>
               <span className="text-sm text-slate-500">{p.name.split("(")[0].trim()}</span>
               <span className="ml-8 text-2xl text-brand-500/60">⬡</span>
             </div>
@@ -200,12 +202,12 @@ export default function HomePage() {
       </div>
 
       {/* ═══════════════ PERIODIC CATALOG ═══════════════ */}
-      <section className="hex-lattice-light relative py-14 sm:py-20">
+      <section className="hex-lattice-light relative py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div className="max-w-2xl">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — The catalogue</div>
-              <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
                 A periodic table of everything we keep in stock.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-slate-600">
@@ -265,11 +267,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ SPEC SHEET ═══════════════ */}
-      <section className="relative overflow-hidden bg-paper-2 py-14 sm:py-20">
+      <section className="relative overflow-hidden bg-paper-2 py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           <Reveal className="lg:col-span-5">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Know what you&apos;re buying</div>
-            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
               Genuine products, clear specifications.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
@@ -289,7 +291,7 @@ export default function HomePage() {
                     }`}
                   >
                     <span className="flex items-center gap-4">
-                      <span className={`w-20 font-display text-xl font-semibold ${active ? "text-brand-700" : "text-slate-400"}`}>
+                      <span className={`w-20 font-display text-xl font-medium ${active ? "text-brand-700" : "text-slate-400"}`}>
                         {tileSymbol(p)}
                       </span>
                       <span className={`text-sm font-medium ${active ? "text-ink-900" : "text-slate-600"}`}>{p.name}</span>
@@ -305,15 +307,15 @@ export default function HomePage() {
           <Reveal delay={150} className="lg:col-span-7">
             <div className="relative">
               <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-ink-900/5" />
-              <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
+              <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-5 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-8">
                 <div className="flex items-start justify-between gap-4 border-b-2 border-ink-900 pb-5">
                   <div>
                     <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-500">Typical specification</div>
-                    <h3 className="mt-2 text-2xl font-semibold text-ink-900 sm:text-3xl">{spec.name}</h3>
+                    <h3 className="mt-2 text-2xl font-medium text-ink-900 sm:text-3xl">{spec.name}</h3>
                     <div className="mt-1 text-sm text-slate-500">{spec.manufacturer}</div>
                   </div>
                   <div className="text-right">
-                    <div className="font-display text-3xl font-semibold text-brand-700 sm:text-4xl">{tileSymbol(spec)}</div>
+                    <div className="font-display text-3xl font-medium text-brand-700 sm:text-4xl">{tileSymbol(spec)}</div>
                     <div className="mt-1 font-mono text-xs text-slate-500">CAS {spec.casNumber}</div>
                   </div>
                 </div>
@@ -353,7 +355,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Stamp */}
-                <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
+                <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-[11px] font-medium uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
                   Typical
                   <br />
                   spec
@@ -365,16 +367,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ PROCESS ═══════════════ */}
-      <section className="py-14 sm:py-20">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — The reaction path</div>
-            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">From their reactor to your plant, in four steps.</h2>
+            <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">From their reactor to your plant, in four steps.</h2>
           </Reveal>
 
           <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, i) => (
-              <Reveal key={step.title} delay={i * 90} className="group relative bg-paper p-8 transition-colors hover:bg-white">
+              <Reveal key={step.title} delay={i * 90} className="group relative bg-paper p-6 transition-colors hover:bg-white">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-sm text-slate-400">0{i + 1}</span>
                   {i < processSteps.length - 1 && (
@@ -386,7 +388,7 @@ export default function HomePage() {
                 <div className="mt-8 grid h-14 w-14 place-items-center rounded-md bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
                   <step.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
-                <h3 className="mt-6 text-xl font-semibold text-ink-900">{step.title}</h3>
+                <h3 className="mt-6 text-xl font-medium text-ink-900">{step.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-slate-600">{step.body}</p>
               </Reveal>
             ))}
@@ -395,34 +397,34 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ INDUSTRIES ═══════════════ */}
-      <section className="bg-ink-950 py-14 text-white sm:py-20">
+      <section className="bg-ink-950 py-12 text-white sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ChemicalFinder onOpenQuote={openQuote} />
         </div>
       </section>
 
       {/* ═══════════════ PARTNERS ═══════════════ */}
-      <section className="py-14 sm:py-20">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">05 — Our principals</div>
-            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">Authorized by the names industry trusts.</h2>
-            <p className="mt-5 text-lg text-slate-600">Authorised dealerships with the Aditya Birla Group, plus products from other leading Indian and overseas manufacturers.</p>
+            <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">Authorized by the names industry trusts.</h2>
+            <p className="mt-5 text-lg text-slate-600">Authorised dealer of Grasim Industries Ltd., plus products from other leading Indian and overseas manufacturers.</p>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
             {companyInfo.authorizedPartners.map((partner, i) => (
               <Reveal key={partner.name} delay={i * 100}>
-                <div className="group flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
+                <div className="group flex h-full flex-col rounded-md bg-white p-6 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
                   <div className="flex items-center justify-between">
                     <BadgeCheck className={`h-7 w-7 ${i === 0 ? "text-amber-500" : "text-brand-500"}`} strokeWidth={1.6} />
                     <span className="font-mono text-xs text-slate-400">{partner.parent}</span>
                   </div>
-                  <h3 className="mt-8 text-2xl font-semibold leading-tight text-ink-900">{partner.name.split("(")[0].trim()}</h3>
+                  <h3 className="mt-8 text-2xl font-medium leading-tight text-ink-900">{partner.name.split("(")[0].trim()}</h3>
                   <div className="mt-1 text-sm font-medium text-brand-700">{partner.tier}</div>
                   <p className="mt-5 flex-1 text-[15px] leading-relaxed text-slate-600">{partner.products}</p>
                   <button
-                    onClick={() => openQuote(i === 0 ? "Caustic Soda Flakes" : i === 1 ? "Aluminium Chloride (Powder & Granule)" : undefined)}
+                    onClick={() => openQuote(i === 0 ? "Caustic Soda Flakes" : undefined)}
                     className="mt-8 inline-flex cursor-pointer items-center gap-1.5 self-start text-sm font-medium text-ink-900 transition-colors group-hover:text-brand-700"
                   >
                     Enquire about this range
@@ -436,10 +438,10 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ FOUNDER & DEPOT ═══════════════ */}
-      <section className="pb-14 sm:pb-20">
+      <section className="pb-12 sm:pb-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
-            <div className="flex h-full flex-col justify-between rounded-md bg-white p-8 ring-1 ring-line sm:p-12">
+            <div className="flex h-full flex-col justify-between rounded-md bg-white p-6 ring-1 ring-line sm:p-8">
               <div>
                 <Quote className="h-10 w-10 text-brand-500" strokeWidth={1.4} />
                 <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Our motto</div>
@@ -454,7 +456,7 @@ export default function HomePage() {
               </div>
               <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-6">
                 <div>
-                  <div className="font-semibold text-ink-900">{companyInfo.promoter.name}</div>
+                  <div className="font-medium text-ink-900">{companyInfo.promoter.name}</div>
                   <div className="text-sm text-slate-500">{companyInfo.promoter.designation}</div>
                 </div>
                 <Link href="/about" className="group inline-flex items-center gap-1.5 text-sm font-medium text-brand-700">
@@ -466,15 +468,15 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-8 text-white sm:p-10">
+            <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-8">
               <div className="hex-lattice mask-fade-b absolute inset-0" />
               <div className="relative">
                 <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Pashamylaram depot</div>
-                <div className="mt-6 font-display text-6xl font-semibold tracking-tight">
+                <div className="mt-6 font-display text-6xl font-medium tracking-tight">
                   6,000<span className="text-2xl text-slate-400"> sq.ft</span>
                 </div>
                 <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-slate-300">
-                  Our own warehouse near the Pashamylaram industrial estate, holding godown stock of Grasim and Aditya Birla
+                  Our own warehouse near the Pashamylaram industrial estate, holding godown stock of Grasim Industries
                   products.
                 </p>
                 <ul className="mt-8 space-y-3 text-sm text-slate-300">
@@ -493,13 +495,13 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
+      <section className="px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-12 text-white sm:px-14 sm:py-14">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-10 text-white sm:px-10 sm:py-12">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <MoleculeHero className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] opacity-30" />
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-semibold leading-[1.05] sm:text-6xl">Need a rate for your plant?</h2>
+              <h2 className="text-4xl font-medium leading-[1.05] sm:text-6xl">Need a rate for your plant?</h2>
               <p className="mt-6 text-lg leading-relaxed text-sky-100/80">
                 Tell us the chemical, quantity and delivery location, and we&apos;ll come back with a rate. Or call us on
                 {" "}{companyInfo.contacts.phonePrimary} / {companyInfo.contacts.phoneSecondary}.
@@ -507,7 +509,7 @@ export default function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Request a formal quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

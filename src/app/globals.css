@@ -223,3 +223,63 @@
     color: black !important;
   }
 }
+
+/* ── Product line card → A4 PDF ───────────────────────────────────────
+   BrochureModal adds `printing-brochure` to <html> while its print dialog is open,
+   so only the line card is printed (not the page behind it). */
+@page {
+  size: A4;
+  margin: 12mm 11mm 14mm;
+}
+
+@media print {
+  html.printing-brochure,
+  html.printing-brochure body {
+    background: #fff !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  /* Hide everything except the line card */
+  html.printing-brochure body > *:not(:has(#brochure-print-root)),
+  html.printing-brochure body > * > *:not(#brochure-print-root) {
+    display: none !important;
+  }
+  html.printing-brochure body > * {
+    min-height: 0 !important;
+    display: block !important;
+  }
+  html.printing-brochure #brochure-print-root,
+  html.printing-brochure #brochure-print-root [role="dialog"] {
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  /* Keep brand colours (logo tile, highlight boxes) in the PDF */
+  html.printing-brochure * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html.printing-brochure .lab-grid-light,
+  html.printing-brochure .reveal {
+    background-image: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Clean pagination: repeat the table header, never split a product row */
+  html.printing-brochure thead {
+    display: table-header-group;
+  }
+  html.printing-brochure tr,
+  html.printing-brochure .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

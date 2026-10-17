@@ -7,7 +7,7 @@ export const companyInfo = {
   motto: "Genuine and quality products at reasonable price.",
   experienceYears: "24",
   summary:
-    "Kanyaka Corporation supplies chloro-alkali products, acids, specialty chemicals and solvents to Indian manufacturing industry. We are an authorised dealer for Grasim Industries Ltd. and Aditya Birla Chemicals, and stock their products at our own warehouse near the Pashamylaram industrial estate.",
+    "Kanyaka Corporation supplies chloro-alkali products, acids, specialty chemicals and solvents to Indian manufacturing industry. We are an authorised dealer for Grasim Industries Ltd., and stock their products at our own warehouse near the Pashamylaram industrial estate.",
   promoter: {
     name: "Mr. K. Subrahmanyam",
     designation: "Promoter",
@@ -17,17 +17,10 @@ export const companyInfo = {
   authorizedPartners: [
     {
       name: "Grasim Industries Ltd.",
-      parent: "Aditya Birla Group",
+      parent: "Principal",
       tier: "Authorised dealer · Telangana & Andhra Pradesh",
       products: "Aluminium Chloride (Granules & Powder), Caustic Soda Flakes, Calcium Chloride, Sodium Sulphate Anhydrous, Hydrochloric Acid, Sodium Hypochlorite",
       badgeText: "Authorised Grasim Dealer",
-    },
-    {
-      name: "Aditya Birla Chemicals",
-      parent: "Aditya Birla Group",
-      tier: "Authorised dealer",
-      products: "Aluminium Chloride (Powder & Granule)",
-      badgeText: "Authorised Aditya Birla Dealer",
     },
     {
       name: "Other leading manufacturers",
@@ -44,7 +37,7 @@ export const companyInfo = {
     features: [
       "Around 6,000 sq.ft. of warehouse space near the Pashamylaram industrial estate",
       "A second warehouse at Kanukunta, north of Hyderabad",
-      "Godown stock of Grasim Industries and Aditya Birla Chemicals products",
+      "Godown stock of Grasim Industries products",
       "Supplying industries across Telangana and Andhra Pradesh",
     ],
   },
@@ -54,7 +47,7 @@ export const companyInfo = {
     whatsapp: "+919030044304",
     whatsappDisplay: "+91 90300 44304",
     emailSales: "kanyaka_corp@hotmail.com",
-    emailDirector: "subramanyam549@gmail.com",
+    emailDirector: "subrahmanyam549@gmail.com",
     webmailUrl: "http://webmail.kanyakacorporation.com:2095",
   },
   addresses: {
@@ -117,7 +110,7 @@ export const companyInfo = {
     { value: "24", label: "Years of experience", desc: "Mr. K. Subrahmanyam, in the chemical industry" },
     { value: "6,000", label: "Sq. ft. warehouse", desc: "Near Pashamylaram industrial estate" },
     { value: "27", label: "Chemicals supplied", desc: "Chlor-alkali, salts, acids & reagents" },
-    { value: "2", label: "Authorised principals", desc: "Grasim Industries & Aditya Birla Chemicals" },
+    { value: "1", label: "Authorised principal", desc: "Grasim Industries Ltd." },
     { value: "8", label: "Industries served", desc: "From pharma and agro to dairy and textiles" },
   ],
 };

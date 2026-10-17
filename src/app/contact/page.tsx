@@ -135,12 +135,12 @@ export default function ContactPage() {
         <div className="absolute -left-40 top-0 -z-10 h-[460px] w-[460px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-24 bottom-0 -z-10 h-[360px] w-[360px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 lg:px-8 lg:pb-14 lg:pt-14">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pb-14 lg:pt-14">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Contact us</div>
           </Reveal>
           <Reveal delay={100}>
-            <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+            <h1 className="mt-5 max-w-3xl text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
               Call, email or <span className="text-reagent">visit our office.</span>
             </h1>
           </Reveal>
@@ -182,50 +182,41 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════════ FORM + DESK ═══════════════ */}
-      <section className="py-12 sm:py-16">
+      <section className="py-10 sm:py-12">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           {/* Quote form */}
           <Reveal className="lg:col-span-7">
-            <div className="rounded-md bg-white p-6 ring-1 ring-line sm:p-10">
+            <div className="rounded-md bg-white p-5 ring-1 ring-line sm:p-8">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — Request a quotation</div>
-              <h2 className="mt-4 text-3xl font-semibold leading-[1.05] text-ink-900 sm:text-4xl">
+              <h2 className="mt-4 text-3xl font-medium leading-[1.05] text-ink-900 sm:text-4xl">
                 Tell us the grade, quantity and plant.
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-slate-600 sm:text-base">
-                Fill in the form, then send it to us on WhatsApp. We will reply with the price and availability.
+                Fill in the form and it goes straight to our sales team by email. We will reply with the price and availability.
               </p>
 
               <div className="mt-8 border-t border-line pt-8">
                 {isSubmitted ? (
-                  <div className="rounded-md bg-paper p-6 text-center ring-1 ring-line sm:p-10" role="status" aria-live="polite">
+                  <div className="rounded-md bg-paper p-5 text-center ring-1 ring-line sm:p-8" role="status" aria-live="polite">
                     <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
                       <CheckCircle2 className="h-9 w-9" strokeWidth={1.6} />
                     </div>
-                    <h3 className="mt-6 text-2xl font-semibold text-ink-900">Enquiry ready to send</h3>
+                    <h3 className="mt-6 text-2xl font-medium text-ink-900">Enquiry received</h3>
                     {enqRef && (
                       <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
-                        Ref <span className="font-semibold text-ink-900">{enqRef}</span>
+                        Ref <span className="font-medium text-ink-900">{enqRef}</span>
                       </div>
                     )}
                     <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-slate-600">
-                      Thank you, <strong className="font-semibold text-ink-900">{fullName}</strong> from{" "}
-                      <strong className="font-semibold text-ink-900">{companyName}</strong>. We&apos;ve received your
-                      requirement for <strong className="font-semibold text-brand-700">{product}</strong> ({quantity}).
-                      Please send it to us on WhatsApp, or call {contacts.phonePrimary}.
+                      Thank you, <strong className="font-medium text-ink-900">{fullName}</strong> from{" "}
+                      <strong className="font-medium text-ink-900">{companyName}</strong>. We&apos;ve received your
+                      requirement for <strong className="font-medium text-brand-700">{product}</strong> ({quantity}).
+                      It has been emailed to our sales team and we will contact you shortly
+                      {email.trim() ? <> — a confirmation has been sent to <strong className="font-medium text-ink-900">{email.trim()}</strong></> : ""}.
+                      For anything urgent, call {contacts.phonePrimary}.
                     </p>
 
                     <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-                      <a
-                        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                          `Hi Kanyaka Corporation, ${enqRef ? `enquiry ${enqRef}` : "new enquiry"}.\n*Name:* ${fullName}\n*Company:* ${companyName}\n*Phone:* ${phone}${email ? `\n*Email:* ${email}` : ""}\n*Product:* ${product}\n*Quantity:* ${quantity}\n*Delivery to:* ${destination}\n*Manufacturer COA requested:* ${needCoa ? "Yes" : "No"}${notes ? `\n*Notes:* ${notes}` : ""}\nPlease share the latest rate.`
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
-                      >
-                        <MessageSquare className="h-4 w-4" />
-                        Send on WhatsApp
-                      </a>
                       <button
                         type="button"
                         onClick={() => {
@@ -451,7 +442,7 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:px-8"
+                        className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-medium text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:px-8"
                       >
                         {isSubmitting ? (
                           <>
@@ -475,12 +466,12 @@ export default function ContactPage() {
           {/* Sales desk + sites */}
           <div className="space-y-6 lg:col-span-5">
             <Reveal delay={120}>
-              <div className="grain relative overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-10">
+              <div className="grain relative overflow-hidden rounded-md bg-ink-900 p-5 text-white sm:p-8">
                 <div className="hex-lattice mask-fade-b absolute inset-0" />
                 <Flask className="pointer-events-none absolute -bottom-6 -right-8 h-40 w-40 opacity-40" />
                 <div className="relative">
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">02 — Direct lines</div>
-                  <h2 className="mt-4 text-3xl font-semibold leading-[1.05]">Phone &amp; email</h2>
+                  <h2 className="mt-4 text-3xl font-medium leading-[1.05]">Phone &amp; email</h2>
 
                   <ul className="mt-8 space-y-6">
                     <li className="flex gap-4">
@@ -540,7 +531,7 @@ export default function ContactPage() {
                     href={whatsappDirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
+                    className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
                   >
                     <MessageSquare className="h-4 w-4 text-emerald-600" />
                     Start a WhatsApp chat
@@ -551,14 +542,14 @@ export default function ContactPage() {
 
             {sites.map((site, i) => (
               <Reveal key={site.title} delay={200 + i * 80}>
-                <div className="rounded-md bg-white p-6 ring-1 ring-line sm:p-8">
+                <div className="rounded-md bg-white p-5 ring-1 ring-line sm:p-6">
                   <div className="flex items-start justify-between gap-4">
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-ink-900 text-brand-300">
                       <site.icon className="h-5 w-5" strokeWidth={1.6} />
                     </span>
                     <span className="text-right font-mono text-xs uppercase tracking-[0.14em] text-slate-500">{site.tag}</span>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold text-ink-900">{site.title}</h3>
+                  <h3 className="mt-5 text-xl font-medium text-ink-900">{site.title}</h3>
                   <address className="mt-2 text-[15px] not-italic leading-relaxed text-slate-600">
                     {site.lines.map((line) => (
                       <span key={line} className="block">
@@ -583,11 +574,11 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════════ LOCATIONS (satellite) ═══════════════ */}
-      <section id="locations" className="scroll-mt-32 pb-14 sm:pb-20">
+      <section id="locations" className="scroll-mt-32 pb-12 sm:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — Our locations</div>
-            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">
               Office and warehouses, from above.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600">

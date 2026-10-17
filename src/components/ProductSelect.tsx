@@ -127,7 +127,7 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
         }`}
       >
         {selected && (
-          <span className="w-16 shrink-0 truncate font-display text-sm font-semibold text-brand-700">{selected.symbol}</span>
+          <span className="w-16 shrink-0 truncate font-display text-sm font-medium text-brand-700">{selected.symbol}</span>
         )}
         <span className="min-w-0 flex-1 truncate">{selected?.label ?? "Select a chemical"}</span>
         <ChevronDown className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} />
@@ -179,11 +179,11 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
                     onClick={() => choose(opt)}
                     className={`mx-1.5 flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 ${isActive ? "bg-paper-2" : ""}`}
                   >
-                    <span className={`w-16 shrink-0 truncate font-display text-sm font-semibold ${isSelected ? "text-brand-700" : "text-slate-500"}`}>
+                    <span className={`w-16 shrink-0 truncate font-display text-sm font-medium ${isSelected ? "text-brand-700" : "text-slate-500"}`}>
                       {opt.symbol}
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className={`block truncate text-sm ${isSelected ? "font-semibold text-ink-900" : "text-ink-900"}`}>{opt.label}</span>
+                      <span className={`block truncate text-sm ${isSelected ? "font-medium text-ink-900" : "text-ink-900"}`}>{opt.label}</span>
                       <span className="block truncate text-xs text-slate-500">{opt.maker}</span>
                     </span>
                     {isSelected && <Check className="h-4 w-4 shrink-0 text-brand-600" />}

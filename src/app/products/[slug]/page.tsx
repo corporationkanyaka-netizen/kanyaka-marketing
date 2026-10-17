@@ -26,9 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const brand = product.manufacturer;
   const dealerNote = product.isGrasimAuthorized
     ? "Authorised Grasim Industries Ltd. dealer."
-    : product.manufacturer === "Aditya Birla Chemicals"
-      ? "Authorised Aditya Birla Chemicals dealer."
-      : `Make: ${product.manufacturer}.`;
+    : `Make: ${product.manufacturer}.`;
   const stockNote = product.fromGodown
     ? "Held in godown stock near Pashamylaram, Telangana."
     : "Supplied against order.";

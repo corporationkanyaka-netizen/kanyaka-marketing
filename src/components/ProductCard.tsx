@@ -34,7 +34,7 @@ export default function ProductCard({ product, onOpenQuote, index }: ProductCard
         <div className="flex h-9 items-start justify-between">
           <div className="font-mono text-[11px] leading-tight text-slate-500">
             {index !== undefined && (
-              <div className={`text-sm font-semibold ${tone.text}`}>{String(index + 1).padStart(2, "0")}</div>
+              <div className={`text-sm font-medium ${tone.text}`}>{String(index + 1).padStart(2, "0")}</div>
             )}
             <div>CAS {product.casNumber}</div>
           </div>
@@ -48,7 +48,7 @@ export default function ProductCard({ product, onOpenQuote, index }: ProductCard
         </div>
 
         <div
-          className={`my-3 flex h-11 items-center whitespace-nowrap font-display ${symbolSize} font-semibold leading-none tracking-tight text-ink-900 transition-transform duration-500 group-hover:scale-[1.04] origin-left`}
+          className={`my-3 flex h-11 items-center whitespace-nowrap font-display ${symbolSize} font-medium leading-none tracking-tight text-ink-900 transition-transform duration-500 group-hover:scale-[1.04] origin-left`}
         >
           {symbol}
         </div>
@@ -56,7 +56,7 @@ export default function ProductCard({ product, onOpenQuote, index }: ProductCard
         <div className="flex items-end justify-between gap-3 border-t border-black/5 pt-2.5">
           <div className="min-w-0">
             <div className="text-[11px] uppercase tracking-[0.14em] text-slate-500">Purity</div>
-            <div className="truncate font-mono text-base font-semibold text-ink-900">{purityHeadline}</div>
+            <div className="truncate font-mono text-base font-medium text-ink-900">{purityHeadline}</div>
           </div>
           <div className="shrink-0 text-right font-mono text-[11px] leading-tight text-slate-500">
             <div>{physicalState(product)}</div>
@@ -79,7 +79,7 @@ export default function ProductCard({ product, onOpenQuote, index }: ProductCard
         </div>
 
         <Link href={`/products/${product.slug}`}>
-          <h3 className="line-clamp-2 min-h-[2.75rem] text-base font-semibold leading-snug text-ink-900 transition-colors group-hover:text-brand-700">
+          <h3 className="line-clamp-2 min-h-[2.75rem] text-base font-medium leading-snug text-ink-900 transition-colors group-hover:text-brand-700">
             {product.name}
           </h3>
         </Link>

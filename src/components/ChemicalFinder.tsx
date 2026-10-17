@@ -51,7 +51,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
       <Reveal className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
         <div className="max-w-2xl">
           <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">04 — Industries we serve</div>
-          <h2 className="mt-4 text-4xl font-semibold leading-[1.05] sm:text-5xl">The right grade for every process line.</h2>
+          <h2 className="mt-4 text-4xl font-medium leading-[1.05] sm:text-5xl">The right grade for every process line.</h2>
         </div>
         <p className="max-w-md text-lg leading-relaxed text-slate-400">
           Pick your sector to see the chemicals it typically uses — all available from us.
@@ -88,12 +88,12 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
 
         {/* Sector detail */}
         <div className="lg:col-span-8">
-          <div key={sector.slug} className="relative overflow-hidden rounded-md border border-white/10 bg-ink-900 p-6 sm:p-10">
+          <div key={sector.slug} className="relative overflow-hidden rounded-md border border-white/10 bg-ink-900 p-5 sm:p-8">
             <div className="hex-lattice mask-fade-b absolute inset-0 opacity-70" />
             <SectorIcon className="absolute -right-6 -top-6 h-48 w-48 text-white/[0.03]" strokeWidth={1} />
 
             <div className="relative">
-              <h3 className="text-2xl font-semibold sm:text-3xl">{sector.name}</h3>
+              <h3 className="text-2xl font-medium sm:text-3xl">{sector.name}</h3>
               <p className="mt-2 text-brand-300">{sector.tagline}</p>
               <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-slate-300">{sector.overview}</p>
 
@@ -139,7 +139,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
                         </button>
                       </div>
                       <Link href={`/products/${prod.slug}`} className="block">
-                        <div className="mt-3 font-display text-2xl font-semibold">{tileSymbol(prod)}</div>
+                        <div className="mt-3 font-display text-2xl font-medium">{tileSymbol(prod)}</div>
                         <div className="mt-1 line-clamp-1 text-xs text-slate-400">{prod.name.split("(")[0].trim()}</div>
                       </Link>
                     </div>

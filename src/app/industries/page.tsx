@@ -53,7 +53,7 @@ export default function IndustriesPage() {
         <div className="absolute -left-40 top-10 -z-10 h-[520px] w-[520px] rounded-full bg-brand-600/20 blur-[120px]" />
         <MoleculeHero className="pointer-events-none absolute -right-40 -top-24 -z-10 hidden h-[640px] w-[640px] opacity-25 md:block" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-12 pt-12 sm:px-6 sm:pt-16 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 sm:pt-12 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
@@ -61,7 +61,7 @@ export default function IndustriesPage() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="mt-6 text-5xl font-semibold leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+              <h1 className="mt-6 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                 The right chemicals
                 <br />
                 <span className="text-reagent">for your industry.</span>
@@ -77,7 +77,7 @@ export default function IndustriesPage() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Request a sector quotation
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -133,7 +133,7 @@ export default function IndustriesPage() {
           <section
             key={industry.id}
             id={industry.slug}
-            className={`relative scroll-mt-32 border-b border-line py-14 sm:py-20 ${alt ? "bg-paper-2" : "hex-lattice-light"}`}
+            className={`relative scroll-mt-32 border-b border-line py-12 sm:py-16 ${alt ? "bg-paper-2" : "hex-lattice-light"}`}
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
@@ -147,7 +147,7 @@ export default function IndustriesPage() {
                       {pad(index + 1)} — Sector
                     </div>
                   </div>
-                  <h2 className="mt-6 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">{industry.name}</h2>
+                  <h2 className="mt-6 text-4xl font-medium leading-[1.05] text-ink-900 sm:text-5xl">{industry.name}</h2>
                   <p className="mt-4 text-lg font-medium leading-snug text-brand-700">{industry.tagline}</p>
                   <p className="mt-5 text-[15px] leading-relaxed text-slate-600 sm:text-base">{industry.overview}</p>
 
@@ -181,7 +181,7 @@ export default function IndustriesPage() {
                 <div className="lg:col-span-7">
                   <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-[1fr_auto_1fr]">
                     <Reveal delay={100} className="h-full">
-                      <div className="h-full rounded-md bg-white p-6 ring-1 ring-line sm:p-8">
+                      <div className="h-full rounded-md bg-white p-5 ring-1 ring-line sm:p-6">
                         <div className="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">
                           The challenge
                         </div>
@@ -202,7 +202,7 @@ export default function IndustriesPage() {
                     </div>
 
                     <Reveal delay={200} className="h-full">
-                      <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-8">
+                      <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-5 text-white sm:p-6">
                         <div className="hex-lattice mask-fade-b absolute inset-0" />
                         <div className="relative">
                           <div className="font-mono text-xs uppercase tracking-[0.18em] text-brand-300">
@@ -249,7 +249,7 @@ export default function IndustriesPage() {
                         >
                           <Link href={`/products/${prod.slug}`} className="block flex-1">
                             <div className="flex items-center justify-between">
-                              <span className={`font-mono text-xs font-semibold ${tone.text}`}>
+                              <span className={`font-mono text-xs font-medium ${tone.text}`}>
                                 {pad(productsData.indexOf(prod) + 1)}
                               </span>
                               <span className="flex items-center gap-1.5 text-xs text-slate-500">
@@ -257,7 +257,7 @@ export default function IndustriesPage() {
                                 <span className="hidden sm:inline">{tone.label}</span>
                               </span>
                             </div>
-                            <div className="mt-5 break-words font-display text-2xl font-semibold leading-none tracking-tight text-ink-900 sm:text-3xl">
+                            <div className="mt-5 break-words font-display text-2xl font-medium leading-none tracking-tight text-ink-900 sm:text-3xl">
                               {tileSymbol(prod)}
                             </div>
                             <div className="mt-3 text-sm font-medium leading-snug text-ink-900 group-hover:text-brand-700">
@@ -298,20 +298,20 @@ export default function IndustriesPage() {
       })}
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-12 text-white sm:px-14 sm:py-14">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-10 text-white sm:px-10 sm:py-12">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <MoleculeHero className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] opacity-30" />
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-semibold leading-[1.05] sm:text-5xl">Don&apos;t see your process here?</h2>
+              <h2 className="text-4xl font-medium leading-[1.05] sm:text-5xl">Don&apos;t see your process here?</h2>
               <p className="mt-6 text-lg leading-relaxed text-sky-100/80">
                 Tell us which chemicals you use. We&apos;ll confirm availability, packing and price for your requirement.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Request a sector quotation
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

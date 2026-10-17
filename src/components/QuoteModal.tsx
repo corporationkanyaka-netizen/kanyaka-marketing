@@ -12,13 +12,11 @@ import {
   CheckCircle2,
   Phone,
   FileCheck,
-  ArrowRight,
   Lock,
   Loader2,
   Mail,
   MapPin,
   Clock,
-  MessageCircle,
 } from "lucide-react";
 
 interface QuoteModalProps {
@@ -146,9 +144,6 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
     }
   };
 
-  const whatsappForwardUrl = `https://wa.me/${companyInfo.contacts.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    `*Chemical Enquiry Ref:* ${enquiryRef ?? "NEW"}\n*Company:* ${companyName}\n*Contact:* ${fullName} (${phone})\n*Product:* ${selectedProduct}\n*Quantity:* ${quantity}\n*Location:* ${location}\n*Manufacturer COA requested:* ${needCoa ? 'Yes' : 'No'}\n*Notes:* ${notes}`
-  )}`;
   const phones = [companyInfo.contacts.phonePrimary, companyInfo.contacts.phoneSecondary];
   const emails = [companyInfo.contacts.emailDirector, companyInfo.contacts.emailSales];
   const office = companyInfo.addresses.registeredOffice;
@@ -163,9 +158,6 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
       <X className="h-5 w-5" />
     </button>
   );
-  const whatsappChatUrl = `https://wa.me/${companyInfo.contacts.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-    `Hello Kanyaka Corporation, I would like a quote for ${selectedProduct}.`
-  )}`;
 
   return (
     <div
@@ -194,13 +186,13 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
         >
           <div className="hex-lattice mask-fade-b absolute inset-0" />
           <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-brand-600/20 blur-[80px]" />
-          <div className="relative p-6 pr-16 md:p-8">
+          <div className="relative p-5 pr-16 md:p-6">
             <Logo size="md" variant="dark-bg" showTagline={false} />
             <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Request a quote</div>
-            <h3 id="quote-contact-title" className="mt-2 text-2xl font-semibold leading-tight">
+            <h3 id="quote-contact-title" className="mt-2 text-2xl font-medium leading-tight">
               Talk to our sales desk
             </h3>
-            <p className="mt-1.5 text-sm leading-snug text-slate-400">Authorised dealer · Grasim Industries &amp; Aditya Birla Chemicals</p>
+            <p className="mt-1.5 text-sm leading-snug text-slate-400">Authorised dealer · Grasim Industries Ltd.</p>
           </div>
 
           <div className="relative px-6 pb-6 md:px-8 md:pb-8">
@@ -248,16 +240,6 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
               </li>
             </ul>
 
-            <a
-              href={whatsappChatUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-4 flex h-12 items-center justify-center gap-2 rounded-md bg-[#25D366] text-[15px] font-semibold text-white transition-colors hover:bg-[#1fb457]"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Chat on WhatsApp
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
           </div>
         </aside>
 
@@ -270,37 +252,33 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
             {closeButton("")}
           </div>
 
-          <div className="scroll-thin p-5 sm:p-8 md:flex-1 md:overflow-y-auto">
+          <div className="scroll-thin p-5 sm:p-6 md:flex-1 md:overflow-y-auto">
             {isSubmitted ? (
               <div className="py-4 text-center sm:py-8" role="status" aria-live="polite">
                 <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
                   <CheckCircle2 className="h-9 w-9" strokeWidth={1.6} />
                 </div>
-                <h3 id="quote-modal-title" className="mt-6 text-2xl font-semibold text-ink-900 sm:text-3xl">
-                  Enquiry ready to send
+                <h3 id="quote-modal-title" className="mt-6 text-2xl font-medium text-ink-900 sm:text-3xl">
+                  Enquiry received
                 </h3>
                 {enquiryRef && (
                   <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
-                    ID <span className="font-semibold text-ink-900">{enquiryRef}</span>
+                    ID <span className="font-medium text-ink-900">{enquiryRef}</span>
                   </div>
                 )}
                 <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-slate-600">
-                  Thank you, <span className="font-semibold text-ink-900">{fullName}</span> from{" "}
-                  <span className="font-semibold text-ink-900">{companyName}</span>. Your enquiry for{" "}
-                  <span className="font-semibold text-brand-700">{selectedProduct}</span> is ready. Send it to us on
-                  WhatsApp and we will reply with the price and availability.
+                  Thank you, <span className="font-medium text-ink-900">{fullName}</span> from{" "}
+                  <span className="font-medium text-ink-900">{companyName}</span>. Your enquiry for{" "}
+                  <span className="font-medium text-brand-700">{selectedProduct}</span> has been emailed to our sales team.
+                  We&apos;ll contact you shortly with the price and availability.
+                  {email.trim() && (
+                    <>
+                      {" "}A confirmation has been sent to <span className="font-medium text-ink-900">{email.trim()}</span>.
+                    </>
+                  )}
                 </p>
 
                 <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
-                  <a
-                    href={whatsappForwardUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
-                  >
-                    Send on WhatsApp
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
                   <button
                     type="button"
                     onClick={() => {
@@ -324,7 +302,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Or leave your details</span>
                     <span className="h-px flex-1 bg-line" />
                   </div>
-                  <h3 id="quote-modal-title" className="mt-5 text-2xl font-semibold leading-tight text-ink-900 sm:text-3xl md:mt-0">
+                  <h3 id="quote-modal-title" className="mt-5 text-2xl font-medium leading-tight text-ink-900 sm:text-3xl md:mt-0">
                     Get a call back with your quote
                   </h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-slate-600">
@@ -541,7 +519,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60"
+                      className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-medium text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60"
                     >
                       {isSubmitting ? (
                         <>

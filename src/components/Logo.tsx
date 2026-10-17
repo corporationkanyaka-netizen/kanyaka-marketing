@@ -37,13 +37,13 @@ export default function Logo({ className = "", size = "md", variant = "light-bg"
       {mark}
       <span className="flex flex-col justify-center leading-none">
         <span
-          className={`font-display font-bold tracking-[-0.02em] ${d.name} ${isDarkBg ? "text-white" : "text-ink-950"}`}
+          className={`font-display font-semibold tracking-[-0.02em] ${d.name} ${isDarkBg ? "text-white" : "text-ink-950"}`}
         >
           Kanyaka
         </span>
         <span className="mt-1 h-[2px] w-full rounded-md bg-gradient-to-r from-[#e0203f] via-[#e0203f]/60 to-[#2aaaeb]" />
         <span
-          className={`mt-1 font-semibold uppercase tracking-[0.34em] ${d.corp} ${isDarkBg ? "text-slate-300" : "text-brand-700"}`}
+          className={`mt-1 font-medium uppercase tracking-[0.34em] ${d.corp} ${isDarkBg ? "text-slate-300" : "text-brand-700"}`}
         >
           Corporation
         </span>

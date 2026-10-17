@@ -45,7 +45,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
             <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-amber-glow" />
             <span className="truncate">
               <span className="text-white">Authorised dealer</span>
-              <span className="hidden sm:inline"> · Grasim Industries Ltd. &amp; Aditya Birla Chemicals</span>
+              <span className="hidden sm:inline"> · Grasim Industries Ltd.</span>
             </span>
           </div>
           <a href={tel} className="hidden shrink-0 items-center gap-1.5 font-mono text-slate-200 transition-colors hover:text-white sm:flex">

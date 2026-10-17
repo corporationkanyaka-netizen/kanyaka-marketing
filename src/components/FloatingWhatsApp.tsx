@@ -226,7 +226,7 @@ export default function FloatingWhatsApp() {
               </span>
             </div>
             <div className="min-w-0 flex-1">
-              <div className="truncate font-semibold leading-tight">{companyInfo.name}</div>
+              <div className="truncate font-medium leading-tight">{companyInfo.name}</div>
               <div className="truncate text-xs text-emerald-100/80">Sales desk · {companyInfo.contacts.whatsappDisplay}</div>
             </div>
             <button
@@ -246,7 +246,7 @@ export default function FloatingWhatsApp() {
             style={{ backgroundImage: "radial-gradient(rgba(11,22,38,0.05) 1px, transparent 1px)", backgroundSize: "14px 14px" }}
           >
             <div className="max-w-[85%] rounded-md bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
-              <div className="mb-0.5 text-xs font-semibold text-[#075E54]">{companyInfo.name}</div>
+              <div className="mb-0.5 text-xs font-medium text-[#075E54]">{companyInfo.name}</div>
               Hello! 👋 Welcome to Kanyaka Corporation.
               <br />
               Which chemical do you need — and how much? We&apos;ll reply on WhatsApp with the rate and availability.
@@ -287,7 +287,7 @@ export default function FloatingWhatsApp() {
                       href={waLink(m.text)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md bg-[#25D366] px-3.5 py-1.5 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[#25D366] px-3.5 py-1.5 text-[13px] font-medium text-white hover:bg-[#1ebe5a]"
                     >
                       <WhatsAppGlyph className="h-3.5 w-3.5" />
                       Send via WhatsApp instead
@@ -296,7 +296,7 @@ export default function FloatingWhatsApp() {
                 )}
                 {m.id === firstDeliveredId && contact && (
                   <div className="mt-2 max-w-[85%] self-start rounded-md bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
-                    <div className="mb-0.5 text-xs font-semibold text-[#075E54]">{companyInfo.name}</div>
+                    <div className="mb-0.5 text-xs font-medium text-[#075E54]">{companyInfo.name}</div>
                     Thanks, {contact.name.split(" ")[0]}! Your message has reached our sales desk. We&apos;ll reply on WhatsApp at{" "}
                     <span className="font-medium">{contact.phone}</span>.
                   </div>
@@ -351,7 +351,7 @@ export default function FloatingWhatsApp() {
                   </button>
                   <button
                     type="submit"
-                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-[#25D366] px-4 py-2 text-[13px] font-medium text-white hover:bg-[#1ebe5a]"
                   >
                     Send message
                     <SendHorizontal className="h-4 w-4" />

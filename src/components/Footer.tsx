@@ -36,11 +36,11 @@ export default function Footer() {
       <div className="lab-grid-dark mask-fade-b absolute inset-0 opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 pb-12 md:grid-cols-2 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-8 pb-10 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Logo size="md" variant="dark-bg" showTagline={false} />
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed">
-              Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals. Suppliers of chloro-alkali products, acids,
+              Authorised dealer of Grasim Industries Ltd. Suppliers of chloro-alkali products, acids,
               specialty chemicals and solvents across Telangana &amp; Andhra Pradesh.
             </p>
             <p className="mt-3 max-w-sm text-sm italic text-slate-500">&ldquo;{companyInfo.motto}&rdquo;</p>
@@ -129,7 +129,7 @@ export default function Footer() {
       {/* Giant wordmark */}
       <div className="relative select-none overflow-hidden" aria-hidden="true">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="translate-y-[18%] bg-gradient-to-b from-white/[0.14] to-white/0 bg-clip-text font-display text-[22vw] font-semibold leading-none tracking-[-0.06em] text-transparent lg:text-[15rem]">
+          <div className="translate-y-[18%] bg-gradient-to-b from-white/[0.14] to-white/0 bg-clip-text font-display text-[22vw] font-medium leading-none tracking-[-0.06em] text-transparent lg:text-[15rem]">
             Kanyaka
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function Footer() {
 
       <div className="relative border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <div>© 2026 Kanyaka Corporation · Authorised dealer of Grasim Industries Ltd. &amp; Aditya Birla Chemicals</div>
+          <div>© 2026 Kanyaka Corporation · Authorised dealer of Grasim Industries Ltd.</div>
           <div className="flex items-center gap-5 sm:pr-20">
             <Link href="/contact" className="transition-colors hover:text-white">
               Terms &amp; SLA
