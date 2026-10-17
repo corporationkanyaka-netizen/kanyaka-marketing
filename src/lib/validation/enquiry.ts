@@ -18,7 +18,7 @@ export const LOGGABLE_ACTIVITIES = ["NOTE", "CALL", "WHATSAPP", "EMAIL"] as cons
 
 /**
  * Normalise to E.164. Accepts Indian mobiles (98490 12345, +91 98490 12345, 919849012345),
- * Indian landlines with STD code (040-23050790) and other international numbers in +CC form.
+ * Indian landlines with STD code (e.g. 040-12345678) and other international numbers in +CC form.
  */
 export function normalizePhone(raw: string): string | null {
   const trimmed = raw.trim();
@@ -80,7 +80,7 @@ const phone = z
   .transform((v, ctx) => {
     const normalized = normalizePhone(v);
     if (!normalized) {
-      ctx.addIssue({ code: "custom", message: "Enter a valid phone number, e.g. 98490 12345 or 040-23050790" });
+      ctx.addIssue({ code: "custom", message: "Enter a valid phone number, e.g. 98490 12345" });
       return z.NEVER;
     }
     return normalized;

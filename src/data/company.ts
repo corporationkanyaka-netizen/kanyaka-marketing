@@ -5,21 +5,21 @@ export const companyInfo = {
   name: "Kanyaka Corporation",
   tagline: "Genuine and quality products at reasonable price.",
   motto: "Genuine and quality products at reasonable price.",
-  experienceYears: "28+",
+  experienceYears: "24",
   summary:
     "Kanyaka Corporation supplies chloro-alkali products, acids, specialty chemicals and solvents to Indian manufacturing industry. We are an authorised dealer for Grasim Industries Ltd. and Aditya Birla Chemicals, and stock their products at our own warehouse near the Pashamylaram industrial estate.",
   promoter: {
     name: "Mr. K. Subrahmanyam",
     designation: "Promoter",
-    experience: "28+ years in the chemical industry",
-    bio: "Kanyaka Corporation is promoted and guided by Mr. K. Subrahmanyam, who brings more than 28 years of experience in the chemical industry. The company is managed by a qualified team of highly motivated people, and works to one simple motto: genuine and quality products at a reasonable price.",
+    experience: "24 years in the chemical industry",
+    bio: "Kanyaka Corporation is promoted and guided by Mr. K. Subrahmanyam, who brings 24 years of experience in the chemical industry. The company is managed by a qualified team of highly motivated people, and works to one simple motto: genuine and quality products at a reasonable price.",
   },
   authorizedPartners: [
     {
       name: "Grasim Industries Ltd.",
       parent: "Aditya Birla Group",
       tier: "Authorised dealer · Telangana & Andhra Pradesh",
-      products: "Caustic Soda Flakes, Caustic Soda Lye, Sodium Sulphate Anhydrous, Calcium Chloride, Stable Bleaching Powder",
+      products: "Aluminium Chloride (Granules & Powder), Caustic Soda Flakes, Calcium Chloride, Sodium Sulphate Anhydrous, Hydrochloric Acid, Sodium Hypochlorite",
       badgeText: "Authorised Grasim Dealer",
     },
     {
@@ -32,8 +32,8 @@ export const companyInfo = {
     {
       name: "Other leading manufacturers",
       parent: "Trade supply",
-      tier: "Tata Chemicals · Andhra Sugars · RCF · Kutch Chemicals",
-      products: "Soda Ash, Caustic Potash, Potassium Carbonate, Sodium Nitrite, Thionyl Chloride, and imported Hydrogen Peroxide 50%",
+      tier: "Tata · Nirma · DCM · TGV · Andhra Sugars · Deepak · Kutch · Panoli",
+      products: "Caustic Potash, Potassium Carbonate, Soda Ash, Sodium Bicarbonate, Sulphites, Sodium Nitrite, Thionyl Chloride, Sulphuric Acid, Oxalic Acid and more",
       badgeText: "Allied brands",
     },
   ],
@@ -50,15 +50,11 @@ export const companyInfo = {
   },
   contacts: {
     phonePrimary: "+91 90300 44304",
-    phoneSecondary: "+91 99498 44304",
-    phoneTertiary: "+91 91779 97998",
-    landline: "040-23050790",
-    fax: "040-23050780",
+    phoneSecondary: "+91 99498 44304",
     whatsapp: "+919030044304",
     whatsappDisplay: "+91 90300 44304",
-    emailSales: "kanyaka_corp@hotmail.com",
-    emailGeneral: "kanyaka_corp@hotmail.com",
-    emailDirector: "subrahamanyam549@gmail.com",
+    emailSales: "kanyaka_corp@hotmail.com",
+    emailDirector: "subramanyam549@gmail.com",
     webmailUrl: "http://webmail.kanyakacorporation.com:2095",
   },
   addresses: {
@@ -116,11 +112,11 @@ export const companyInfo = {
       lng: 78.403583,
     },
   ],
-  operatingHours: "Monday to Saturday, during business hours",
+  operatingHours: "Monday to Saturday, 10:00 AM – 6:00 PM",
   stats: [
-    { value: "28+", label: "Years of promoter experience", desc: "Mr. K. Subrahmanyam, in the chemical industry" },
+    { value: "24", label: "Years of experience", desc: "Mr. K. Subrahmanyam, in the chemical industry" },
     { value: "6,000", label: "Sq. ft. warehouse", desc: "Near Pashamylaram industrial estate" },
-    { value: "16", label: "Chemicals supplied", desc: "Chlor-alkali, salts, acids & reagents" },
+    { value: "27", label: "Chemicals supplied", desc: "Chlor-alkali, salts, acids & reagents" },
     { value: "2", label: "Authorised principals", desc: "Grasim Industries & Aditya Birla Chemicals" },
     { value: "8", label: "Industries served", desc: "From pharma and agro to dairy and textiles" },
   ],

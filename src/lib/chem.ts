@@ -18,22 +18,33 @@ export function unCode(product: Product): string | null {
 
 /** Short symbol shown large on the periodic-style product tile. */
 const tileSymbols: Record<string, string> = {
+  "aluminium-chloride-granules": "AlCl₃",
+  "aluminium-chloride-powder": "AlCl₃",
+  "ammonium-chloride": "NH₄Cl",
+  "calcium-chloride-granules": "CaCl₂",
+  "calcium-chloride-powder": "CaCl₂",
+  "calcium-chloride-lumps": "CaCl₂",
   "caustic-soda-flakes": "NaOH",
-  "caustic-soda-lye": "NaOH",
-  "aluminium-chloride-anhydrous": "AlCl₃",
-  "sodium-sulphate-anhydrous": "Na₂SO₄",
-  "calcium-chloride": "CaCl₂",
-  "stable-bleaching-powder": "CaOCl₂",
-  "phosphoric-acid": "H₃PO₄",
   "caustic-potash-flakes": "KOH",
+  "ferrous-sulphate": "FeSO₄",
+  "hydrochloric-acid": "HCl",
+  hyflow: "SiO₂",
   "potassium-carbonate": "K₂CO₃",
-  "soda-ash-dense-light": "Na₂CO₃",
+  "soda-ash-light": "Na₂CO₃",
   "sodium-bicarbonate": "NaHCO₃",
-  "sodium-bisulphite": "NaHSO₃",
+  "sodium-bicarbonate-refined": "NaHCO₃",
+  "sodium-sulphate-anhydrous": "Na₂SO₄",
   "sodium-metabisulphite": "Na₂S₂O₅",
+  "sodium-bisulphite": "NaHSO₃",
+  "sodium-sulphite": "Na₂SO₃",
+  "sodium-thiosulphate": "Na₂S₂O₃",
   "sodium-nitrite": "NaNO₂",
-  "hydrogen-peroxide": "H₂O₂",
+  "sodium-acetate": "CH₃COONa",
+  "sodium-chloride": "NaCl",
+  "sodium-hypochlorite": "NaOCl",
+  "sulphuric-acid": "H₂SO₄",
   "thionyl-chloride": "SOCl₂",
+  "oxalic-acid": "H₂C₂O₄",
 };
 
 export function tileSymbol(product: Product): string {
@@ -47,7 +58,7 @@ export function physicalState(product: Product): "Solid" | "Liquid" | "Gas" {
   return "Solid";
 }
 
-export const productCategories: ProductCategory[] = ["Chlor-Alkali", "Alkalis & Carbonates", "Sodium Salts", "Acids & Reagents"];
+export const productCategories: ProductCategory[] = ["Chlor-Alkali", "Alkalis & Carbonates", "Inorganic Salts", "Acids & Reagents"];
 
 /** Periodic-table style colour family per category. */
 export const categoryTone: Record<
@@ -70,8 +81,8 @@ export const categoryTone: Record<
     ring: "group-hover:ring-teal-300",
     hex: "#14b8a6",
   },
-  "Sodium Salts": {
-    label: "Sodium Salts",
+  "Inorganic Salts": {
+    label: "Inorganic Salts",
     dot: "bg-violet-500",
     tile: "from-violet-50 to-white",
     text: "text-violet-700",

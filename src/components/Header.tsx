@@ -66,12 +66,12 @@ export default function Header({ onOpenQuote }: HeaderProps) {
             <Logo size="md" variant="light-bg" showTagline={false} />
           </Link>
 
-          <nav className="hidden items-center gap-1 rounded-full bg-white/70 p-1 ring-1 ring-line lg:flex">
+          <nav className="hidden items-center gap-1 rounded-md bg-white/70 p-1 ring-1 ring-line lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                className={`rounded-md px-4 py-2 text-sm font-medium transition-all ${
                   isActive(link.href) ? "bg-ink-900 text-white" : "text-slate-600 hover:bg-paper-2 hover:text-ink-900"
                 }`}
               >
@@ -83,7 +83,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           <div className="hidden items-center gap-3 sm:flex">
             <button
               onClick={openQuote}
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-brand-600 py-2.5 pl-5 pr-4 text-sm font-medium text-white shadow-[0_8px_24px_-8px_rgba(2,132,199,0.7)] transition-all hover:bg-brand-700"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-brand-600 py-2.5 pl-5 pr-4 text-sm font-medium text-white shadow-[0_8px_24px_-8px_rgba(2,132,199,0.7)] transition-all hover:bg-brand-700"
             >
               Get a quote
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -93,7 +93,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={openQuote}
-              className="rounded-full bg-brand-600 px-4 py-2 text-sm font-medium text-white sm:hidden"
+              className="rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white sm:hidden"
             >
               Quote
             </button>
@@ -131,11 +131,11 @@ export default function Header({ onOpenQuote }: HeaderProps) {
                   setMobileMenuOpen(false);
                   openQuote();
                 }}
-                className="w-full rounded-full bg-ink-900 py-3.5 text-sm font-medium text-white"
+                className="w-full rounded-md bg-ink-900 py-3.5 text-sm font-medium text-white"
               >
                 Request a chemical quote
               </button>
-              <a href={tel} className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-ink-900 ring-1 ring-line">
+              <a href={tel} className="flex items-center justify-center gap-2 rounded-md py-3 text-sm font-medium text-ink-900 ring-1 ring-line">
                 <Phone className="h-4 w-4 text-brand-600" />
                 {companyInfo.contacts.phonePrimary}
               </a>

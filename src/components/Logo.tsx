@@ -80,7 +80,7 @@ export default function Logo({
         </span>
         {showTagline && (
           <>
-            <div className="w-9 h-[2px] bg-[#DC2626] mt-1 mb-0.5 rounded-full" />
+            <div className="w-9 h-[2px] bg-[#DC2626] mt-1 mb-0.5 rounded-md" />
             <span className={`text-[9px] font-medium tracking-wide ${subTextColor}`}>
               Chemicals &amp; Solvents
             </span>

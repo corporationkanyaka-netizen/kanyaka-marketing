@@ -68,12 +68,12 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
               <button
                 key={ind.id}
                 onClick={() => setSelectedIndustrySlug(ind.slug)}
-                className={`group flex shrink-0 cursor-pointer items-center gap-3 rounded-2xl px-4 py-3 text-left transition-all lg:w-full ${
+                className={`group flex shrink-0 cursor-pointer items-center gap-3 rounded-md px-4 py-3 text-left transition-all lg:w-full ${
                   active ? "bg-white text-ink-950" : "text-slate-400 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <span
-                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl transition-colors ${
+                  className={`grid h-9 w-9 shrink-0 place-items-center rounded-md transition-colors ${
                     active ? "bg-ink-900 text-brand-300" : "bg-white/5 text-slate-400 group-hover:text-brand-300"
                   }`}
                 >
@@ -88,7 +88,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
 
         {/* Sector detail */}
         <div className="lg:col-span-8">
-          <div key={sector.slug} className="relative overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-6 sm:p-10">
+          <div key={sector.slug} className="relative overflow-hidden rounded-md border border-white/10 bg-ink-900 p-6 sm:p-10">
             <div className="hex-lattice mask-fade-b absolute inset-0 opacity-70" />
             <SectorIcon className="absolute -right-6 -top-6 h-48 w-48 text-white/[0.03]" strokeWidth={1} />
 
@@ -124,7 +124,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
                   {matchingProducts.map((prod) => (
                     <div
                       key={prod.id}
-                      className="group relative rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/25 hover:bg-white/[0.07]"
+                      className="group relative rounded-md border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/25 hover:bg-white/[0.07]"
                     >
                       <div className="flex items-center justify-between">
                         <span

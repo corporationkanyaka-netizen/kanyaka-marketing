@@ -176,7 +176,7 @@ export default function FloatingWhatsApp() {
 
   const firstDeliveredId = msgs.find((m) => m.status === "delivered")?.id;
   const fieldClass = (bad?: string) =>
-    `w-full rounded-xl bg-white px-3.5 py-2.5 text-[14px] text-ink-900 outline-none ring-1 placeholder:text-slate-400 focus:ring-2 focus:ring-[#25D366]/60 ${
+    `w-full rounded-md bg-white px-3.5 py-2.5 text-[14px] text-ink-900 outline-none ring-1 placeholder:text-slate-400 focus:ring-2 focus:ring-[#25D366]/60 ${
       bad ? "ring-rose-400" : "ring-black/10"
     }`;
 
@@ -186,7 +186,7 @@ export default function FloatingWhatsApp() {
         <div
           role="dialog"
           aria-label="Chat with Kanyaka Corporation on WhatsApp"
-          className="flex w-[min(370px,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl bg-white shadow-[0_30px_80px_-20px_rgba(11,22,38,0.55)] ring-1 ring-black/5"
+          className="flex w-[min(370px,calc(100vw-2rem))] flex-col overflow-hidden rounded-md bg-white shadow-[0_30px_80px_-20px_rgba(11,22,38,0.55)] ring-1 ring-black/5"
         >
           {/* Header */}
           <div className="flex items-center gap-3 bg-[#075E54] px-4 py-3.5 text-white">
@@ -216,7 +216,7 @@ export default function FloatingWhatsApp() {
             className="max-h-[min(380px,52vh)] space-y-3 overflow-y-auto overscroll-contain bg-[#efeae2] px-4 py-5"
             style={{ backgroundImage: "radial-gradient(rgba(11,22,38,0.05) 1px, transparent 1px)", backgroundSize: "14px 14px" }}
           >
-            <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
+            <div className="max-w-[85%] rounded-md bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
               <div className="mb-0.5 text-xs font-semibold text-[#075E54]">{companyInfo.name}</div>
               Hello! 👋 Welcome to Kanyaka Corporation.
               <br />
@@ -229,7 +229,7 @@ export default function FloatingWhatsApp() {
                   <button
                     key={q}
                     onClick={() => pickQuick(q)}
-                    className="cursor-pointer rounded-full bg-white/90 px-3 py-1.5 text-[13px] font-medium text-[#075E54] ring-1 ring-[#075E54]/20 transition-colors hover:bg-white hover:ring-[#075E54]/40"
+                    className="cursor-pointer rounded-md bg-white/90 px-3 py-1.5 text-[13px] font-medium text-[#075E54] ring-1 ring-[#075E54]/20 transition-colors hover:bg-white hover:ring-[#075E54]/40"
                   >
                     {q}
                   </button>
@@ -240,7 +240,7 @@ export default function FloatingWhatsApp() {
             {msgs.map((m) => (
               <div key={m.id} className="flex flex-col items-end gap-1">
                 <div
-                  className={`max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-tr-sm px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm ${
+                  className={`max-w-[85%] whitespace-pre-wrap rounded-md px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm ${
                     m.status === "failed" ? "bg-rose-50 ring-1 ring-rose-200" : "bg-[#d9fdd3]"
                   }`}
                 >
@@ -258,7 +258,7 @@ export default function FloatingWhatsApp() {
                       href={waLink(m.text)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#25D366] px-3.5 py-1.5 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[#25D366] px-3.5 py-1.5 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
                     >
                       <WhatsAppGlyph className="h-3.5 w-3.5" />
                       Send via WhatsApp instead
@@ -266,7 +266,7 @@ export default function FloatingWhatsApp() {
                   </div>
                 )}
                 {m.id === firstDeliveredId && contact && (
-                  <div className="mt-2 max-w-[85%] self-start rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
+                  <div className="mt-2 max-w-[85%] self-start rounded-md bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
                     <div className="mb-0.5 text-xs font-semibold text-[#075E54]">{companyInfo.name}</div>
                     Thanks, {contact.name.split(" ")[0]}! Your message has reached our sales desk. We&apos;ll reply on WhatsApp at{" "}
                     <span className="font-medium">{contact.phone}</span>.
@@ -278,7 +278,7 @@ export default function FloatingWhatsApp() {
 
             {/* Details card — asked once, before the first message is sent */}
             {askDetails !== null && (
-              <form onSubmit={submitDetails} noValidate className="space-y-2.5 rounded-2xl bg-white p-3.5 shadow-sm ring-1 ring-[#075E54]/15">
+              <form onSubmit={submitDetails} noValidate className="space-y-2.5 rounded-md bg-white p-3.5 shadow-sm ring-1 ring-[#075E54]/15">
                 <div className="text-[13px] leading-snug text-slate-600">
                   So our team can reply to you on WhatsApp, please share your name and number.
                 </div>
@@ -334,7 +334,7 @@ export default function FloatingWhatsApp() {
                   </button>
                   <button
                     type="submit"
-                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-md bg-[#25D366] px-4 py-2 text-[13px] font-semibold text-white hover:bg-[#1ebe5a]"
                   >
                     Send message
                     <SendHorizontal className="h-4 w-4" />
@@ -370,7 +370,7 @@ export default function FloatingWhatsApp() {
               placeholder={askDetails !== null ? "Add your details above" : "Type a message"}
               aria-label="Your message"
               maxLength={1000}
-              className="max-h-[120px] min-h-[44px] flex-1 resize-none rounded-2xl bg-white px-4 py-[11px] text-[15px] leading-snug text-ink-900 outline-none ring-1 ring-black/5 placeholder:text-slate-400 focus:ring-[#25D366]/60 disabled:opacity-60"
+              className="max-h-[120px] min-h-[44px] flex-1 resize-none rounded-md bg-white px-4 py-[11px] text-[15px] leading-snug text-ink-900 outline-none ring-1 ring-black/5 placeholder:text-slate-400 focus:ring-[#25D366]/60 disabled:opacity-60"
             />
             <button
               type="submit"
@@ -410,7 +410,7 @@ export default function FloatingWhatsApp() {
       {/* Launcher */}
       <div className="flex items-end gap-3">
         {showTooltip && !open && (
-          <div className="hidden max-w-xs items-center gap-2 rounded-2xl bg-white px-4 py-2.5 text-sm text-ink-900 shadow-[0_20px_50px_-20px_rgba(11,22,38,0.45)] ring-1 ring-line sm:flex">
+          <div className="hidden max-w-xs items-center gap-2 rounded-md bg-white px-4 py-2.5 text-sm text-ink-900 shadow-[0_20px_50px_-20px_rgba(11,22,38,0.45)] ring-1 ring-line sm:flex">
             <button onClick={openChat} className="cursor-pointer text-left">
               Need a rate? Chat with our sales desk
             </button>

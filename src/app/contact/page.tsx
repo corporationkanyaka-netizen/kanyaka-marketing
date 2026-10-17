@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 const fieldClass =
-  "w-full rounded-xl bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-slate-400 ring-1 ring-line outline-none transition-shadow focus:ring-2 focus:ring-brand-500";
+  "w-full rounded-md bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-slate-400 ring-1 ring-line outline-none transition-shadow focus:ring-2 focus:ring-brand-500";
 const labelClass = "mb-2 block text-sm font-medium text-ink-900";
 
 function Req() {
@@ -152,7 +152,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={300}>
-            <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10 sm:grid-cols-3">
+            <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 sm:grid-cols-3">
               <div className="bg-ink-950/80 p-5">
                 <dt className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Phone</dt>
                 <dd className="mt-2">
@@ -186,7 +186,7 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           {/* Quote form */}
           <Reveal className="lg:col-span-7">
-            <div className="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-10">
+            <div className="rounded-md bg-white p-6 ring-1 ring-line sm:p-10">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — Request a quotation</div>
               <h2 className="mt-4 text-3xl font-semibold leading-[1.05] text-ink-900 sm:text-4xl">
                 Tell us the grade, quantity and plant.
@@ -197,13 +197,13 @@ export default function ContactPage() {
 
               <div className="mt-8 border-t border-line pt-8">
                 {isSubmitted ? (
-                  <div className="rounded-2xl bg-paper p-6 text-center ring-1 ring-line sm:p-10" role="status" aria-live="polite">
+                  <div className="rounded-md bg-paper p-6 text-center ring-1 ring-line sm:p-10" role="status" aria-live="polite">
                     <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
                       <CheckCircle2 className="h-9 w-9" strokeWidth={1.6} />
                     </div>
                     <h3 className="mt-6 text-2xl font-semibold text-ink-900">Enquiry ready to send</h3>
                     {enqRef && (
-                      <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
                         Ref <span className="font-semibold text-ink-900">{enqRef}</span>
                       </div>
                     )}
@@ -221,7 +221,7 @@ export default function ContactPage() {
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
+                        className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
                       >
                         <MessageSquare className="h-4 w-4" />
                         Send on WhatsApp
@@ -234,7 +234,7 @@ export default function ContactPage() {
                           setFormError("");
                           setIsSubmitted(false);
                         }}
-                        className="inline-flex cursor-pointer items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
+                        className="inline-flex cursor-pointer items-center justify-center rounded-md px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
                       >
                         Send another enquiry
                       </button>
@@ -345,7 +345,7 @@ export default function ContactPage() {
                         <label htmlFor="contact-product" className={labelClass}>
                           Chemical required<Req />
                         </label>
-                        <div className={fieldErrors.productSlug ? "rounded-xl ring-2 ring-rose-400" : undefined}>
+                        <div className={fieldErrors.productSlug ? "rounded-md ring-2 ring-rose-400" : undefined}>
                           <ProductSelect
                             id="contact-product"
                             value={product}
@@ -421,7 +421,7 @@ export default function ContactPage() {
 
                     <label
                       htmlFor="contactCoa"
-                      className="flex cursor-pointer items-start gap-3 rounded-xl bg-paper px-4 py-3.5 ring-1 ring-line transition-colors hover:bg-paper-2"
+                      className="flex cursor-pointer items-start gap-3 rounded-md bg-paper px-4 py-3.5 ring-1 ring-line transition-colors hover:bg-paper-2"
                     >
                       <input
                         type="checkbox"
@@ -440,7 +440,7 @@ export default function ContactPage() {
                     </label>
 
                     {formError && (
-                      <div role="alert" className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
+                      <div role="alert" className="rounded-md bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
                         {formError}
                       </div>
                     )}
@@ -449,7 +449,7 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:px-8"
+                        className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:px-8"
                       >
                         {isSubmitting ? (
                           <>
@@ -473,7 +473,7 @@ export default function ContactPage() {
           {/* Sales desk + sites */}
           <div className="space-y-6 lg:col-span-5">
             <Reveal delay={120}>
-              <div className="grain relative overflow-hidden rounded-3xl bg-ink-900 p-6 text-white sm:p-10">
+              <div className="grain relative overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-10">
                 <div className="hex-lattice mask-fade-b absolute inset-0" />
                 <Flask className="pointer-events-none absolute -bottom-6 -right-8 h-40 w-40 opacity-40" />
                 <div className="relative">
@@ -482,55 +482,43 @@ export default function ContactPage() {
 
                   <ul className="mt-8 space-y-6">
                     <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/5 text-brand-300 ring-1 ring-white/10">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
                         <Phone className="h-5 w-5" strokeWidth={1.6} />
                       </span>
                       <div className="min-w-0">
                         <div className="text-sm text-slate-400">Phone &amp; WhatsApp</div>
-                        <a
-                          href={telHref(contacts.phonePrimary)}
-                          className="mt-0.5 block font-mono text-xl text-white transition-colors hover:text-brand-300"
-                        >
-                          {contacts.phonePrimary}
-                        </a>
-                        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-sm text-slate-300">
-                          <a href={telHref(contacts.phoneSecondary)} className="transition-colors hover:text-white">
-                            {contacts.phoneSecondary}
+                        {[contacts.phonePrimary, contacts.phoneSecondary].map((phone) => (
+                          <a
+                            key={phone}
+                            href={telHref(phone)}
+                            className="mt-0.5 block font-mono text-xl text-white transition-colors hover:text-brand-300"
+                          >
+                            {phone}
                           </a>
-                          <a href={telHref(contacts.phoneTertiary)} className="transition-colors hover:text-white">
-                            {contacts.phoneTertiary}
-                          </a>
-                          <a href={telHref(contacts.landline)} className="transition-colors hover:text-white">
-                            Tel {contacts.landline}
-                          </a>
-                          <span>Fax {contacts.fax}</span>
-                        </div>
+                        ))}
                       </div>
                     </li>
 
                     <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/5 text-brand-300 ring-1 ring-white/10">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
                         <Mail className="h-5 w-5" strokeWidth={1.6} />
                       </span>
                       <div className="min-w-0">
                         <div className="text-sm text-slate-400">Email</div>
-                        <a
-                          href={`mailto:${contacts.emailSales}`}
-                          className="mt-0.5 block break-all font-mono text-[15px] text-white transition-colors hover:text-brand-300"
-                        >
-                          {contacts.emailSales}
-                        </a>
-                        <a
-                          href={`mailto:${contacts.emailDirector}`}
-                          className="mt-1 block break-all font-mono text-sm text-slate-300 transition-colors hover:text-white"
-                        >
-                          {contacts.emailDirector}
-                        </a>
+                        {[contacts.emailDirector, contacts.emailSales].map((email) => (
+                          <a
+                            key={email}
+                            href={`mailto:${email}`}
+                            className="mt-0.5 block break-all font-mono text-[15px] text-white transition-colors hover:text-brand-300"
+                          >
+                            {email}
+                          </a>
+                        ))}
                       </div>
                     </li>
 
                     <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/5 text-brand-300 ring-1 ring-white/10">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
                         <Clock className="h-5 w-5" strokeWidth={1.6} />
                       </span>
                       <div className="min-w-0">
@@ -550,7 +538,7 @@ export default function ContactPage() {
                     href={whatsappDirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
+                    className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
                   >
                     <MessageSquare className="h-4 w-4 text-emerald-600" />
                     Start a WhatsApp chat
@@ -561,9 +549,9 @@ export default function ContactPage() {
 
             {sites.map((site, i) => (
               <Reveal key={site.title} delay={200 + i * 80}>
-                <div className="rounded-3xl bg-white p-6 ring-1 ring-line sm:p-8">
+                <div className="rounded-md bg-white p-6 ring-1 ring-line sm:p-8">
                   <div className="flex items-start justify-between gap-4">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-ink-900 text-brand-300">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-ink-900 text-brand-300">
                       <site.icon className="h-5 w-5" strokeWidth={1.6} />
                     </span>
                     <span className="text-right font-mono text-xs uppercase tracking-[0.14em] text-slate-500">{site.tag}</span>

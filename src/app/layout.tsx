@@ -24,18 +24,18 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Kanyaka Corporation | Authorised Grasim & Aditya Birla Chemicals Dealer, Hyderabad",
-  description: "Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals in Telangana & Andhra Pradesh. Caustic soda flakes & lye, aluminium chloride, sodium sulphate, calcium chloride, bleaching powder and more — stocked at our 6,000 sq.ft. warehouse near Pashamylaram.",
+  description: "Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals in Telangana & Andhra Pradesh. Caustic soda flakes, aluminium chloride, calcium chloride, thionyl chloride, sodium sulphate, acids and 27 chemicals in all — stocked at our 6,000 sq.ft. warehouse near Pashamylaram.",
   keywords: [
     "Caustic soda flakes dealer Hyderabad",
     "Grasim Industries authorised dealer Telangana",
     "Aditya Birla Chemicals aluminium chloride dealer",
-    "Stable bleaching powder supplier Hyderabad",
+    "Aluminium chloride supplier Hyderabad",
     "Sodium sulphate anhydrous supplier",
     "Calcium chloride granules supplier",
     "Caustic potash flakes supplier Hyderabad",
     "Thionyl chloride supplier Hyderabad",
-    "Sodium nitrite RCF dealer",
-    "Hydrogen peroxide 50% supplier Hyderabad",
+    "Sodium nitrite supplier Telangana",
+    "Sulphuric acid and HCl supplier Hyderabad",
     "Kanyaka Corporation Kukatpally"
   ],
   authors: [{ name: "Kanyaka Corporation" }],
@@ -81,10 +81,17 @@ export default function RootLayout({
     legalName: "Kanyaka Corporation",
     url: "https://kanyakacorporation.com",
     logo: "https://kanyakacorporation.com/logo.png",
-    description: "Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals in Telangana & Andhra Pradesh. Caustic soda flakes & lye, aluminium chloride, sodium sulphate, calcium chloride, bleaching powder and more — stocked at our 6,000 sq.ft. warehouse near Pashamylaram.",
-    telephone: companyInfo.contacts.phonePrimary,
-    email: companyInfo.contacts.emailSales,
-    faxNumber: companyInfo.contacts.fax,
+    description: "Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals in Telangana & Andhra Pradesh. Caustic soda flakes, aluminium chloride, calcium chloride, thionyl chloride, sodium sulphate, acids and 27 chemicals in all — stocked at our 6,000 sq.ft. warehouse near Pashamylaram.",
+    telephone: [companyInfo.contacts.phonePrimary, companyInfo.contacts.phoneSecondary],
+    email: [companyInfo.contacts.emailDirector, companyInfo.contacts.emailSales],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "10:00",
+        closes: "18:00",
+      },
+    ],
     slogan: companyInfo.motto,
     founder: {
       "@type": "Person",

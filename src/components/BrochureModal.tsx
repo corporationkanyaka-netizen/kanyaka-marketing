@@ -16,7 +16,7 @@ const godownCount = productsData.filter((p) => p.fromGodown).length;
 const pillars = [
   { value: "Grasim & Aditya Birla", label: "Authorised dealer" },
   { value: "6,000 sq.ft.", label: "Warehouse near Pashamylaram" },
-  { value: "28+ years", label: "Promoter's experience in chemicals" },
+  { value: `${companyInfo.experienceYears} years`, label: "Experience in chemicals" },
 ];
 
 export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
@@ -63,13 +63,13 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
         aria-modal="true"
         aria-labelledby="brochure-modal-title"
         tabIndex={-1}
-        className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none print:max-h-none print:overflow-visible print:rounded-none print:shadow-none print:ring-0"
+        className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-md bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none print:max-h-none print:overflow-visible print:rounded-none print:shadow-none print:ring-0"
       >
         {/* Slim dark control band */}
         <div className="grain relative flex shrink-0 items-center justify-between gap-3 overflow-hidden bg-ink-900 px-4 py-3.5 text-white sm:px-6 no-print">
           <div className="hex-lattice mask-fade-b absolute inset-0" />
           <div className="relative flex min-w-0 items-center gap-3">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/5 text-brand-300 ring-1 ring-white/10">
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
               <FileText className="h-4 w-4" />
             </span>
             <div className="min-w-0">
@@ -84,7 +84,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
             <button
               type="button"
               onClick={handlePrint}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-brand-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
             >
               <Printer className="h-4 w-4" />
               <span className="hidden sm:inline">Print / Save as PDF</span>
@@ -103,7 +103,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
 
         {/* Printable brochure body */}
         <div className="overflow-y-auto p-3 sm:p-6 print:overflow-visible print:p-0">
-          <div className="lab-grid-light relative rounded-2xl bg-white p-5 text-slate-800 ring-1 ring-line sm:p-10 print:rounded-none print:p-0 print:ring-0">
+          <div className="lab-grid-light relative rounded-md bg-white p-5 text-slate-800 ring-1 ring-line sm:p-10 print:rounded-none print:p-0 print:ring-0">
             {/* Letterhead */}
             <div className="flex flex-col items-start justify-between gap-6 border-b-2 border-ink-900 pb-6 md:flex-row md:items-end">
               <div>
@@ -123,21 +123,19 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
               <div className="space-y-1.5 text-sm text-slate-600 md:text-right">
                 <div className="flex items-center gap-2 font-mono font-semibold text-ink-900 md:justify-end">
                   <Phone className="h-4 w-4 text-brand-600" />
-                  {companyInfo.contacts.phonePrimary}
-                </div>
-                <div className="font-mono md:text-right">
-                  Tel {companyInfo.contacts.landline} · Fax {companyInfo.contacts.fax}
+                  {companyInfo.contacts.phonePrimary} · {companyInfo.contacts.phoneSecondary}
                 </div>
                 <div className="flex items-center gap-2 break-all font-mono md:justify-end">
                   <Mail className="h-4 w-4 shrink-0 text-brand-600" />
-                  {companyInfo.contacts.emailSales}
+                  {companyInfo.contacts.emailDirector} · {companyInfo.contacts.emailSales}
                 </div>
+                <div className="md:text-right">{companyInfo.operatingHours}</div>
                 <div>KPHB Colony, Kukatpally, Hyderabad 500085</div>
               </div>
             </div>
 
             {/* Pillars */}
-            <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line sm:grid-cols-3">
               {pillars.map((p) => (
                 <div key={p.value} className="bg-paper px-5 py-5">
                   <div className="font-display text-2xl font-semibold tracking-tight text-ink-900">{p.value}</div>
@@ -154,7 +152,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                 Grades are typical. The manufacturer&apos;s batch COA is final. {godownCount} products are held as godown
                 stock; the rest are supplied against order.
               </p>
-              <div className="mt-5 overflow-x-auto rounded-2xl ring-1 ring-line">
+              <div className="mt-5 overflow-x-auto rounded-md ring-1 ring-line">
                 <table className="w-full min-w-[720px] border-collapse text-left text-sm">
                   <thead>
                     <tr className="bg-paper font-mono text-xs uppercase tracking-wider text-slate-500">
@@ -173,12 +171,12 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                           <div className="mt-1 flex flex-wrap items-center gap-2">
                             <span className="font-mono text-xs text-brand-700">{tileSymbol(prod)}</span>
                             {(prod.isGrasimAuthorized || prod.manufacturer === "Aditya Birla Chemicals") && (
-                              <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800 ring-1 ring-amber-200">
+                              <span className="rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800 ring-1 ring-amber-200">
                                 Authorised dealer
                               </span>
                             )}
                             {prod.fromGodown && (
-                              <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-800 ring-1 ring-emerald-200">
+                              <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-800 ring-1 ring-emerald-200">
                                 Godown stock
                               </span>
                             )}
@@ -197,7 +195,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
 
             {/* Depot & ordering */}
             <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
-              <div className="rounded-2xl bg-paper p-6 ring-1 ring-line">
+              <div className="rounded-md bg-paper p-6 ring-1 ring-line">
                 <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-brand-700">
                   <Warehouse className="h-4 w-4" />
                   Warehouse
@@ -207,7 +205,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                   Telangana. We hold stock of Grasim Industries and Aditya Birla Chemicals products here.
                 </p>
               </div>
-              <div className="rounded-2xl bg-paper p-6 ring-1 ring-line">
+              <div className="rounded-md bg-paper p-6 ring-1 ring-line">
                 <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-brand-700">
                   <MapPin className="h-4 w-4" />
                   Office &amp; ordering
@@ -215,7 +213,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                 <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
                   {companyInfo.addresses.registeredOffice.line1}, {companyInfo.addresses.registeredOffice.line2},
                   {" "}{companyInfo.addresses.registeredOffice.city} {companyInfo.addresses.registeredOffice.pincode}.
-                  Call {companyInfo.contacts.phonePrimary} or {companyInfo.contacts.landline} for price and
+                  Call {companyInfo.contacts.phonePrimary} or {companyInfo.contacts.phoneSecondary} for price and
                   availability.
                 </p>
               </div>

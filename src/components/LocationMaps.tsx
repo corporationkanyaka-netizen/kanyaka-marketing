@@ -57,12 +57,12 @@ export default function LocationMaps() {
               key={loc.id}
               onClick={() => setActiveId(loc.id)}
               aria-pressed={isActive}
-              className={`group flex w-full cursor-pointer items-start gap-4 rounded-2xl p-5 text-left transition-all ${
+              className={`group flex w-full cursor-pointer items-start gap-4 rounded-md p-5 text-left transition-all ${
                 isActive ? "bg-ink-900 text-white shadow-[0_20px_50px_-24px_rgba(11,22,38,0.6)]" : "bg-white ring-1 ring-line hover:ring-brand-300"
               }`}
             >
               <span
-                className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${
+                className={`grid h-11 w-11 shrink-0 place-items-center rounded-md ${
                   isActive ? "bg-brand-500/20 text-brand-300" : "bg-paper-2 text-ink-900"
                 }`}
               >
@@ -85,7 +85,7 @@ export default function LocationMaps() {
         })}
 
         {/* Area overview */}
-        <div className="rounded-2xl bg-white p-4 ring-1 ring-line">
+        <div className="rounded-md bg-white p-4 ring-1 ring-line">
           <div className="flex items-center justify-between px-1">
             <span className="font-mono text-xs uppercase tracking-[0.16em] text-slate-500">Area overview</span>
             <span className="font-mono text-xs text-slate-400">N ↑</span>
@@ -96,7 +96,7 @@ export default function LocationMaps() {
                 <path d="M20 0H0V20" fill="none" stroke="#0b1626" strokeOpacity="0.06" />
               </pattern>
             </defs>
-            <rect width={W} height={H} rx="12" fill="url(#ov-grid)" />
+            <rect width={W} height={H} rx="6" fill="url(#ov-grid)" />
             {locations
               .filter((l) => l.id !== office.id)
               .map((l) => {
@@ -147,7 +147,7 @@ export default function LocationMaps() {
 
       {/* Satellite view */}
       <div className="order-1 lg:order-none lg:col-span-8">
-        <div className="relative h-[440px] overflow-hidden rounded-3xl bg-ink-900 ring-1 ring-line sm:h-[560px] lg:h-full lg:min-h-[600px]">
+        <div className="relative h-[440px] overflow-hidden rounded-md bg-ink-900 ring-1 ring-line sm:h-[560px] lg:h-full lg:min-h-[600px]">
           <iframe
             key={`${active.id}-${ZOOMS[zoomIdx]}`}
             title={`Satellite view — Kanyaka Corporation ${active.title}`}
@@ -160,7 +160,7 @@ export default function LocationMaps() {
 
           {/* Info overlay */}
           <div className="pointer-events-none absolute inset-x-3 top-3 flex items-start justify-between gap-3 sm:inset-x-4 sm:top-4">
-            <div className="pointer-events-auto max-w-[75%] rounded-2xl bg-ink-950/85 px-3.5 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3">
+            <div className="pointer-events-auto max-w-[75%] rounded-md bg-ink-950/85 px-3.5 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3">
               <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-300">Satellite view</div>
               <div className="mt-1 font-semibold">{active.title}</div>
               <div className="mt-0.5 hidden text-sm text-slate-300 sm:block">{active.lines.join(", ")}</div>
@@ -168,7 +168,7 @@ export default function LocationMaps() {
                 {active.lat.toFixed(6)}, {active.lng.toFixed(6)}
               </div>
             </div>
-            <div className="pointer-events-auto flex flex-col overflow-hidden rounded-xl bg-ink-950/85 text-white backdrop-blur-md">
+            <div className="pointer-events-auto flex flex-col overflow-hidden rounded-md bg-ink-950/85 text-white backdrop-blur-md">
               <button
                 onClick={() => setZoomIdx((z) => Math.min(z + 1, ZOOMS.length - 1))}
                 disabled={zoomIdx === ZOOMS.length - 1}
@@ -194,7 +194,7 @@ export default function LocationMaps() {
               href={directionsHref(active)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg transition-colors hover:bg-brand-300"
+              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg transition-colors hover:bg-brand-300"
             >
               <Navigation className="h-4 w-4" />
               Get directions
@@ -203,7 +203,7 @@ export default function LocationMaps() {
               href={openHref(active)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink-950/85 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-ink-950"
+              className="inline-flex items-center gap-1.5 rounded-md bg-ink-950/85 px-5 py-3 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-ink-950"
             >
               Open in Google Maps
               <ArrowUpRight className="h-4 w-4" />

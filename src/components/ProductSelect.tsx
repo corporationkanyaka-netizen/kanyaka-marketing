@@ -122,7 +122,7 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
         aria-expanded={open}
         aria-controls={listId}
         onClick={() => (open ? setOpen(false) : openList())}
-        className={`flex w-full cursor-pointer items-center gap-3 rounded-xl bg-white px-4 py-3 text-left text-[15px] text-ink-900 outline-none ring-1 transition-shadow focus-visible:ring-2 focus-visible:ring-brand-500 ${
+        className={`flex w-full cursor-pointer items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-[15px] text-ink-900 outline-none ring-1 transition-shadow focus-visible:ring-2 focus-visible:ring-brand-500 ${
           open ? "ring-2 ring-brand-500" : "ring-line hover:ring-slate-300"
         }`}
       >
@@ -136,7 +136,7 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
       {open && (
         <div
           ref={panelRef}
-          className="absolute left-0 top-full z-50 mt-2 w-full min-w-[min(26rem,calc(100vw-2rem))] overflow-hidden rounded-2xl bg-white shadow-[0_24px_60px_-20px_rgba(11,22,38,0.45)] ring-1 ring-line"
+          className="absolute left-0 top-full z-50 mt-2 w-full min-w-[min(26rem,calc(100vw-2rem))] overflow-hidden rounded-md bg-white shadow-[0_24px_60px_-20px_rgba(11,22,38,0.45)] ring-1 ring-line"
         >
           <div className="flex items-center gap-2 border-b border-line px-4">
             <Search className="h-4 w-4 shrink-0 text-slate-400" />
@@ -177,7 +177,7 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
                     onMouseEnter={() => setActiveIdx(idx)}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => choose(opt)}
-                    className={`mx-1.5 flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 ${isActive ? "bg-paper-2" : ""}`}
+                    className={`mx-1.5 flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 ${isActive ? "bg-paper-2" : ""}`}
                   >
                     <span className={`w-16 shrink-0 truncate font-display text-sm font-semibold ${isSelected ? "text-brand-700" : "text-slate-500"}`}>
                       {opt.symbol}

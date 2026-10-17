@@ -73,14 +73,14 @@ export default function ProductsPage() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Bulk quantity RFQ
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={openBrochure}
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                 >
                   <Download className="h-4 w-4 text-brand-300" />
                   View product list
@@ -117,12 +117,12 @@ export default function ProductsPage() {
                 placeholder="Search by name, formula (NaOH), CAS number or grade…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full bg-white py-4 pl-14 pr-24 text-[15px] text-ink-900 shadow-[0_12px_40px_-24px_rgba(11,22,38,0.35)] outline-none ring-1 ring-line transition-shadow placeholder:text-slate-400 focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-md bg-white py-4 pl-14 pr-24 text-[15px] text-ink-900 shadow-[0_12px_40px_-24px_rgba(11,22,38,0.35)] outline-none ring-1 ring-line transition-shadow placeholder:text-slate-400 focus:ring-2 focus:ring-brand-500"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 cursor-pointer items-center gap-1 rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-paper hover:text-ink-900"
+                  className="absolute right-3 top-1/2 inline-flex -translate-y-1/2 cursor-pointer items-center gap-1 rounded-md px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-paper hover:text-ink-900"
                 >
                   <X className="h-3.5 w-3.5" />
                   Clear
@@ -131,7 +131,7 @@ export default function ProductsPage() {
             </div>
 
             <label
-              className={`inline-flex shrink-0 cursor-pointer select-none items-center gap-3 rounded-full px-5 py-4 text-sm font-medium transition-colors ${
+              className={`inline-flex shrink-0 cursor-pointer select-none items-center gap-3 rounded-md px-5 py-4 text-sm font-medium transition-colors ${
                 onlyGrasim ? "bg-ink-900 text-white" : "bg-white text-ink-900 ring-1 ring-line hover:bg-paper-2"
               }`}
             >
@@ -139,7 +139,7 @@ export default function ProductsPage() {
                 type="checkbox"
                 checked={onlyGrasim}
                 onChange={(e) => setOnlyGrasim(e.target.checked)}
-                className="h-4 w-4 rounded border-line accent-brand-600"
+                className="h-4 w-4 rounded-md border-line accent-brand-600"
               />
               <ShieldCheck className={`h-4 w-4 ${onlyGrasim ? "text-amber-glow" : "text-amber-600"}`} />
               Grasim products only
@@ -155,7 +155,7 @@ export default function ProductsPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                  className={`inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all ${
                     active ? "bg-ink-900 text-white" : "bg-white text-slate-600 ring-1 ring-line hover:text-ink-900"
                   }`}
                 >
@@ -186,16 +186,16 @@ export default function ProductsPage() {
 
           {/* Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.map((product, i) => (
-                <Reveal key={product.id} delay={(i % 4) * 70}>
+                <Reveal key={product.id} delay={(i % 4) * 70} className="h-full">
                   <ProductCard product={product} index={productsData.indexOf(product)} onOpenQuote={openQuote} />
                 </Reveal>
               ))}
             </div>
           ) : (
-            <div className="mt-8 rounded-3xl bg-white px-6 py-16 text-center ring-1 ring-line sm:py-20">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-ink-900 text-brand-300">
+            <div className="mt-8 rounded-md bg-white px-6 py-16 text-center ring-1 ring-line sm:py-20">
+              <div className="mx-auto grid h-16 w-16 place-items-center rounded-md bg-ink-900 text-brand-300">
                 <FlaskConical className="h-7 w-7" strokeWidth={1.6} />
               </div>
               <h3 className="mt-6 text-2xl font-semibold text-ink-900">No chemicals found</h3>
@@ -209,7 +209,7 @@ export default function ProductsPage() {
                   setSelectedCategory("All");
                   setOnlyGrasim(false);
                 }}
-                className="mt-8 inline-flex cursor-pointer items-center gap-2 rounded-full bg-ink-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+                className="mt-8 inline-flex cursor-pointer items-center gap-2 rounded-md bg-ink-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700"
               >
                 Reset filters
               </button>
@@ -221,7 +221,7 @@ export default function ProductsPage() {
       {/* ═══════════════ CTA ═══════════════ */}
       <section className="px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-14 text-white sm:px-14 sm:py-16">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-14 text-white sm:px-14 sm:py-16">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <Flask className="pointer-events-none absolute -bottom-6 -right-6 -z-10 hidden h-56 w-56 opacity-70 sm:block" />
             <div className="max-w-2xl">
@@ -235,14 +235,14 @@ export default function ProductsPage() {
               <div className="mt-9 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Request a quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={openBrochure}
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/20 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                 >
                   <Download className="h-4 w-4" />
                   View product list

@@ -26,7 +26,7 @@ interface QuoteModalProps {
 }
 
 const fieldClass =
-  "w-full rounded-xl bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-slate-400 ring-1 ring-line outline-none transition-shadow focus:ring-2 focus:ring-brand-500";
+  "w-full rounded-md bg-white px-4 py-3 text-[15px] text-ink-900 placeholder:text-slate-400 ring-1 ring-line outline-none transition-shadow focus:ring-2 focus:ring-brand-500";
 const labelClass = "mb-2 block text-sm font-medium text-ink-900";
 
 function Req() {
@@ -168,7 +168,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
         aria-modal="true"
         aria-labelledby="quote-modal-title"
         tabIndex={-1}
-        className="relative flex max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-3xl bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none animate-in fade-in zoom-in-95 duration-150"
+        className="relative flex max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-md bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none animate-in fade-in zoom-in-95 duration-150"
       >
         <button
           type="button"
@@ -229,7 +229,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                   Enquiry ready to send
                 </h3>
                 {enquiryRef && (
-                  <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
+                  <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white px-4 py-1.5 font-mono text-sm text-slate-600 ring-1 ring-line">
                     ID <span className="font-semibold text-ink-900">{enquiryRef}</span>
                   </div>
                 )}
@@ -245,7 +245,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                     href={whatsappForwardUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
+                    className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#1fb457]"
                   >
                     Send on WhatsApp
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -259,7 +259,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                       setIsSubmitted(false);
                       onClose();
                     }}
-                    className="inline-flex cursor-pointer items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-md px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
                   >
                     Close window
                   </button>
@@ -383,7 +383,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                       <label htmlFor="quote-product" className={labelClass}>
                         Required product<Req />
                       </label>
-                      <div className={fieldErrors.productSlug ? "rounded-xl ring-2 ring-rose-400" : undefined}>
+                      <div className={fieldErrors.productSlug ? "rounded-md ring-2 ring-rose-400" : undefined}>
                         <ProductSelect
                           id="quote-product"
                           value={selectedProduct}
@@ -458,7 +458,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
 
                   <label
                     htmlFor="needCoa"
-                    className="flex cursor-pointer items-start gap-3 rounded-xl bg-white px-4 py-3.5 ring-1 ring-line transition-colors hover:bg-paper-2"
+                    className="flex cursor-pointer items-start gap-3 rounded-md bg-white px-4 py-3.5 ring-1 ring-line transition-colors hover:bg-paper-2"
                   >
                     <input
                       type="checkbox"
@@ -477,7 +477,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                   </label>
 
                   {formError && (
-                    <div role="alert" className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
+                    <div role="alert" className="rounded-md bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
                       {formError}
                     </div>
                   )}
@@ -486,7 +486,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60"
+                      className="group inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-60"
                     >
                       {isSubmitting ? (
                         <>

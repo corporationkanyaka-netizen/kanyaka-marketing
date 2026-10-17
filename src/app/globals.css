@@ -7,6 +7,10 @@
    ────────────────────────────────────────────────────────────── */
 
 @theme {
+  /* Corner radius for the whole site. Every card, button, input and panel uses `rounded-md`,
+     so changing this one value changes all corners (true circles stay `rounded-full`). */
+  --radius-md: 6px;
+
   --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-display-face), var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -72,7 +76,7 @@
   :focus-visible {
     outline: 2px solid #0ea5e9;
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: var(--radius-md);
   }
 }
 

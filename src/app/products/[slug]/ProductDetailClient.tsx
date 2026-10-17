@@ -34,7 +34,7 @@ interface ProductDetailClientProps {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-[15px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-brand-400 focus:bg-white/10 focus:ring-2 focus:ring-brand-400/40";
+  "w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-[15px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-brand-400 focus:bg-white/10 focus:ring-2 focus:ring-brand-400/40";
 const labelClass = "mb-1.5 block text-sm font-medium text-slate-300";
 
 /** Rose border + ring for an invalid field. */
@@ -179,24 +179,24 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               <Reveal>
                 <div className="flex flex-wrap items-center gap-2">
                   {product.isGrasimAuthorized || isBirla ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-glow/30 bg-amber-glow/10 px-3 py-1 text-sm font-medium text-amber-glow">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-glow/30 bg-amber-glow/10 px-3 py-1 text-sm font-medium text-amber-glow">
                       <ShieldCheck className="h-4 w-4" />
                       Authorised dealer · {product.manufacturer}
                     </span>
                   ) : (
                     product.manufacturer !== "Godown stock" && (
-                      <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200">
+                      <span className="inline-flex items-center rounded-md border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200">
                         Make: {product.manufacturer}
                       </span>
                     )
                   )}
                   {product.fromGodown && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-medium text-emerald-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-medium text-emerald-300">
                       <Package className="h-4 w-4" />
                       Godown stock
                     </span>
                   )}
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">
+                  <span className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">
                     <span className={`h-2 w-2 rounded-full ${tone.dot}`} />
                     {product.category}
                   </span>
@@ -222,7 +222,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 <div className="mt-9 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => openQuote(product.name)}
-                    className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                    className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
                   >
                     Request a quote
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -231,14 +231,14 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     href={whatsappInquiryUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-md border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                   >
                     <MessageCircle className="h-4 w-4 text-emerald-400" />
                     WhatsApp enquiry
                   </a>
                   <button
                     onClick={openBrochure}
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-3.5 text-sm font-medium text-slate-300 transition-colors hover:text-white"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-3.5 text-sm font-medium text-slate-300 transition-colors hover:text-white"
                   >
                     <Download className="h-4 w-4" />
                     Brochure
@@ -250,9 +250,9 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             {/* Periodic element tile */}
             <Reveal delay={150} className="lg:col-span-5">
               <div className="relative mx-auto max-w-md">
-                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-brand-500/15" />
+                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-brand-500/15" />
                 <div
-                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${tone.tile} p-6 text-ink-900 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/10 sm:p-8`}
+                  className={`relative overflow-hidden rounded-md bg-gradient-to-br ${tone.tile} p-6 text-ink-900 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] ring-1 ring-white/10 sm:p-8`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="font-mono leading-tight">
@@ -262,7 +262,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     {hazard ? (
                       <HazardPlacard hazard={hazard} size={64} />
                     ) : (
-                      <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">
+                      <span className="rounded-md bg-white/80 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">
                         Non-hazardous
                       </span>
                     )}
@@ -330,8 +330,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             {/* Lab report spec sheet */}
             <Reveal delay={100} className="mt-14">
               <div className="relative">
-                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-ink-900/5" />
-                <div className="lab-grid-light relative overflow-hidden rounded-3xl bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
+                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-ink-900/5" />
+                <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
                   <div className="flex items-start justify-between gap-4 border-b-2 border-ink-900 pb-5">
                     <div className="min-w-0">
                       <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
@@ -382,7 +382,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </button>
                   </div>
 
-                  <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-xl border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-xs font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
+                  <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-xs font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
                     Typical
                     <br />
                     spec
@@ -396,7 +396,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           <aside className="lg:col-span-5">
             <div className="space-y-5 lg:sticky lg:top-28">
               <Reveal delay={150}>
-                <div className="grain relative isolate overflow-hidden rounded-3xl bg-ink-900 p-6 text-white sm:p-8">
+                <div className="grain relative isolate overflow-hidden rounded-md bg-ink-900 p-6 text-white sm:p-8">
                   <div className="hex-lattice mask-fade-b absolute inset-0 -z-10" />
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
                     {product.fromGodown ? "Godown stock · near Pashamylaram" : "Supplied against order"}
@@ -407,11 +407,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </p>
 
                   {isSubmitted ? (
-                    <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
+                    <div className="mt-6 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
                       <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400" strokeWidth={1.6} />
                       <h4 className="mt-3 text-lg font-semibold text-white">Thank you, {name}</h4>
                       {enquiryRef && (
-                        <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 font-mono text-sm text-slate-300 ring-1 ring-white/15">
+                        <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-1.5 font-mono text-sm text-slate-300 ring-1 ring-white/15">
                           Ref <span className="font-semibold text-white">{enquiryRef}</span>
                         </div>
                       )}
@@ -422,7 +422,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                         href={whatsappRfqUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#20ba59]"
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#20ba59]"
                       >
                         <MessageCircle className="h-4 w-4" />
                         Send on WhatsApp
@@ -545,7 +545,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                       </div>
 
                       {formError && (
-                        <div role="alert" className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
+                        <div role="alert" className="rounded-md bg-rose-50 px-4 py-3 text-sm text-rose-700 ring-1 ring-rose-200">
                           {formError}
                         </div>
                       )}
@@ -553,7 +553,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 disabled:cursor-wait disabled:opacity-60"
+                        className="group mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 disabled:cursor-wait disabled:opacity-60"
                       >
                         {isSubmitting ? (
                           <>
@@ -575,7 +575,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                       href={whatsappInquiryUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                     >
                       <MessageCircle className="h-4 w-4 text-emerald-400" />
                       Enquire on WhatsApp
@@ -585,8 +585,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </Reveal>
 
               <Reveal delay={200}>
-                <div className="flex gap-4 rounded-3xl bg-white p-6 ring-1 ring-line">
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
+                <div className="flex gap-4 rounded-md bg-white p-6 ring-1 ring-line">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
                     <FileCheck className="h-5 w-5" strokeWidth={1.8} />
                   </div>
                   <div>
@@ -623,7 +623,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {product.applications.map((app, i) => (
               <Reveal key={i} delay={(i % 3) * 80}>
-                <div className="group flex h-full flex-col rounded-3xl bg-white p-7 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)] sm:p-8">
+                <div className="group flex h-full flex-col rounded-md bg-white p-7 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)] sm:p-8">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-sm text-slate-400">{String(i + 1).padStart(2, "0")}</span>
                     <span className={`h-2.5 w-2.5 rounded-full ${tone.dot}`} />
@@ -641,7 +641,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       <section className="py-24 sm:py-32">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
-            <div className="h-full rounded-3xl bg-white p-7 ring-1 ring-line sm:p-10">
+            <div className="h-full rounded-md bg-white p-7 ring-1 ring-line sm:p-10">
               <div className="flex items-start justify-between gap-6">
                 <div>
                   <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — Safety</div>
@@ -669,7 +669,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="grain relative isolate h-full overflow-hidden rounded-3xl bg-ink-900 p-7 text-white sm:p-10">
+            <div className="grain relative isolate h-full overflow-hidden rounded-md bg-ink-900 p-7 text-white sm:p-10">
               <div className="hex-lattice mask-fade-b absolute inset-0 -z-10" />
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">04 — Supply terms</div>
               <h2 className="mt-4 text-3xl font-semibold leading-[1.1] sm:text-4xl">Packaging &amp; supply.</h2>
@@ -728,16 +728,16 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </div>
               <Link
                 href="/products"
-                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full px-5 py-3 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white sm:self-auto"
+                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-md px-5 py-3 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white sm:self-auto"
               >
                 View all chemicals
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </Reveal>
 
-            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((rel, i) => (
-                <Reveal key={rel.id} delay={i * 80}>
+                <Reveal key={rel.id} delay={i * 80} className="h-full">
                   <ProductCard product={rel} index={indexOfSlug(rel.slug)} onOpenQuote={openQuote} />
                 </Reveal>
               ))}

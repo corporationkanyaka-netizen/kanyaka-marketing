@@ -6,7 +6,7 @@ import Logo from "./Logo";
 import { companyInfo } from "@/data/company";
 import { productsData } from "@/data/products";
 import { tileSymbol } from "@/lib/chem";
-import { ExternalLink, Lock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, ExternalLink, Lock, Mail, MapPin, Phone } from "lucide-react";
 
 const sectorLinks = [
   { label: "Pharmaceuticals", href: "/industries#pharma" },
@@ -25,7 +25,9 @@ const companyLinks = [
 
 export default function Footer() {
   const featured = productsData.slice(0, 6);
-  const tel = `tel:${companyInfo.contacts.phonePrimary.replace(/[^0-9+]/g, "")}`;
+  const phones = [companyInfo.contacts.phonePrimary, companyInfo.contacts.phoneSecondary];
+  const emails = [companyInfo.contacts.emailDirector, companyInfo.contacts.emailSales];
+  const telHref = (p: string) => `tel:${p.replace(/[^0-9+]/g, "")}`;
   const office = companyInfo.addresses.registeredOffice;
   const depot = companyInfo.addresses.warehouseDepot;
 
@@ -43,17 +45,26 @@ export default function Footer() {
             </p>
             <p className="mt-3 max-w-sm text-sm italic text-slate-500">&ldquo;{companyInfo.motto}&rdquo;</p>
             <div className="mt-8 space-y-3 text-sm">
-              <a href={tel} className="flex items-center gap-3 text-white transition-colors hover:text-brand-300">
-                <Phone className="h-4 w-4 text-brand-400" />
-                <span className="font-mono">{companyInfo.contacts.phonePrimary}</span>
-              </a>
-              <a
-                href={`mailto:${companyInfo.contacts.emailSales}`}
-                className="flex items-center gap-3 text-white transition-colors hover:text-brand-300"
-              >
-                <Mail className="h-4 w-4 text-brand-400" />
-                {companyInfo.contacts.emailSales}
-              </a>
+              <div className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                <span className="flex flex-col gap-1 font-mono">
+                  {phones.map((p) => (
+                    <a key={p} href={telHref(p)} className="text-white transition-colors hover:text-brand-300">
+                      {p}
+                    </a>
+                  ))}
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                <span className="flex min-w-0 flex-col gap-1">
+                  {emails.map((e) => (
+                    <a key={e} href={`mailto:${e}`} className="break-all text-white transition-colors hover:text-brand-300">
+                      {e}
+                    </a>
+                  ))}
+                </span>
+              </div>
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
                 <span>
@@ -64,8 +75,9 @@ export default function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-600" />
                 <span>Warehouses: Pashamylaram &amp; Kanukunta, {depot.state}</span>
               </div>
-              <div className="pl-7 font-mono text-xs text-slate-500">
-                Tel {companyInfo.contacts.landline} · Fax {companyInfo.contacts.fax}
+              <div className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-slate-600" />
+                <span>{companyInfo.operatingHours}</span>
               </div>
             </div>
           </div>

@@ -122,14 +122,14 @@ export default function AboutUsPage() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Connect with our sales team
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <button
                   onClick={openBrochure}
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                 >
                   <Download className="h-4 w-4 text-brand-300" />
                   Line card (PDF)
@@ -165,10 +165,10 @@ export default function AboutUsPage() {
 
           <div className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-12">
             <Reveal delay={100} className="lg:col-span-5">
-              <div className="grain relative h-full overflow-hidden rounded-3xl bg-ink-900 p-8 text-white sm:p-10">
+              <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-8 text-white sm:p-10">
                 <div className="hex-lattice mask-fade-b absolute inset-0" />
                 <div className="relative">
-                  <div className="grid h-20 w-20 place-items-center rounded-2xl bg-white/5 font-display text-3xl font-semibold text-brand-300 ring-1 ring-white/15">
+                  <div className="grid h-20 w-20 place-items-center rounded-md bg-white/5 font-display text-3xl font-semibold text-brand-300 ring-1 ring-white/15">
                     KS
                   </div>
                   <h2 className="mt-8 text-3xl font-semibold">{companyInfo.promoter.name}</h2>
@@ -190,7 +190,7 @@ export default function AboutUsPage() {
             </Reveal>
 
             <Reveal delay={200} className="lg:col-span-7">
-              <div className="flex h-full flex-col rounded-3xl bg-white p-8 ring-1 ring-line sm:p-10">
+              <div className="flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line sm:p-10">
                 <div className="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">Promoter profile</div>
                 <h3 className="mt-4 text-2xl font-semibold leading-tight text-ink-900 sm:text-3xl">
                   Promoted and guided by {companyInfo.promoter.name}.
@@ -211,14 +211,14 @@ export default function AboutUsPage() {
                 <div className="mt-auto flex flex-wrap items-center gap-3 pt-8">
                   <a
                     href={tel}
-                    className="inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+                    className="inline-flex items-center gap-2 rounded-md bg-ink-900 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
                   >
                     <Phone className="h-4 w-4" />
                     <span className="font-mono">Call {companyInfo.contacts.phonePrimary}</span>
                   </a>
                   <a
                     href={`mailto:${companyInfo.contacts.emailDirector}`}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-paper"
+                    className="inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-paper"
                   >
                     <Mail className="h-4 w-4 text-brand-600" />
                     Email the promoter
@@ -243,7 +243,7 @@ export default function AboutUsPage() {
           <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
             {companyInfo.authorizedPartners.map((partner, i) => (
               <Reveal key={partner.name} delay={i * 100} className="h-full">
-                <div className="flex h-full flex-col rounded-3xl bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
+                <div className="flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
                   <div className="flex items-center justify-between gap-4">
                     <BadgeCheck className={`h-7 w-7 ${i === 0 ? "text-amber-500" : "text-brand-500"}`} strokeWidth={1.6} />
                     <span className="font-mono text-xs text-slate-400">{partner.parent}</span>
@@ -262,7 +262,7 @@ export default function AboutUsPage() {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="grain relative overflow-hidden rounded-3xl bg-ink-900 px-6 py-12 text-white sm:px-12 sm:py-16">
+            <div className="grain relative overflow-hidden rounded-md bg-ink-900 px-6 py-12 text-white sm:px-12 sm:py-16">
               <div className="hex-lattice mask-fade-b absolute inset-0" />
               <Flask className="pointer-events-none absolute -bottom-6 -right-8 hidden h-64 w-64 opacity-70 lg:block" />
 
@@ -285,7 +285,7 @@ export default function AboutUsPage() {
                   </div>
                 </div>
 
-                <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/10 md:grid-cols-3">
+                <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 md:grid-cols-3">
                   {depotFacts.map((fact) => (
                     <div key={fact.title} className="bg-ink-900 p-6 sm:p-8">
                       <fact.icon className="h-6 w-6 text-brand-300" strokeWidth={1.6} />
@@ -369,11 +369,11 @@ export default function AboutUsPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 80} className="group bg-paper p-8 transition-colors hover:bg-white">
                 <span className="font-mono text-sm text-slate-400">0{i + 1}</span>
-                <div className="mt-8 grid h-14 w-14 place-items-center rounded-2xl bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
+                <div className="mt-8 grid h-14 w-14 place-items-center rounded-md bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
                   <v.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-ink-900">{v.title}</h3>
@@ -385,14 +385,14 @@ export default function AboutUsPage() {
           <Reveal className="mt-16 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={() => openQuote()}
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
             >
               Work with Kanyaka
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
             >
               Industries we serve
             </Link>

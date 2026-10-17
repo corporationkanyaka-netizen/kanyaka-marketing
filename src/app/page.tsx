@@ -27,7 +27,7 @@ import {
 
 const categories = ["All", ...productCategories] as const;
 
-const specSlugs = ["caustic-soda-flakes", "aluminium-chloride-anhydrous", "stable-bleaching-powder", "sodium-sulphate-anhydrous"];
+const specSlugs = ["caustic-soda-flakes", "aluminium-chloride-granules", "thionyl-chloride", "sodium-sulphate-anhydrous"];
 
 const statBorders = ["", "border-l pl-6", "border-t lg:border-l lg:border-t-0 lg:pl-6", "border-l border-t pl-6 lg:border-t-0"];
 
@@ -81,8 +81,8 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-24 lg:pt-20">
           <div className="lg:col-span-6">
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-xs text-slate-300 backdrop-blur">
-                <span className="shrink-0 whitespace-nowrap rounded-full bg-brand-500/20 px-2.5 py-0.5 font-mono text-brand-300">Authorised dealer</span>
+              <div className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-xs text-slate-300 backdrop-blur">
+                <span className="shrink-0 whitespace-nowrap rounded-md bg-brand-500/20 px-2.5 py-0.5 font-mono text-brand-300">Authorised dealer</span>
                 Chlor-alkali · Specialty chemicals · Acids
               </div>
             </Reveal>
@@ -98,7 +98,7 @@ export default function HomePage() {
             <Reveal delay={200}>
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
                 Authorised dealer of Grasim Industries and Aditya Birla Chemicals for Telangana &amp; Andhra Pradesh.
-                Caustic soda, aluminium chloride, bleaching powder and 13 more chemicals — genuine and quality products at a
+                Caustic soda, aluminium chloride, calcium chloride and {productsData.length - 3} more chemicals — genuine and quality products at a
                 reasonable price.
               </p>
             </Reveal>
@@ -107,14 +107,14 @@ export default function HomePage() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-all hover:bg-brand-300"
                 >
                   Request a quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-md border border-white/15 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
                 >
                   Explore {productsData.length} chemicals
                 </Link>
@@ -140,7 +140,7 @@ export default function HomePage() {
             <div className="relative mx-auto aspect-square w-full max-w-[560px]">
               <MoleculeHero className="h-full w-full" />
 
-              <div className="animate-float-slow absolute left-0 top-[14%] hidden rounded-2xl border border-white/10 bg-ink-900/70 px-4 py-3 backdrop-blur-md sm:block">
+              <div className="animate-float-slow absolute left-0 top-[14%] hidden rounded-md border border-white/10 bg-ink-900/70 px-4 py-3 backdrop-blur-md sm:block">
                 <div className="font-mono text-[11px] uppercase tracking-wider text-slate-400">Typical assay · NaOH</div>
                 <div className="font-display text-2xl font-semibold">
                   98.5<span className="text-brand-300">%</span>
@@ -148,7 +148,7 @@ export default function HomePage() {
               </div>
 
               <div
-                className="animate-float-slow absolute bottom-[12%] right-0 hidden rounded-2xl border border-white/10 bg-ink-900/70 px-4 py-3 backdrop-blur-md sm:block"
+                className="animate-float-slow absolute bottom-[12%] right-0 hidden rounded-md border border-white/10 bg-ink-900/70 px-4 py-3 backdrop-blur-md sm:block"
                 style={{ animationDelay: "-4s" }}
               >
                 <div className="flex items-center gap-2 text-sm font-medium">
@@ -209,12 +209,12 @@ export default function HomePage() {
                 A periodic table of everything we keep in stock.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-slate-600">
-                Sixteen industrial chemicals from Grasim, Aditya Birla, Tata and other leading manufacturers — each with its specification sheet.
+                {productsData.length} industrial chemicals from Grasim, Tata, Andhra Sugars, TGV and other leading manufacturers — each with its specification sheet.
               </p>
             </div>
             <button
               onClick={openBrochure}
-              className="inline-flex shrink-0 cursor-pointer items-center gap-2 self-start rounded-full px-5 py-3 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white lg:self-auto"
+              className="inline-flex shrink-0 cursor-pointer items-center gap-2 self-start rounded-md px-5 py-3 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white lg:self-auto"
             >
               <Download className="h-4 w-4 text-brand-600" />
               Download product line card
@@ -230,7 +230,7 @@ export default function HomePage() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                  className={`inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all ${
                     active ? "bg-ink-900 text-white" : "bg-white text-slate-600 ring-1 ring-line hover:text-ink-900"
                   }`}
                 >
@@ -244,9 +244,9 @@ export default function HomePage() {
             })}
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {filteredProducts.slice(0, 8).map((product, i) => (
-              <Reveal key={product.id} delay={(i % 4) * 70}>
+              <Reveal key={product.id} delay={(i % 4) * 70} className="h-full">
                 <ProductCard product={product} index={productsData.indexOf(product)} onOpenQuote={openQuote} />
               </Reveal>
             ))}
@@ -255,7 +255,7 @@ export default function HomePage() {
           <div className="mt-12 flex justify-center">
             <Link
               href="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+              className="group inline-flex items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
             >
               View the full catalogue
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -284,7 +284,7 @@ export default function HomePage() {
                   <button
                     key={p.slug}
                     onClick={() => setSpecSlug(p.slug)}
-                    className={`flex w-full cursor-pointer items-center justify-between rounded-2xl px-5 py-4 text-left transition-all ${
+                    className={`flex w-full cursor-pointer items-center justify-between rounded-md px-5 py-4 text-left transition-all ${
                       active ? "bg-white shadow-[0_12px_40px_-20px_rgba(11,22,38,0.4)] ring-1 ring-line" : "hover:bg-white/60"
                     }`}
                   >
@@ -304,8 +304,8 @@ export default function HomePage() {
           {/* The "lab report" */}
           <Reveal delay={150} className="lg:col-span-7">
             <div className="relative">
-              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-ink-900/5" />
-              <div className="lab-grid-light relative overflow-hidden rounded-3xl bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
+              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-ink-900/5" />
+              <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
                 <div className="flex items-start justify-between gap-4 border-b-2 border-ink-900 pb-5">
                   <div>
                     <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-slate-500">Typical specification</div>
@@ -353,7 +353,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Stamp */}
-                <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-xl border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
+                <div className="pointer-events-none absolute right-6 top-28 hidden rotate-[-12deg] rounded-md border-2 border-emerald-600/60 px-3 py-1.5 text-center font-mono text-[11px] font-semibold uppercase leading-tight tracking-wider text-emerald-700/80 sm:block">
                   Typical
                   <br />
                   spec
@@ -372,7 +372,7 @@ export default function HomePage() {
             <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">From their reactor to your plant, in four steps.</h2>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, i) => (
               <Reveal key={step.title} delay={i * 90} className="group relative bg-paper p-8 transition-colors hover:bg-white">
                 <div className="flex items-center justify-between">
@@ -383,7 +383,7 @@ export default function HomePage() {
                     </span>
                   )}
                 </div>
-                <div className="mt-10 grid h-14 w-14 place-items-center rounded-2xl bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
+                <div className="mt-10 grid h-14 w-14 place-items-center rounded-md bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
                   <step.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-ink-900">{step.title}</h3>
@@ -413,7 +413,7 @@ export default function HomePage() {
           <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
             {companyInfo.authorizedPartners.map((partner, i) => (
               <Reveal key={partner.name} delay={i * 100}>
-                <div className="group flex h-full flex-col rounded-3xl bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
+                <div className="group flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
                   <div className="flex items-center justify-between">
                     <BadgeCheck className={`h-7 w-7 ${i === 0 ? "text-amber-500" : "text-brand-500"}`} strokeWidth={1.6} />
                     <span className="font-mono text-xs text-slate-400">{partner.parent}</span>
@@ -439,7 +439,7 @@ export default function HomePage() {
       <section className="pb-24 sm:pb-32">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
-            <div className="flex h-full flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-line sm:p-12">
+            <div className="flex h-full flex-col justify-between rounded-md bg-white p-8 ring-1 ring-line sm:p-12">
               <div>
                 <Quote className="h-10 w-10 text-brand-500" strokeWidth={1.4} />
                 <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Our motto</div>
@@ -466,7 +466,7 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="grain relative h-full overflow-hidden rounded-3xl bg-ink-900 p-8 text-white sm:p-10">
+            <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-8 text-white sm:p-10">
               <div className="hex-lattice mask-fade-b absolute inset-0" />
               <div className="relative">
                 <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Pashamylaram depot</div>
@@ -495,26 +495,26 @@ export default function HomePage() {
       {/* ═══════════════ CTA ═══════════════ */}
       <section className="px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-16 text-white sm:px-14 sm:py-20">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-16 text-white sm:px-14 sm:py-20">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <MoleculeHero className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] opacity-30" />
             <div className="max-w-2xl">
               <h2 className="text-4xl font-semibold leading-[1.05] sm:text-6xl">Need a rate for your plant?</h2>
               <p className="mt-6 text-lg leading-relaxed text-sky-100/80">
-                Tell us the chemical, quantity and delivery location, and we&apos;ll come back with a rate. Or call the office on
-                040-23050790.
+                Tell us the chemical, quantity and delivery location, and we&apos;ll come back with a rate. Or call us on
+                {" "}{companyInfo.contacts.phonePrimary} / {companyInfo.contacts.phoneSecondary}.
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"
                 >
                   Request a formal quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
                 <a
                   href={tel}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 font-mono text-sm text-white transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-md border border-white/20 px-6 py-3.5 font-mono text-sm text-white transition-colors hover:bg-white/10"
                 >
                   <Phone className="h-4 w-4" />
                   {companyInfo.contacts.phonePrimary}
@@ -523,7 +523,7 @@ export default function HomePage() {
                   href={whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-4 py-3.5 text-sm font-medium text-sky-100 underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-3.5 text-sm font-medium text-sky-100 underline-offset-4 hover:underline"
                 >
                   or message us on WhatsApp
                 </a>
