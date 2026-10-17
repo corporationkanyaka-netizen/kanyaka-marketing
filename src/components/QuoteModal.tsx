@@ -4,19 +4,21 @@ import ProductSelect from "@/components/ProductSelect";
 import React, { useState, useEffect, useRef } from "react";
 import { productsData } from "@/data/products";
 import { companyInfo } from "@/data/company";
-import Flask from "@/components/chem/Flask";
+import Logo from "@/components/Logo";
 import { submitEnquiry, slugForProductName, newIdempotencyKey, type FieldErrors } from "@/lib/enquiry-client";
 import {
   X,
   Send,
   CheckCircle2,
   Phone,
-  ShieldCheck,
   FileCheck,
   ArrowRight,
-  Warehouse,
   Lock,
   Loader2,
+  Mail,
+  MapPin,
+  Clock,
+  MessageCircle,
 } from "lucide-react";
 
 interface QuoteModalProps {
@@ -49,12 +51,6 @@ function FieldError({ id, message }: { id: string; message?: string }) {
     </p>
   );
 }
-
-const assurances = [
-  { icon: ShieldCheck, title: "Authorised dealer", body: "Grasim Industries Ltd. and Aditya Birla Chemicals." },
-  { icon: Warehouse, title: "Own warehouse", body: "About 6,000 sq.ft. near Pashamylaram industrial estate." },
-  { icon: FileCheck, title: "Manufacturer COA", body: "Available on request with your quote." },
-];
 
 export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteModalProps) {
   const [selectedProduct, setSelectedProduct] = useState(initialProduct || productsData[0].name);
@@ -153,7 +149,23 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
   const whatsappForwardUrl = `https://wa.me/${companyInfo.contacts.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
     `*Chemical Enquiry Ref:* ${enquiryRef ?? "NEW"}\n*Company:* ${companyName}\n*Contact:* ${fullName} (${phone})\n*Product:* ${selectedProduct}\n*Quantity:* ${quantity}\n*Location:* ${location}\n*Manufacturer COA requested:* ${needCoa ? 'Yes' : 'No'}\n*Notes:* ${notes}`
   )}`;
-  const tel = `tel:${companyInfo.contacts.phonePrimary.replace(/[^0-9+]/g, "")}`;
+  const phones = [companyInfo.contacts.phonePrimary, companyInfo.contacts.phoneSecondary];
+  const emails = [companyInfo.contacts.emailDirector, companyInfo.contacts.emailSales];
+  const office = companyInfo.addresses.registeredOffice;
+  const telHref = (p: string) => `tel:${p.replace(/[^0-9+]/g, "")}`;
+  const closeButton = (extra: string) => (
+    <button
+      type="button"
+      onClick={onClose}
+      className={`grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-full bg-white text-ink-900 shadow-sm ring-1 ring-line transition-colors hover:bg-paper-2 ${extra}`}
+      aria-label="Close quote request"
+    >
+      <X className="h-5 w-5" />
+    </button>
+  );
+  const whatsappChatUrl = `https://wa.me/${companyInfo.contacts.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+    `Hello Kanyaka Corporation, I would like a quote for ${selectedProduct}.`
+  )}`;
 
   return (
     <div
@@ -168,58 +180,97 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
         aria-modal="true"
         aria-labelledby="quote-modal-title"
         tabIndex={-1}
-        className="relative flex max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-md bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none animate-in fade-in zoom-in-95 duration-150"
+        className="scroll-thin relative flex max-h-[92vh] w-full max-w-5xl flex-col overflow-y-auto overscroll-contain rounded-md bg-paper shadow-[0_40px_120px_-30px_rgba(4,11,22,0.7)] ring-1 ring-white/10 outline-none md:flex-row md:overflow-hidden"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-4 top-4 z-10 grid h-10 w-10 cursor-pointer place-items-center rounded-full bg-white/90 text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
-          aria-label="Close quote request"
-        >
-          <X className="h-5 w-5" />
-        </button>
+        {/* Close — floats over the dark panel on phones; sits in the form header on desktop */}
+        {closeButton("absolute right-3 top-3 z-20 md:hidden")}
 
-        {/* Dark info strip (md+) */}
-        <aside className="grain relative hidden w-72 shrink-0 flex-col overflow-hidden bg-ink-900 p-8 text-white md:flex">
+        {/* Company contact details — the first thing customers see */}
+        <aside
+          aria-labelledby="quote-contact-title"
+          className={`grain scroll-thin-dark relative shrink-0 overflow-hidden bg-ink-900 text-white md:w-[360px] md:overflow-y-auto ${
+            isSubmitted ? "hidden md:block" : ""
+          }`}
+        >
           <div className="hex-lattice mask-fade-b absolute inset-0" />
           <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-brand-600/20 blur-[80px]" />
-          <div className="relative">
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Request a quote</div>
-            <p className="mt-4 font-display text-2xl font-semibold leading-tight">
-              Genuine and quality products <span className="text-reagent">at reasonable price.</span>
-            </p>
-            <ul className="mt-8 space-y-5">
-              {assurances.map((a) => (
-                <li key={a.title} className="flex gap-3">
-                  <a.icon className="mt-0.5 h-5 w-5 shrink-0 text-brand-300" strokeWidth={1.6} />
-                  <div>
-                    <div className="text-sm font-medium text-white">{a.title}</div>
-                    <div className="mt-0.5 text-sm leading-snug text-slate-400">{a.body}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          <div className="relative p-6 pr-16 md:p-8">
+            <Logo size="md" variant="dark-bg" showTagline={false} />
+            <div className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Request a quote</div>
+            <h3 id="quote-contact-title" className="mt-2 text-2xl font-semibold leading-tight">
+              Talk to our sales desk
+            </h3>
+            <p className="mt-1.5 text-sm leading-snug text-slate-400">Authorised dealer · Grasim Industries &amp; Aditya Birla Chemicals</p>
           </div>
-          <div className="relative mt-auto pt-10">
-            <div className="text-sm text-slate-400">Prefer to call?</div>
-            <a href={tel} className="mt-1 inline-flex items-center gap-2 font-mono text-[15px] text-white transition-colors hover:text-brand-300">
-              <Phone className="h-4 w-4 text-brand-300" />
-              {companyInfo.contacts.phonePrimary}
+
+          <div className="relative px-6 pb-6 md:px-8 md:pb-8">
+            <ul className="divide-y divide-white/10 rounded-md bg-white/[0.05] ring-1 ring-white/10">
+              <li className="flex gap-3 p-4">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-brand-500/15 text-brand-300">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs uppercase tracking-[0.14em] text-slate-400">Call us</div>
+                  {phones.map((p) => (
+                    <a key={p} href={telHref(p)} className="mt-1 block font-mono text-[15px] text-white transition-colors hover:text-brand-300">
+                      {p}
+                    </a>
+                  ))}
+                </div>
+              </li>
+              <li className="flex gap-3 p-4">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-brand-500/15 text-brand-300">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs uppercase tracking-[0.14em] text-slate-400">Email us</div>
+                  {emails.map((e) => (
+                    <a key={e} href={`mailto:${e}`} className="mt-1 block break-all text-[14px] text-white transition-colors hover:text-brand-300">
+                      {e}
+                    </a>
+                  ))}
+                </div>
+              </li>
+              <li className="flex gap-3 p-4">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-brand-500/15 text-brand-300">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-xs uppercase tracking-[0.14em] text-slate-400">Office</div>
+                  <p className="mt-1 text-[14px] leading-relaxed text-slate-200">
+                    {office.line1}, {office.line2}, {office.city} {office.pincode}
+                  </p>
+                  <p className="mt-1.5 flex items-start gap-1.5 text-[13px] text-slate-400">
+                    <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    {companyInfo.operatingHours}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <a
+              href={whatsappChatUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-4 flex h-12 items-center justify-center gap-2 rounded-md bg-[#25D366] text-[15px] font-semibold text-white transition-colors hover:bg-[#1fb457]"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Chat on WhatsApp
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
-          <Flask className="pointer-events-none absolute -bottom-6 -right-10 h-40 w-40 opacity-50" />
         </aside>
 
-        {/* Form column */}
-        <div className="min-w-0 flex-1 overflow-y-auto">
-          {/* Slim dark band (mobile) */}
-          <div className="grain relative overflow-hidden bg-ink-900 px-5 pb-6 pt-6 pr-16 text-white md:hidden">
-            <div className="hex-lattice mask-fade-b absolute inset-0" />
-            <div className="relative font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Request a quote</div>
-            <p className="relative mt-2 text-sm text-slate-300">Authorised Grasim &amp; Aditya Birla Chemicals dealer</p>
+        {/* Form column — the only part that scrolls on desktop */}
+        <div className="flex min-w-0 flex-1 flex-col md:overflow-hidden">
+          <div className="hidden shrink-0 items-center justify-between gap-4 border-b border-line px-8 py-3 md:flex">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
+              {isSubmitted ? "Enquiry received" : "Or leave your details"}
+            </span>
+            {closeButton("")}
           </div>
 
-          <div className="p-5 sm:p-8 md:p-10">
+          <div className="scroll-thin p-5 sm:p-8 md:flex-1 md:overflow-y-auto">
             {isSubmitted ? (
               <div className="py-4 text-center sm:py-8" role="status" aria-live="polite">
                 <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/50">
@@ -267,19 +318,21 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
               </div>
             ) : (
               <>
-                <div className="pr-10 md:pr-12">
-                  <div className="hidden font-mono text-xs uppercase tracking-[0.2em] text-brand-700 md:block">
-                    Request a quote
+                <div>
+                  <div className="flex items-center gap-3 md:hidden">
+                    <span className="h-px flex-1 bg-line" />
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Or leave your details</span>
+                    <span className="h-px flex-1 bg-line" />
                   </div>
-                  <h3 id="quote-modal-title" className="text-3xl font-semibold leading-[1.05] text-ink-900 md:mt-3">
-                    Chemical quote
+                  <h3 id="quote-modal-title" className="mt-5 text-2xl font-semibold leading-tight text-ink-900 sm:text-3xl md:mt-0">
+                    Get a call back with your quote
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
-                    Tell us the product, quantity and delivery location. We will reply with the price and availability.
+                  <p className="mt-2 text-[15px] leading-relaxed text-slate-600">
+                    Additionally, you can fill in your details below so our team can contact you with the price and availability.
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} noValidate className="relative mt-8 space-y-5">
+                <form onSubmit={handleSubmit} noValidate className="relative mt-6 space-y-5">
                   {/* Honeypot — hidden from people, tempting to bots. */}
                   <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
                     <label htmlFor="quote-website">Website</label>
@@ -467,12 +520,14 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                       onChange={(e) => setNeedCoa(e.target.checked)}
                       className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-600"
                     />
-                    <span className="text-[15px] leading-snug text-slate-700">
-                      <span className="inline-flex items-center gap-1.5 font-medium text-ink-900">
-                        <FileCheck className="h-4 w-4 text-brand-600" />
-                        Request manufacturer COA with the quote
-                      </span>{" "}
-                      — ask for the manufacturer&apos;s Certificate of Analysis.
+                    <span className="min-w-0">
+                      <span className="flex items-center gap-1.5 text-[15px] font-medium leading-snug text-ink-900">
+                        <FileCheck className="h-4 w-4 shrink-0 text-brand-600" />
+                        Request manufacturer COA
+                      </span>
+                      <span className="mt-0.5 block text-sm leading-snug text-slate-500">
+                        Ask for the manufacturer&apos;s Certificate of Analysis with your quote.
+                      </span>
                     </span>
                   </label>
 

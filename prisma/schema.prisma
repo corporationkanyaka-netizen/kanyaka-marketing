@@ -244,6 +244,8 @@ model WhatsAppMessage {
   name       String                @db.VarChar(100)
   /// Visitor's WhatsApp number, E.164
   phone      String                @db.VarChar(20)
+  company    String?               @db.VarChar(150)
+  email      String?               @db.VarChar(254)
   message    String                @db.VarChar(1000)
   pageUrl    String?               @map("page_url") @db.VarChar(500)
   status     WhatsAppMessageStatus @default(PENDING)
@@ -258,4 +260,27 @@ model WhatsAppMessage {
   @@index([ipHash, createdAt])
   @@index([status])
   @@map("whatsapp_messages")
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
+/// Kanyaka staff. Active users receive the email alerts they are subscribed to.
+model User {
+  id              String   @id @default(uuid(7)) @db.Uuid
+  email           String   @unique @db.VarChar(254)
+  name            String   @db.VarChar(100)
+  role            UserRole @default(STAFF)
+  /// Switch a user off without deleting them
+  active          Boolean  @default(true)
+  /// Email me every new quote request / enquiry
+  notifyEnquiries Boolean  @default(true) @map("notify_enquiries")
+  /// Email me every new WhatsApp chat message from the website
+  notifyChats     Boolean  @default(true) @map("notify_chats")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("users")
 }

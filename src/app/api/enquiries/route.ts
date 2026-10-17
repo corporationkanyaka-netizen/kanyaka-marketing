@@ -1,4 +1,6 @@
+import { after } from "next/server";
 import { createEnquirySchema, listEnquiriesQuerySchema } from "@/lib/validation/enquiry";
+import { sendEnquiryAlert } from "@/server/enquiry-alert";
 import { createEnquiry, listEnquiries } from "@/server/enquiries";
 import { clientIp, handle, hashIp, ok, readJson, requireAdmin } from "@/server/http";
 
@@ -13,6 +15,9 @@ export const POST = handle(async (request: Request) => {
     ipHash: hashIp(clientIp(request)),
     userAgent: request.headers.get("user-agent"),
   });
+  // Email the sales team once the customer already has their confirmation (retries don't re-send).
+  if (created && enquiry.id) after(() => sendEnquiryAlert(enquiry.id));
+
   return ok(enquiry, created ? 201 : 200);
 });
 

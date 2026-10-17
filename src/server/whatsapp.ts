@@ -24,7 +24,9 @@ function formatForSales(input: Input) {
     "*New website chat — Kanyaka Corporation*",
     "",
     `*Name:* ${input.name}`,
+    ...(input.company ? [`*Company:* ${input.company}`] : []),
     `*WhatsApp:* ${input.phone}`,
+    ...(input.email ? [`*Email:* ${input.email}`] : []),
     `*Reply:* https://wa.me/${digits}`,
     ...(input.pageUrl ? [`*Page:* ${input.pageUrl}`] : []),
     "",
@@ -67,7 +69,15 @@ export async function submitWhatsAppMessage(input: Input, meta: { ipHash: string
   }
 
   const row = await prisma.whatsAppMessage.create({
-    data: { name: input.name, phone: input.phone, message: input.message, pageUrl: input.pageUrl, ipHash: meta.ipHash },
+    data: {
+      name: input.name,
+      phone: input.phone,
+      company: input.company,
+      email: input.email,
+      message: input.message,
+      pageUrl: input.pageUrl,
+      ipHash: meta.ipHash,
+    },
   });
 
   const result = await sendViaUltramsg(formatForSales(input));

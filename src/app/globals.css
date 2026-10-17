@@ -85,6 +85,12 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
+/* Slim, quiet scrollbars for pop-ups and panels (light and dark surfaces) */
+.scroll-thin { scrollbar-width: thin; scrollbar-color: rgba(11, 22, 38, 0.22) transparent; scrollbar-gutter: auto; }
+.scroll-thin-dark { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.22) transparent; }
+.scroll-thin:hover { scrollbar-color: rgba(11, 22, 38, 0.38) transparent; }
+.scroll-thin-dark:hover { scrollbar-color: rgba(255, 255, 255, 0.38) transparent; }
+
 /* Fine engineering grid used on dark sections */
 .lab-grid-dark {
   background-image:

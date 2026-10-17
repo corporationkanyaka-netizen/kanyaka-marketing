@@ -156,7 +156,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
         <div className="absolute -left-40 top-10 -z-10 h-[480px] w-[480px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-24 bottom-0 -z-10 h-[380px] w-[380px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8">
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumb"
@@ -173,7 +173,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <span className="truncate font-medium text-slate-200">{product.name}</span>
           </nav>
 
-          <div className="mt-10 grid grid-cols-1 items-center gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-10">
+          <div className="mt-8 grid grid-cols-1 items-center gap-8 lg:mt-8 lg:grid-cols-12 lg:gap-10">
             {/* Title block */}
             <div className="lg:col-span-7">
               <Reveal>
@@ -313,8 +313,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ OVERVIEW + SPEC SHEET + RFQ ═══════════════ */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
+      <section className="py-14 sm:py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
           <div className="min-w-0 lg:col-span-7">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — Product overview</div>
@@ -328,7 +328,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             </Reveal>
 
             {/* Lab report spec sheet */}
-            <Reveal delay={100} className="mt-14">
+            <Reveal delay={100} className="mt-8">
               <div className="relative">
                 <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-md bg-ink-900/5" />
                 <div className="lab-grid-light relative overflow-hidden rounded-md bg-white p-6 shadow-[0_40px_80px_-40px_rgba(11,22,38,0.45)] ring-1 ring-line sm:p-10">
@@ -611,7 +611,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ APPLICATIONS ═══════════════ */}
-      <section className="hex-lattice-light bg-paper-2 py-24 sm:py-32">
+      <section className="hex-lattice-light bg-paper-2 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Applications</div>
@@ -620,7 +620,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {product.applications.map((app, i) => (
               <Reveal key={i} delay={(i % 3) * 80}>
                 <div className="group flex h-full flex-col rounded-md bg-white p-7 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)] sm:p-8">
@@ -638,7 +638,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
       </section>
 
       {/* ═══════════════ HANDLING + PACKAGING ═══════════════ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
             <div className="h-full rounded-md bg-white p-7 ring-1 ring-line sm:p-10">
@@ -715,7 +715,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
 
       {/* ═══════════════ RELATED ═══════════════ */}
       {relatedProducts.length > 0 && (
-        <section className="border-t border-line pb-24 pt-24 sm:pb-32 sm:pt-32">
+        <section className="border-t border-line pb-14 pt-14 sm:pb-20 sm:pt-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <div className="max-w-2xl">
@@ -735,7 +735,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </Link>
             </Reveal>
 
-            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProducts.map((rel, i) => (
                 <Reveal key={rel.id} delay={i * 80} className="h-full">
                   <ProductCard product={rel} index={indexOfSlug(rel.slug)} onOpenQuote={openQuote} />

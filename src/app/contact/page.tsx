@@ -135,7 +135,7 @@ export default function ContactPage() {
         <div className="absolute -left-40 top-0 -z-10 h-[460px] w-[460px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-24 bottom-0 -z-10 h-[360px] w-[360px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-20 lg:pt-20">
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 lg:px-8 lg:pb-14 lg:pt-14">
           <Reveal>
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Contact us</div>
           </Reveal>
@@ -152,7 +152,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={300}>
-            <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 sm:grid-cols-3">
+            <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 sm:grid-cols-3">
               <div className="bg-ink-950/80 p-5">
                 <dt className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Phone</dt>
                 <dd className="mt-2">
@@ -182,7 +182,7 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════════ FORM + DESK ═══════════════ */}
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           {/* Quote form */}
           <Reveal className="lg:col-span-7">
@@ -430,12 +430,14 @@ export default function ContactPage() {
                         onChange={(e) => setNeedCoa(e.target.checked)}
                         className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-600"
                       />
-                      <span className="text-[15px] leading-snug text-slate-700">
-                        <span className="inline-flex items-center gap-1.5 font-medium text-ink-900">
-                          <FileCheck className="h-4 w-4 text-brand-600" />
-                          Request manufacturer COA with the quote
-                        </span>{" "}
-                        — ask for the manufacturer&apos;s Certificate of Analysis.
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-1.5 text-[15px] font-medium leading-snug text-ink-900">
+                          <FileCheck className="h-4 w-4 shrink-0 text-brand-600" />
+                          Request manufacturer COA
+                        </span>
+                        <span className="mt-0.5 block text-sm leading-snug text-slate-500">
+                          Ask for the manufacturer&apos;s Certificate of Analysis with your quote.
+                        </span>
                       </span>
                     </label>
 
@@ -538,7 +540,7 @@ export default function ContactPage() {
                     href={whatsappDirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
+                    className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
                   >
                     <MessageSquare className="h-4 w-4 text-emerald-600" />
                     Start a WhatsApp chat
@@ -581,7 +583,7 @@ export default function ContactPage() {
       </section>
 
       {/* ═══════════════ LOCATIONS (satellite) ═══════════════ */}
-      <section id="locations" className="scroll-mt-32 pb-24 sm:pb-32">
+      <section id="locations" className="scroll-mt-32 pb-14 sm:pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — Our locations</div>
@@ -593,7 +595,7 @@ export default function ContactPage() {
               view, zoom out for the surrounding area, or get directions.
             </p>
           </Reveal>
-          <Reveal delay={120} className="mt-10">
+          <Reveal delay={120} className="mt-8">
             <LocationMaps />
           </Reveal>
         </div>

@@ -98,7 +98,7 @@ export default function AboutUsPage() {
         <div className="absolute -left-40 top-10 -z-10 h-[520px] w-[520px] rounded-full bg-brand-600/20 blur-[120px]" />
         <MoleculeHero className="pointer-events-none absolute -right-40 -top-24 -z-10 hidden h-[620px] w-[620px] opacity-25 md:block" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-8 lg:pb-20">
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-14">
           <div className="max-w-3xl">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
@@ -152,7 +152,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ═══════════════ FOUNDER ═══════════════ */}
-      <section className="hex-lattice-light py-24 sm:py-32">
+      <section className="hex-lattice-light py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-4xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — The promoter</div>
@@ -163,7 +163,7 @@ export default function AboutUsPage() {
             </blockquote>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-12">
+          <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-12">
             <Reveal delay={100} className="lg:col-span-5">
               <div className="grain relative h-full overflow-hidden rounded-md bg-ink-900 p-8 text-white sm:p-10">
                 <div className="hex-lattice mask-fade-b absolute inset-0" />
@@ -175,7 +175,7 @@ export default function AboutUsPage() {
                   <div className="mt-1 text-brand-300">{companyInfo.promoter.designation}</div>
                   <div className="mt-2 font-mono text-sm text-slate-400">{companyInfo.promoter.experience}</div>
 
-                  <div className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
+                  <div className="mt-8 grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
                     <div>
                       <div className="font-display text-4xl font-semibold tracking-tight">{companyInfo.experienceYears}</div>
                       <div className="mt-1 text-sm text-slate-400">Years in chemicals</div>
@@ -231,7 +231,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ═══════════════ PRINCIPALS ═══════════════ */}
-      <section className="bg-paper-2 py-24 sm:py-32">
+      <section className="bg-paper-2 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Our principals</div>
@@ -240,7 +240,7 @@ export default function AboutUsPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
             {companyInfo.authorizedPartners.map((partner, i) => (
               <Reveal key={partner.name} delay={i * 100} className="h-full">
                 <div className="flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
@@ -259,10 +259,10 @@ export default function AboutUsPage() {
       </section>
 
       {/* ═══════════════ DEPOT ═══════════════ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="grain relative overflow-hidden rounded-md bg-ink-900 px-6 py-12 text-white sm:px-12 sm:py-16">
+            <div className="grain relative overflow-hidden rounded-md bg-ink-900 px-6 py-12 text-white sm:px-12 sm:py-12">
               <div className="hex-lattice mask-fade-b absolute inset-0" />
               <Flask className="pointer-events-none absolute -bottom-6 -right-8 hidden h-64 w-64 opacity-70 lg:block" />
 
@@ -285,7 +285,7 @@ export default function AboutUsPage() {
                   </div>
                 </div>
 
-                <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 md:grid-cols-3">
+                <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-white/10 ring-1 ring-white/10 md:grid-cols-3">
                   {depotFacts.map((fact) => (
                     <div key={fact.title} className="bg-ink-900 p-6 sm:p-8">
                       <fact.icon className="h-6 w-6 text-brand-300" strokeWidth={1.6} />
@@ -299,7 +299,7 @@ export default function AboutUsPage() {
                   ))}
                 </div>
 
-                <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex gap-3 text-sm text-slate-300">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
                     <span>
@@ -324,8 +324,8 @@ export default function AboutUsPage() {
       </section>
 
       {/* ═══════════════ WHAT WE SUPPLY ═══════════════ */}
-      <section className="bg-paper-2 py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      <section className="bg-paper-2 py-14 sm:py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">04 — What we supply</div>
@@ -360,7 +360,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ═══════════════ VALUES ═══════════════ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">05 — What we stand for</div>
@@ -369,7 +369,7 @@ export default function AboutUsPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 80} className="group bg-paper p-8 transition-colors hover:bg-white">
                 <span className="font-mono text-sm text-slate-400">0{i + 1}</span>
@@ -382,7 +382,7 @@ export default function AboutUsPage() {
             ))}
           </div>
 
-          <Reveal className="mt-16 flex flex-wrap items-center justify-center gap-3">
+          <Reveal className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={() => openQuote()}
               className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"

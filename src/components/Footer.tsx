@@ -36,9 +36,9 @@ export default function Footer() {
       <div className="lab-grid-dark mask-fade-b absolute inset-0 opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 pb-16 md:grid-cols-2 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-8 pb-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo size="md" variant="dark-bg" showTagline={true} />
+            <Logo size="md" variant="dark-bg" showTagline={false} />
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed">
               Authorised dealer of Grasim Industries Ltd. and Aditya Birla Chemicals. Suppliers of chloro-alkali products, acids,
               specialty chemicals and solvents across Telangana &amp; Andhra Pradesh.

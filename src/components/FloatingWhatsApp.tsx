@@ -16,7 +16,31 @@ const quickReplies = [
   "Can you share the manufacturer COA?",
 ];
 
-type Contact = { name: string; phone: string };
+type Contact = { name: string; phone: string; company?: string; email?: string };
+type Field = "name" | "company" | "phone" | "email";
+type ContactForm = Record<Field, string>;
+
+const EMPTY_FORM: ContactForm = { name: "", company: "", phone: "", email: "" };
+
+/** Details asked once, before the first message. Only name + WhatsApp number are required. */
+const FIELDS: {
+  key: Field;
+  placeholder: string;
+  label: string;
+  required: boolean;
+  type?: string;
+  inputMode?: "tel" | "email";
+  autoComplete: string;
+  maxLength: number;
+  mono?: boolean;
+}[] = [
+  { key: "name", placeholder: "Your name *", label: "Your name", required: true, autoComplete: "name", maxLength: 100 },
+  { key: "company", placeholder: "Company name (optional)", label: "Company name", required: false, autoComplete: "organization", maxLength: 150 },
+  { key: "phone", placeholder: "WhatsApp number * e.g. 98490 12345", label: "Your WhatsApp number", required: true, type: "tel", inputMode: "tel", autoComplete: "tel", maxLength: 20, mono: true },
+  { key: "email", placeholder: "Email (optional)", label: "Your email", required: false, type: "email", inputMode: "email", autoComplete: "email", maxLength: 254 },
+];
+
+const toForm = (c: Contact): ContactForm => ({ name: c.name, phone: c.phone, company: c.company ?? "", email: c.email ?? "" });
 type Msg = { id: number; text: string; status: "sending" | "delivered" | "failed"; error?: string };
 
 const waLink = (text: string) =>
@@ -59,8 +83,8 @@ export default function FloatingWhatsApp() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [contact, setContact] = useState<Contact | null>(null);
   const [askDetails, setAskDetails] = useState<string | null>(null); // message waiting for name/phone
-  const [form, setForm] = useState<Contact>({ name: "", phone: "" });
-  const [formErrors, setFormErrors] = useState<Partial<Record<"name" | "phone", string>>>({});
+  const [form, setForm] = useState<ContactForm>(EMPTY_FORM);
+  const [formErrors, setFormErrors] = useState<Partial<Record<Field, string>>>({});
   const [honeypot, setHoneypot] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -98,7 +122,7 @@ export default function FloatingWhatsApp() {
       const saved = loadContact();
       if (saved) {
         setContact(saved);
-        setForm(saved);
+        setForm(toForm(saved));
       }
     }
     setOpen(true);
@@ -146,14 +170,19 @@ export default function FloatingWhatsApp() {
   const submitDetails = (e: React.FormEvent) => {
     e.preventDefault();
     if (askDetails === null) return;
-    const check = whatsappMessageSchema.pick({ name: true, phone: true }).safeParse(form);
+    const check = whatsappMessageSchema.pick({ name: true, phone: true, company: true, email: true }).safeParse(form);
     if (!check.success) {
-      const errs: Partial<Record<"name" | "phone", string>> = {};
-      for (const issue of check.error.issues) errs[issue.path[0] as "name" | "phone"] ??= issue.message;
+      const errs: Partial<Record<Field, string>> = {};
+      for (const issue of check.error.issues) errs[issue.path[0] as Field] ??= issue.message;
       setFormErrors(errs);
       return;
     }
-    const who = { name: form.name.trim(), phone: form.phone.trim() };
+    const who: Contact = {
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      ...(form.company.trim() ? { company: form.company.trim() } : {}),
+      ...(form.email.trim() ? { email: form.email.trim() } : {}),
+    };
     setContact(who);
     saveContact(who);
     setFormErrors({});
@@ -213,7 +242,7 @@ export default function FloatingWhatsApp() {
           <div
             ref={bodyRef}
             aria-live="polite"
-            className="max-h-[min(380px,52vh)] space-y-3 overflow-y-auto overscroll-contain bg-[#efeae2] px-4 py-5"
+            className="scroll-thin max-h-[min(380px,52vh)] space-y-3 overflow-y-auto overscroll-contain bg-[#efeae2] px-4 py-5"
             style={{ backgroundImage: "radial-gradient(rgba(11,22,38,0.05) 1px, transparent 1px)", backgroundSize: "14px 14px" }}
           >
             <div className="max-w-[85%] rounded-md bg-white px-3.5 py-2.5 text-[14px] leading-relaxed text-ink-900 shadow-sm">
@@ -280,43 +309,31 @@ export default function FloatingWhatsApp() {
             {askDetails !== null && (
               <form onSubmit={submitDetails} noValidate className="space-y-2.5 rounded-md bg-white p-3.5 shadow-sm ring-1 ring-[#075E54]/15">
                 <div className="text-[13px] leading-snug text-slate-600">
-                  So our team can reply to you on WhatsApp, please share your name and number.
+                  So our team can reply on WhatsApp, please share your details. Company and email are optional.
                 </div>
-                <div>
-                  <input
-                    ref={nameRef}
-                    value={form.name}
-                    onChange={(e) => {
-                      setForm((f) => ({ ...f, name: e.target.value }));
-                      setFormErrors((x) => ({ ...x, name: undefined }));
-                    }}
-                    placeholder="Your name"
-                    aria-label="Your name"
-                    aria-invalid={!!formErrors.name}
-                    autoComplete="name"
-                    maxLength={100}
-                    className={fieldClass(formErrors.name)}
-                  />
-                  {formErrors.name && <p className="mt-1 text-xs text-rose-600">{formErrors.name}</p>}
-                </div>
-                <div>
-                  <input
-                    value={form.phone}
-                    onChange={(e) => {
-                      setForm((f) => ({ ...f, phone: e.target.value }));
-                      setFormErrors((x) => ({ ...x, phone: undefined }));
-                    }}
-                    placeholder="WhatsApp number, e.g. 98490 12345"
-                    aria-label="Your WhatsApp number"
-                    aria-invalid={!!formErrors.phone}
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    maxLength={20}
-                    className={`${fieldClass(formErrors.phone)} font-mono`}
-                  />
-                  {formErrors.phone && <p className="mt-1 text-xs text-rose-600">{formErrors.phone}</p>}
-                </div>
+                {FIELDS.map((f, i) => (
+                  <div key={f.key}>
+                    <input
+                      ref={i === 0 ? nameRef : undefined}
+                      value={form[f.key]}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setForm((prev) => ({ ...prev, [f.key]: value }));
+                        setFormErrors((x) => ({ ...x, [f.key]: undefined }));
+                      }}
+                      placeholder={f.placeholder}
+                      aria-label={f.label}
+                      aria-required={f.required}
+                      aria-invalid={!!formErrors[f.key]}
+                      type={f.type ?? "text"}
+                      inputMode={f.inputMode}
+                      autoComplete={f.autoComplete}
+                      maxLength={f.maxLength}
+                      className={`${fieldClass(formErrors[f.key])}${f.mono ? " font-mono" : ""}`}
+                    />
+                    {formErrors[f.key] && <p className="mt-1 text-xs text-rose-600">{formErrors[f.key]}</p>}
+                  </div>
+                ))}
                 {/* Honeypot */}
                 <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
                   <input tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} name="website" />
@@ -384,11 +401,11 @@ export default function FloatingWhatsApp() {
           <div className="flex items-center justify-center gap-1.5 bg-[#f0f2f5] px-4 pb-2.5 text-center text-[11px] text-slate-500">
             {contact ? (
               <>
-                Replying to {contact.name} · {contact.phone}
+                Replying to {contact.name}{contact.company ? ` (${contact.company})` : ""} · {contact.phone}
                 <button
                   onClick={() => {
                     setContact(null);
-                    setForm({ name: "", phone: "" });
+                    setForm(EMPTY_FORM);
                     try {
                       localStorage.removeItem(CONTACT_KEY);
                     } catch {

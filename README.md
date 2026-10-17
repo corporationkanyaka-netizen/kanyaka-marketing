@@ -59,6 +59,8 @@ customers ──< enquiries ──< enquiry_items
 | `quotes` | A priced offer, `KC-QT-2026-00001`. Status, validity date, terms, subtotal / tax / freight / total (exact decimals). |
 | `quote_items` | Lines: quantity, unit, unit price, GST %, line subtotal / tax / total. |
 | `activities` | Append-only history: created, status changes, notes, calls, WhatsApp, emails, quotes. |
+| `whatsapp_messages` | Messages from the website chat window (name, company, WhatsApp number, email, message, delivery status). |
+| `users` | Staff. Active users receive email alerts: `notify_enquiries` (every quote request) and `notify_chats` (every chat message). |
 
 **Enquiry status:** `NEW → CONTACTED → QUOTED → WON / LOST`, or `SPAM`. Can't return to `NEW`.
 Logging a call/WhatsApp/email on a `NEW` enquiry moves it to `CONTACTED`; sending a quote moves it to `QUOTED`;
@@ -68,6 +70,13 @@ an accepted quote marks it `WON`.
 
 Money is computed on the server in integer paise (BigInt), rounded half-up per line, and stored as `DECIMAL(14,2)`.
 Clients never send totals.
+
+## Email alerts
+
+Every new quote request and every website chat message is emailed to the **active users** in the `users` table
+(subscribed via `notify_enquiries` / `notify_chats`). Add, remove or mute someone in Prisma Studio (`npm run db:studio`)
+or pgAdmin — no code change needed. Sending uses Gmail (`SMTP_USER` + `SMTP_PASS` app password) or Resend
+(`RESEND_API_KEY`); see `.env.*.example`. Each enquiry's history records whether its alert was sent.
 
 ## API
 

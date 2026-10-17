@@ -62,8 +62,8 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         }`}
       >
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center" aria-label="Kanyaka Corporation home">
-            <Logo size="md" variant="light-bg" showTagline={false} />
+          <Link href="/" className="group flex items-center rounded-md" aria-label="Kanyaka Corporation home">
+            <Logo size="md" variant="light-bg" showTagline />
           </Link>
 
           <nav className="hidden items-center gap-1 rounded-md bg-white/70 p-1 ring-1 ring-line lg:flex">

@@ -58,7 +58,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
         </p>
       </Reveal>
 
-      <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-12">
+      <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Sector list */}
         <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 lg:col-span-4 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0">
           {industriesData.map((ind) => {
@@ -106,7 +106,7 @@ export default function ChemicalFinder({ onOpenQuote }: ChemicalFinderProps) {
                 ))}
               </div>
 
-              <div className="mt-10 border-t border-white/10 pt-8">
+              <div className="mt-8 border-t border-white/10 pt-8">
                 <div className="flex items-center justify-between">
                   <div className="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">
                     Recommended · {matchingProducts.length} grades

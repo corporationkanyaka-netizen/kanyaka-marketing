@@ -155,7 +155,7 @@ export default function ProductSelect({ id, value, onChange, otherValue = "Other
             />
           </div>
 
-          <ul ref={listRef} id={listId} role="listbox" aria-labelledby={baseId} className="max-h-72 overflow-y-auto overscroll-contain py-1.5">
+          <ul ref={listRef} id={listId} role="listbox" aria-labelledby={baseId} className="scroll-thin max-h-72 overflow-y-auto overscroll-contain py-1.5">
             {options.length === 0 && <li className="px-4 py-6 text-center text-sm text-slate-500">No chemical matches &ldquo;{query}&rdquo;</li>}
             {options.map((opt, idx) => {
               const showGroup = idx === 0 || options[idx - 1].group !== opt.group;

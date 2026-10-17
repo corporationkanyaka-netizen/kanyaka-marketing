@@ -198,6 +198,8 @@ export const updateQuoteSchema = z.object({
 export const whatsappMessageSchema = z.object({
   name: text(2, 100, "Name"),
   phone,
+  company: optionalText(150, "Company"),
+  email: optionalEmail,
   message: text(1, 1000, "Message"),
   pageUrl: z.string().trim().max(500).optional(),
   /** Honeypot — real users never see or fill this. */

@@ -53,7 +53,7 @@ export default function IndustriesPage() {
         <div className="absolute -left-40 top-10 -z-10 h-[520px] w-[520px] rounded-full bg-brand-600/20 blur-[120px]" />
         <MoleculeHero className="pointer-events-none absolute -right-40 -top-24 -z-10 hidden h-[640px] w-[640px] opacity-25 md:block" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-12 sm:px-6 sm:pt-16 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
@@ -94,7 +94,7 @@ export default function IndustriesPage() {
           </div>
 
           {/* Sector index */}
-          <Reveal delay={350} className="mt-16 border-t border-white/10 pt-8">
+          <Reveal delay={350} className="mt-10 border-t border-white/10 pt-8">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Jump to a sector</div>
             <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {industriesData.map((ind, i) => {
@@ -133,10 +133,10 @@ export default function IndustriesPage() {
           <section
             key={industry.id}
             id={industry.slug}
-            className={`relative scroll-mt-32 border-b border-line py-24 sm:py-32 ${alt ? "bg-paper-2" : "hex-lattice-light"}`}
+            className={`relative scroll-mt-32 border-b border-line py-14 sm:py-20 ${alt ? "bg-paper-2" : "hex-lattice-light"}`}
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
                 {/* Intro */}
                 <Reveal className="lg:col-span-5">
                   <div className="flex items-center gap-4">
@@ -170,7 +170,7 @@ export default function IndustriesPage() {
 
                   <button
                     onClick={() => openQuote(matchingProducts[0]?.name || industry.name)}
-                    className="group mt-10 inline-flex cursor-pointer items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-left text-sm font-medium text-white transition-colors hover:bg-brand-700"
+                    className="group mt-8 inline-flex cursor-pointer items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-left text-sm font-medium text-white transition-colors hover:bg-brand-700"
                   >
                     Enquire for {industry.name}
                     <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
@@ -226,7 +226,7 @@ export default function IndustriesPage() {
               </div>
 
               {/* Recommended grades */}
-              <div className="mt-16">
+              <div className="mt-10">
                 <Reveal className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-4">
                   <div>
                     <div className="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">
@@ -298,9 +298,9 @@ export default function IndustriesPage() {
       })}
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <section className="px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-16 text-white sm:px-14 sm:py-20">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-12 text-white sm:px-14 sm:py-14">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <MoleculeHero className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] opacity-30" />
             <div className="max-w-2xl">
@@ -308,7 +308,7 @@ export default function IndustriesPage() {
               <p className="mt-6 text-lg leading-relaxed text-sky-100/80">
                 Tell us which chemicals you use. We&apos;ll confirm availability, packing and price for your requirement.
               </p>
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
                   className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"

@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="absolute -left-40 top-20 -z-10 h-[520px] w-[520px] rounded-full bg-brand-600/20 blur-[120px]" />
         <div className="absolute -right-20 bottom-0 -z-10 h-[420px] w-[420px] rounded-full bg-reagent/10 blur-[120px]" />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-24 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-16 lg:pt-14">
           <div className="lg:col-span-6">
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-xs text-slate-300 backdrop-blur">
@@ -122,7 +122,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={400}>
-              <div className="mt-12 border-t border-white/10 pt-6">
+              <div className="mt-8 border-t border-white/10 pt-6">
                 <div className="text-xs uppercase tracking-[0.2em] text-slate-500">Authorized by</div>
                 <div className="mt-3 flex flex-wrap items-center gap-x-8 gap-y-2 font-display text-lg text-slate-300">
                   <span>Grasim Industries</span>
@@ -188,7 +188,7 @@ export default function HomePage() {
 
       {/* ═══════════════ FORMULA MARQUEE ═══════════════ */}
       <div className="overflow-hidden border-b border-line bg-paper py-6">
-        <div className="animate-marquee gap-12">
+        <div className="animate-marquee gap-8">
           {[...productsData, ...productsData].map((p, i) => (
             <div key={`${p.id}-${i}`} className="flex shrink-0 items-baseline gap-4">
               <span className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">{tileSymbol(p)}</span>
@@ -200,7 +200,7 @@ export default function HomePage() {
       </div>
 
       {/* ═══════════════ PERIODIC CATALOG ═══════════════ */}
-      <section className="hex-lattice-light relative py-24 sm:py-32">
+      <section className="hex-lattice-light relative py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div className="max-w-2xl">
@@ -222,7 +222,7 @@ export default function HomePage() {
           </Reveal>
 
           {/* Category legend / filter */}
-          <Reveal delay={100} className="no-scrollbar -mx-4 mt-12 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+          <Reveal delay={100} className="no-scrollbar -mx-4 mt-8 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
             {categories.map((cat) => {
               const active = activeCategory === cat;
               const tone = cat === "All" ? null : categoryTone[cat];
@@ -252,7 +252,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               href="/products"
               className="group inline-flex items-center gap-2 rounded-md bg-ink-900 py-3.5 pl-6 pr-5 text-sm font-medium text-white transition-colors hover:bg-brand-700"
@@ -265,8 +265,8 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ SPEC SHEET ═══════════════ */}
-      <section className="relative overflow-hidden bg-paper-2 py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      <section className="relative overflow-hidden bg-paper-2 py-14 sm:py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           <Reveal className="lg:col-span-5">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Know what you&apos;re buying</div>
             <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">
@@ -277,7 +277,7 @@ export default function HomePage() {
               ask for the manufacturer&apos;s COA with your quote.
             </p>
 
-            <div className="mt-10 space-y-2">
+            <div className="mt-8 space-y-2">
               {specProducts.map((p) => {
                 const active = p.slug === spec.slug;
                 return (
@@ -365,14 +365,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ PROCESS ═══════════════ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">03 — The reaction path</div>
             <h2 className="mt-4 text-4xl font-semibold leading-[1.05] text-ink-900 sm:text-5xl">From their reactor to your plant, in four steps.</h2>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-line ring-1 ring-line md:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, i) => (
               <Reveal key={step.title} delay={i * 90} className="group relative bg-paper p-8 transition-colors hover:bg-white">
                 <div className="flex items-center justify-between">
@@ -383,7 +383,7 @@ export default function HomePage() {
                     </span>
                   )}
                 </div>
-                <div className="mt-10 grid h-14 w-14 place-items-center rounded-md bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
+                <div className="mt-8 grid h-14 w-14 place-items-center rounded-md bg-ink-900 text-brand-300 transition-transform duration-500 group-hover:rotate-[-6deg] group-hover:scale-105">
                   <step.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-ink-900">{step.title}</h3>
@@ -395,14 +395,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ INDUSTRIES ═══════════════ */}
-      <section className="bg-ink-950 py-24 text-white sm:py-32">
+      <section className="bg-ink-950 py-14 text-white sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ChemicalFinder onOpenQuote={openQuote} />
         </div>
       </section>
 
       {/* ═══════════════ PARTNERS ═══════════════ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">05 — Our principals</div>
@@ -410,7 +410,7 @@ export default function HomePage() {
             <p className="mt-5 text-lg text-slate-600">Authorised dealerships with the Aditya Birla Group, plus products from other leading Indian and overseas manufacturers.</p>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
             {companyInfo.authorizedPartners.map((partner, i) => (
               <Reveal key={partner.name} delay={i * 100}>
                 <div className="group flex h-full flex-col rounded-md bg-white p-8 ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(11,22,38,0.35)]">
@@ -436,7 +436,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ FOUNDER & DEPOT ═══════════════ */}
-      <section className="pb-24 sm:pb-32">
+      <section className="pb-14 sm:pb-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           <Reveal className="lg:col-span-7">
             <div className="flex h-full flex-col justify-between rounded-md bg-white p-8 ring-1 ring-line sm:p-12">
@@ -452,7 +452,7 @@ export default function HomePage() {
                   highly motivated people.
                 </p>
               </div>
-              <div className="mt-10 flex items-center justify-between gap-4 border-t border-line pt-6">
+              <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-6">
                 <div>
                   <div className="font-semibold text-ink-900">{companyInfo.promoter.name}</div>
                   <div className="text-sm text-slate-500">{companyInfo.promoter.designation}</div>
@@ -493,9 +493,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
+      <section className="px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-16 text-white sm:px-14 sm:py-20">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-12 text-white sm:px-14 sm:py-14">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <MoleculeHero className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[520px] w-[520px] opacity-30" />
             <div className="max-w-2xl">
@@ -504,7 +504,7 @@ export default function HomePage() {
                 Tell us the chemical, quantity and delivery location, and we&apos;ll come back with a rate. Or call us on
                 {" "}{companyInfo.contacts.phonePrimary} / {companyInfo.contacts.phoneSecondary}.
               </p>
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <button
                   onClick={() => openQuote()}
                   className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-semibold text-ink-950 transition-colors hover:bg-brand-300"

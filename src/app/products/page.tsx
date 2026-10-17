@@ -48,7 +48,7 @@ export default function ProductsPage() {
         <div className="absolute -right-24 bottom-0 -z-10 h-[380px] w-[380px] rounded-full bg-reagent/10 blur-[120px]" />
         <MoleculeHero className="pointer-events-none absolute -right-40 top-1/2 -z-10 hidden h-[620px] w-[620px] -translate-y-1/2 opacity-40 lg:block" />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-10 sm:px-6 sm:pb-14 sm:pt-14 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
@@ -90,7 +90,7 @@ export default function ProductsPage() {
           </div>
 
           <Reveal delay={400}>
-            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 text-sm text-slate-400">
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 text-sm text-slate-400">
               <span className="inline-flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-amber-glow" />
                 Authorised dealer · Grasim &amp; Aditya Birla Chemicals
@@ -105,7 +105,7 @@ export default function ProductsPage() {
       </section>
 
       {/* ═══════════════ FILTERS + GRID ═══════════════ */}
-      <section className="hex-lattice-light relative py-16 sm:py-24">
+      <section className="hex-lattice-light relative py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Search + Grasim toggle */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center">
@@ -174,7 +174,7 @@ export default function ProductsPage() {
           </div>
 
           {/* Results counter */}
-          <div className="mt-10 flex flex-col gap-1 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mt-8 flex flex-col gap-1 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
             <p className="text-[15px] text-slate-600">
               Showing <span className="font-mono font-semibold text-ink-900">{filteredProducts.length}</span> of{" "}
               <span className="font-mono">{productsData.length}</span> chemical grades
@@ -194,7 +194,7 @@ export default function ProductsPage() {
               ))}
             </div>
           ) : (
-            <div className="mt-8 rounded-md bg-white px-6 py-16 text-center ring-1 ring-line sm:py-20">
+            <div className="mt-8 rounded-md bg-white px-6 py-12 text-center ring-1 ring-line sm:py-14">
               <div className="mx-auto grid h-16 w-16 place-items-center rounded-md bg-ink-900 text-brand-300">
                 <FlaskConical className="h-7 w-7" strokeWidth={1.6} />
               </div>
@@ -219,9 +219,9 @@ export default function ProductsPage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
+      <section className="px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
         <Reveal className="mx-auto max-w-7xl">
-          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-14 text-white sm:px-14 sm:py-16">
+          <div className="grain relative isolate overflow-hidden rounded-md bg-gradient-to-br from-brand-700 via-ink-700 to-ink-950 px-6 py-14 text-white sm:px-14 sm:py-12">
             <div className="lab-grid-dark absolute inset-0 -z-10 opacity-60" />
             <Flask className="pointer-events-none absolute -bottom-6 -right-6 -z-10 hidden h-56 w-56 opacity-70 sm:block" />
             <div className="max-w-2xl">

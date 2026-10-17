@@ -1,4 +1,6 @@
+import { after } from "next/server";
 import { whatsappMessageSchema } from "@/lib/validation/enquiry";
+import { sendChatAlert } from "@/server/chat-alert";
 import { clientIp, handle, hashIp, ok, readJson } from "@/server/http";
 import { submitWhatsAppMessage } from "@/server/whatsapp";
 
@@ -12,5 +14,9 @@ export const POST = handle(async (request: Request) => {
   if (input.website) return ok({ id: null, delivered: true }, 201); // honeypot: bot
 
   const result = await submitWhatsAppMessage(input, { ipHash: hashIp(clientIp(request)) });
+
+  // Email the subscribed staff after the visitor has their answer.
+  after(() => sendChatAlert(result.id));
+
   return ok(result, 201);
 });

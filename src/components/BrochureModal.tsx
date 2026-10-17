@@ -3,8 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import { productsData } from "@/data/products";
 import { companyInfo } from "@/data/company";
+import Logo from "@/components/Logo";
 import { tileSymbol } from "@/lib/chem";
-import { X, Printer, ShieldCheck, Warehouse, Phone, Mail, FileText, MapPin } from "lucide-react";
+import { X, Printer, ShieldCheck, Warehouse, Phone, Mail, MapPin } from "lucide-react";
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -69,9 +70,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
         <div className="grain relative flex shrink-0 items-center justify-between gap-3 overflow-hidden bg-ink-900 px-4 py-3.5 text-white sm:px-6 no-print">
           <div className="hex-lattice mask-fade-b absolute inset-0" />
           <div className="relative flex min-w-0 items-center gap-3">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
-              <FileText className="h-4 w-4" />
-            </span>
+            <Logo size="sm" variant="mark-only" />
             <div className="min-w-0">
               <h3 id="brochure-modal-title" className="truncate text-base font-semibold sm:text-lg">
                 Product line card
@@ -111,9 +110,8 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
                   <ShieldCheck className="h-4 w-4 shrink-0 text-amber-500" />
                   <span>Authorised dealer · Grasim Industries Ltd. · Aditya Birla Chemicals</span>
                 </div>
-                <h1 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-ink-900 sm:text-4xl">
-                  Kanyaka Corporation
-                </h1>
+                <h1 className="sr-only">Kanyaka Corporation</h1>
+                <Logo size="lg" variant="light-bg" showTagline={false} className="mt-5" />
                 <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-slate-600">
                   Chloro-alkali products, acids, specialty chemicals and solvents for Indian manufacturing industry.
                   {" "}{companyInfo.motto}
@@ -145,7 +143,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
             </div>
 
             {/* Catalogue table */}
-            <div className="mt-10">
+            <div className="mt-8">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">Line card</div>
               <h2 className="mt-2 text-2xl font-semibold text-ink-900">Products &amp; standard packing</h2>
               <p className="mt-2 text-sm text-slate-600">
@@ -194,7 +192,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
             </div>
 
             {/* Depot & ordering */}
-            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
               <div className="rounded-md bg-paper p-6 ring-1 ring-line">
                 <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-brand-700">
                   <Warehouse className="h-4 w-4" />
@@ -220,7 +218,7 @@ export default function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
             </div>
 
             {/* Footer */}
-            <div className="mt-10 flex flex-col gap-2 border-t-2 border-ink-900 pt-5 font-mono text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-8 flex flex-col gap-2 border-t-2 border-ink-900 pt-5 font-mono text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
               <div>Kanyaka Corporation · Promoter: {companyInfo.promoter.name}</div>
               <div>Authorised Grasim dealer for caustic soda · Telangana &amp; Andhra Pradesh</div>
             </div>
