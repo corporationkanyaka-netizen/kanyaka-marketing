@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { companyInfo } from "@/data/company";
 import Logo from "./Logo";
-import { Phone, Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
+import { Phone, Menu, X, ArrowRight } from "lucide-react";
 
 interface HeaderProps {
   onOpenQuote?: (productName?: string) => void;
@@ -38,23 +38,6 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full">
-      {/* Authorization strip */}
-      <div className="bg-ink-950 text-slate-300">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-4 px-4 text-xs sm:px-6 lg:px-8">
-          <div className="flex min-w-0 items-center gap-2">
-            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-amber-glow" />
-            <span className="truncate">
-              <span className="text-white">Authorised dealer</span>
-              <span className="hidden sm:inline"> · Grasim Industries Ltd.</span>
-            </span>
-          </div>
-          <a href={tel} className="hidden shrink-0 items-center gap-1.5 font-mono text-slate-200 transition-colors hover:text-white sm:flex">
-            <Phone className="h-3 w-3 text-brand-400" />
-            {companyInfo.contacts.phonePrimary}
-          </a>
-        </div>
-      </div>
-
       {/* Main bar */}
       <div
         className={`border-b backdrop-blur-xl transition-all duration-300 ${
