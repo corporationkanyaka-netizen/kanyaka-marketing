@@ -85,11 +85,22 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
-/* Slim, quiet scrollbars for pop-ups and panels (light and dark surfaces) */
-.scroll-thin { scrollbar-width: thin; scrollbar-color: rgba(11, 22, 38, 0.22) transparent; scrollbar-gutter: auto; }
-.scroll-thin-dark { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.22) transparent; }
-.scroll-thin:hover { scrollbar-color: rgba(11, 22, 38, 0.38) transparent; }
-.scroll-thin-dark:hover { scrollbar-color: rgba(255, 255, 255, 0.38) transparent; }
+/* Slim modern scrollbars — the page and every scrolling panel.
+   Chrome / Edge / Safari: a 6px rounded thumb on a clear track that turns brand blue on hover.
+   (Chrome ignores these styles on any element that sets the standard `scrollbar-width`,
+   so the standard properties are given to Firefox only, below.) */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(11, 22, 38, 0.22); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #0284c7; }
+::-webkit-scrollbar-button { display: none; }
+.scroll-thin-dark::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.22); }
+.scroll-thin-dark::-webkit-scrollbar-thumb:hover { background: rgba(125, 216, 246, 0.8); }
+
+@supports (-moz-appearance: none) {
+  html, .scroll-thin { scrollbar-width: thin; scrollbar-color: rgba(11, 22, 38, 0.25) transparent; }
+  .scroll-thin-dark { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.22) transparent; }
+}
 
 /* Fine engineering grid used on dark sections */
 .lab-grid-dark {
