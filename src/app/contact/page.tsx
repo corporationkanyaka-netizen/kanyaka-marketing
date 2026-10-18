@@ -184,13 +184,129 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ═══════════════ FORM + DESK ═══════════════ */}
+      {/* ═══════════════ DIRECT LINES + SITES ═══════════════ */}
+      <section className="pt-10 sm:pt-12">
+        <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
+            <Reveal delay={120}>
+              <div className="grain relative overflow-hidden rounded-md bg-ink-900 p-5 text-white sm:p-8">
+                <div className="hex-lattice mask-fade-b absolute inset-0" />
+                <Flask className="pointer-events-none absolute -bottom-6 -right-8 h-40 w-40 opacity-40" />
+                <div className="relative">
+                  <div className="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                      <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">01 — Direct lines</div>
+                      <h2 className="mt-4 text-3xl font-medium leading-[1.05]">Phone &amp; email</h2>
+                    </div>
+                    <a
+                      href={whatsappDirectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
+                    >
+                      <MessageSquare className="h-4 w-4 text-emerald-600" />
+                      Start a WhatsApp chat
+                    </a>
+                  </div>
+
+                  <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <li className="flex gap-4">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
+                        <Phone className="h-5 w-5" strokeWidth={1.6} />
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-sm text-slate-400">Phone &amp; WhatsApp</div>
+                        {[contacts.phonePrimary, contacts.phoneSecondary].map((phone) => (
+                          <a
+                            key={phone}
+                            href={telHref(phone)}
+                            className="mt-0.5 block font-mono text-xl text-white transition-colors hover:text-brand-300"
+                          >
+                            {phone}
+                          </a>
+                        ))}
+                      </div>
+                    </li>
+
+                    <li className="flex gap-4">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
+                        <Mail className="h-5 w-5" strokeWidth={1.6} />
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-sm text-slate-400">Email</div>
+                        {[contacts.emailDirector, contacts.emailSales].map((email) => (
+                          <a
+                            key={email}
+                            href={`mailto:${email}`}
+                            className="mt-0.5 block break-all font-mono text-[15px] text-white transition-colors hover:text-brand-300"
+                          >
+                            {email}
+                          </a>
+                        ))}
+                      </div>
+                    </li>
+
+                    <li className="flex gap-4">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
+                        <Clock className="h-5 w-5" strokeWidth={1.6} />
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-sm text-slate-400">Business hours</div>
+                        <div className="mt-0.5 text-[15px] text-white">{hoursMain}</div>
+                        {hoursNote && (
+                          <div className="mt-1 flex items-start gap-2 text-sm text-slate-300">
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-glow" />
+                            {hoursNote}
+                          </div>
+                        )}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+
+          {/* Office and warehouses, three in a row */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {sites.map((site, i) => (
+                <Reveal key={site.title} delay={200 + i * 80} className="h-full">
+                  <div className="flex h-full flex-col rounded-md bg-white p-5 ring-1 ring-line sm:p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-ink-900 text-brand-300">
+                        <site.icon className="h-5 w-5" strokeWidth={1.6} />
+                      </span>
+                      <span className="text-right font-mono text-xs uppercase tracking-[0.14em] text-slate-500">{site.tag}</span>
+                    </div>
+                    <h3 className="mt-5 text-xl font-medium text-ink-900">{site.title}</h3>
+                    <address className="mt-2 text-[15px] not-italic leading-relaxed text-slate-600">
+                      {site.company && <span className="block text-base font-semibold text-ink-950">{site.company}</span>}
+                      {site.lines.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </address>
+                    <a
+                      href={site.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-medium text-brand-700"
+                    >
+                      Get directions
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ QUOTE FORM ═══════════════ */}
       <section className="py-10 sm:py-12">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
-          {/* Quote form */}
-          <Reveal className="lg:col-span-7">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
             <div className="rounded-md bg-white p-5 ring-1 ring-line sm:p-8">
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">01 — Request a quotation</div>
+              <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-700">02 — Request a quotation</div>
               <h2 className="mt-4 text-3xl font-medium leading-[1.05] text-ink-900 sm:text-4xl">
                 Tell us the grade, quantity and plant.
               </h2>
@@ -465,115 +581,6 @@ export default function ContactPage() {
               </div>
             </div>
           </Reveal>
-
-          {/* Sales desk + sites */}
-          <div className="space-y-6 lg:col-span-5">
-            <Reveal delay={120}>
-              <div className="grain relative overflow-hidden rounded-md bg-ink-900 p-5 text-white sm:p-8">
-                <div className="hex-lattice mask-fade-b absolute inset-0" />
-                <Flask className="pointer-events-none absolute -bottom-6 -right-8 h-40 w-40 opacity-40" />
-                <div className="relative">
-                  <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">02 — Direct lines</div>
-                  <h2 className="mt-4 text-3xl font-medium leading-[1.05]">Phone &amp; email</h2>
-
-                  <ul className="mt-8 space-y-6">
-                    <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
-                        <Phone className="h-5 w-5" strokeWidth={1.6} />
-                      </span>
-                      <div className="min-w-0">
-                        <div className="text-sm text-slate-400">Phone &amp; WhatsApp</div>
-                        {[contacts.phonePrimary, contacts.phoneSecondary].map((phone) => (
-                          <a
-                            key={phone}
-                            href={telHref(phone)}
-                            className="mt-0.5 block font-mono text-xl text-white transition-colors hover:text-brand-300"
-                          >
-                            {phone}
-                          </a>
-                        ))}
-                      </div>
-                    </li>
-
-                    <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
-                        <Mail className="h-5 w-5" strokeWidth={1.6} />
-                      </span>
-                      <div className="min-w-0">
-                        <div className="text-sm text-slate-400">Email</div>
-                        {[contacts.emailDirector, contacts.emailSales].map((email) => (
-                          <a
-                            key={email}
-                            href={`mailto:${email}`}
-                            className="mt-0.5 block break-all font-mono text-[15px] text-white transition-colors hover:text-brand-300"
-                          >
-                            {email}
-                          </a>
-                        ))}
-                      </div>
-                    </li>
-
-                    <li className="flex gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white/5 text-brand-300 ring-1 ring-white/10">
-                        <Clock className="h-5 w-5" strokeWidth={1.6} />
-                      </span>
-                      <div className="min-w-0">
-                        <div className="text-sm text-slate-400">Business hours</div>
-                        <div className="mt-0.5 text-[15px] text-white">{hoursMain}</div>
-                        {hoursNote && (
-                          <div className="mt-1 flex items-start gap-2 text-sm text-slate-300">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-glow" />
-                            {hoursNote}
-                          </div>
-                        )}
-                      </div>
-                    </li>
-                  </ul>
-
-                  <a
-                    href={whatsappDirectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3.5 text-sm font-medium text-ink-950 transition-colors hover:bg-brand-300 sm:w-auto"
-                  >
-                    <MessageSquare className="h-4 w-4 text-emerald-600" />
-                    Start a WhatsApp chat
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-
-            {sites.map((site, i) => (
-              <Reveal key={site.title} delay={200 + i * 80}>
-                <div className="rounded-md bg-white p-5 ring-1 ring-line sm:p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-ink-900 text-brand-300">
-                      <site.icon className="h-5 w-5" strokeWidth={1.6} />
-                    </span>
-                    <span className="text-right font-mono text-xs uppercase tracking-[0.14em] text-slate-500">{site.tag}</span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-medium text-ink-900">{site.title}</h3>
-                  <address className="mt-2 text-[15px] not-italic leading-relaxed text-slate-600">
-                    {site.company && <span className="block text-base font-semibold text-ink-950">{site.company}</span>}
-                    {site.lines.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </address>
-                  <a
-                    href={site.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700"
-                  >
-                    Get directions
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
