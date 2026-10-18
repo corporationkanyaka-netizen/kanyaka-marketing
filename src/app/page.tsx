@@ -82,29 +82,33 @@ export default function HomePage() {
           <div className="lg:col-span-6">
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-xs text-slate-300 backdrop-blur">
-                <span className="shrink-0 whitespace-nowrap rounded-md bg-brand-500/20 px-2.5 py-0.5 font-mono text-brand-300">Authorised dealer</span>
-                Chlor-alkali · Specialty chemicals · Acids
+                <span className="shrink-0 whitespace-nowrap rounded-md bg-brand-500/20 px-2.5 py-0.5 font-mono text-brand-300">{companyInfo.experienceYears} years</span>
+                Hyderabad · Chemicals &amp; Solvents
               </div>
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-7 text-5xl font-medium leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
-                Pure chemistry.
-                <br />
-                <span className="text-reagent">Delivered on time.</span>
+              <h1 className="mt-6 font-semibold leading-[0.95] tracking-[-0.04em]">
+                <span className="block text-6xl sm:text-7xl xl:text-[6rem]">Kanyaka</span>
+                <span className="block bg-gradient-to-r from-brand-300 via-reagent to-brand-400 bg-clip-text text-5xl text-transparent sm:text-6xl xl:text-[5rem]">
+                  Corporation
+                </span>
               </h1>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
-                Authorised dealer of Grasim Industries Ltd. for Telangana &amp; Andhra Pradesh.
-                Caustic soda, aluminium chloride, calcium chloride and {productsData.length - 3} more chemicals — genuine and quality products at a
-                reasonable price.
+              <p className="mt-4 font-display text-2xl font-medium tracking-tight text-white/90 sm:text-3xl">
+                Pure chemistry. <span className="text-reagent">Delivered on time.</span>
               </p>
             </Reveal>
 
+            <Reveal delay={200}>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
+                Your trusted chemical supplier for {companyInfo.experienceYears} years — authorised dealer of Grasim Industries Ltd. for Telangana &amp; Andhra Pradesh.
+                Caustic soda, aluminium chloride, calcium chloride and {productsData.length - 3} more chemicals, stocked in our own warehouses.
+              </p>
+              <p className="mt-3 text-[15px] italic text-slate-400">“{companyInfo.motto}”</p>
+            </Reveal>
+
             <Reveal delay={300}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => openQuote()}
                   className="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-white py-3.5 pl-6 pr-5 text-sm font-medium text-ink-950 transition-all hover:bg-brand-300"
