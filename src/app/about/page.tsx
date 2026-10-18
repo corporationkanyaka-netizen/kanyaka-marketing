@@ -7,6 +7,7 @@ import { industriesData } from "@/data/industries";
 import { productsData } from "@/data/products";
 import { useModals } from "@/components/ClientShell";
 import Reveal from "@/components/chem/Reveal";
+import BrandKicker from "@/components/BrandKicker";
 import Flask from "@/components/chem/Flask";
 import MoleculeHero from "@/components/chem/MoleculeHero";
 import {
@@ -101,12 +102,10 @@ export default function AboutUsPage() {
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 sm:pt-12 lg:px-8 lg:pb-14">
           <div className="max-w-3xl">
             <Reveal>
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
-                About Kanyaka Corporation · Authorised Grasim dealer
-              </div>
+              <BrandKicker label="About us" />
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="mt-6 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+              <h1 className="mt-7 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                 Genuine chemicals.
                 <br />
                 <span className="text-reagent">Reasonable prices.</span>
@@ -114,8 +113,9 @@ export default function AboutUsPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-300">
-                We supply chloro-alkali products, acids, specialty chemicals and solvents to manufacturing industry. We
-                are an authorised dealer for Grasim Industries Ltd.
+                For {companyInfo.experienceYears} years, <strong className="font-semibold text-white">Kanyaka Corporation</strong> has supplied
+                chloro-alkali products, acids, specialty chemicals and solvents to manufacturing industry — as an authorised dealer for Grasim
+                Industries Ltd.
               </p>
             </Reveal>
             <Reveal delay={300}>

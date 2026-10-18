@@ -7,6 +7,7 @@ import { companyInfo } from "@/data/company";
 import { useModals } from "@/components/ClientShell";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/chem/Reveal";
+import BrandKicker from "@/components/BrandKicker";
 import HazardPlacard from "@/components/chem/HazardPlacard";
 import Flask from "@/components/chem/Flask";
 import { categoryTone, hazardClass, physicalState, tileSymbol, unCode } from "@/lib/chem";
@@ -193,10 +194,10 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </Reveal>
 
               <Reveal delay={100}>
-                <div className="mt-7 font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
-                  Element {periodicNumber} · {state} · CAS {product.casNumber}
+                <div className="mt-6">
+                  <BrandKicker label={`Element ${periodicNumber} · CAS ${product.casNumber}`} />
                 </div>
-                <h1 className="mt-4 break-words text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+                <h1 className="mt-6 break-words text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                   {product.name}
                 </h1>
                 <p className="mt-5 text-lg font-medium text-reagent sm:text-xl">{product.grade}</p>

@@ -6,6 +6,7 @@ import { industriesData } from "@/data/industries";
 import { productsData } from "@/data/products";
 import { useModals } from "@/components/ClientShell";
 import Reveal from "@/components/chem/Reveal";
+import BrandKicker from "@/components/BrandKicker";
 import MoleculeHero from "@/components/chem/MoleculeHero";
 import { categoryTone, tileSymbol } from "@/lib/chem";
 import {
@@ -56,12 +57,10 @@ export default function IndustriesPage() {
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 sm:pt-12 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
-                Industries served · {industriesData.length} sectors
-              </div>
+              <BrandKicker label={`Industries served · ${industriesData.length} sectors`} />
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="mt-6 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+              <h1 className="mt-7 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                 The right chemicals
                 <br />
                 <span className="text-reagent">for your industry.</span>
@@ -69,8 +68,8 @@ export default function IndustriesPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-300">
-                We supply {industriesData.length} industries: {industriesData.map((ind) => ind.name).join(", ")}. See which
-                of our chemicals each sector uses.
+                <strong className="font-semibold text-white">Kanyaka Corporation</strong> supplies {industriesData.length} industries:{" "}
+                {industriesData.map((ind) => ind.name).join(", ")}. See which of our chemicals each sector uses.
               </p>
             </Reveal>
             <Reveal delay={300}>

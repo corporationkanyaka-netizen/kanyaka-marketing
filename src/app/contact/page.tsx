@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { companyInfo } from "@/data/company";
 import Reveal from "@/components/chem/Reveal";
+import BrandKicker from "@/components/BrandKicker";
 import ProductSelect from "@/components/ProductSelect";
 import LocationMaps from "@/components/LocationMaps";
 import Flask from "@/components/chem/Flask";
@@ -137,16 +138,16 @@ export default function ContactPage() {
 
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pb-14 lg:pt-14">
           <Reveal>
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">Contact us</div>
+            <BrandKicker label="Contact us" />
           </Reveal>
           <Reveal delay={100}>
-            <h1 className="mt-5 max-w-3xl text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+            <h1 className="mt-7 max-w-3xl text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
               Call, email or <span className="text-reagent">visit our office.</span>
             </h1>
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-              Our office is in KPHB Colony, Kukatpally, Hyderabad, with warehouses near the Pashamylaram industrial estate
+              <strong className="font-semibold text-white">Kanyaka Corporation</strong>&apos;s office is in KPHB Colony, Kukatpally, Hyderabad, with warehouses near the Pashamylaram industrial estate
               (about 6,000 sq.ft.) and at Kanukunta. Call or email us for prices and availability.
             </p>
           </Reveal>

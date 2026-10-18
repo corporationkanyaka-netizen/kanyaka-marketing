@@ -5,6 +5,7 @@ import { productsData } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { useModals } from "@/components/ClientShell";
 import Reveal from "@/components/chem/Reveal";
+import BrandKicker from "@/components/BrandKicker";
 import MoleculeHero from "@/components/chem/MoleculeHero";
 import Flask from "@/components/chem/Flask";
 import { categoryTone, productCategories } from "@/lib/chem";
@@ -51,12 +52,10 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-14 lg:px-8">
           <div className="max-w-3xl">
             <Reveal>
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-brand-300">
-                Product catalogue · {productsData.length} products
-              </div>
+              <BrandKicker label={`Product catalogue · ${productsData.length} products`} />
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="mt-5 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
+              <h1 className="mt-7 text-5xl font-medium leading-[1.0] tracking-[-0.04em] sm:text-6xl">
                 Industrial chemicals,
                 <br />
                 <span className="text-reagent">catalogued like elements.</span>
@@ -64,9 +63,9 @@ export default function ProductsPage() {
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-                Chloro-alkali products, acids and specialty chemicals for Indian industry. We are an authorised dealer
-                of Grasim Industries Ltd. {godownCount} products are held as stock at our
-                6,000 sq.ft. warehouse near Pashamylaram.
+                <strong className="font-semibold text-white">Kanyaka Corporation</strong> supplies chloro-alkali products, acids and specialty
+                chemicals to Indian industry as an authorised dealer of Grasim Industries Ltd. {godownCount} products are held as stock at our
+                own 6,000 sq.ft. warehouse near Pashamylaram.
               </p>
             </Reveal>
             <Reveal delay={300}>
