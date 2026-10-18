@@ -43,10 +43,14 @@ export const companyInfo = {
   },
   contacts: {
     phonePrimary: "+91 90300 44304",
-    phoneSecondary: "+91 99498 44304",
+    phoneSecondary: "+91 99498 44304",
+
+
+
     whatsapp: "+919030044304",
     whatsappDisplay: "+91 90300 44304",
-    emailSales: "kanyaka_corp@hotmail.com",
+    emailSales: "kanyaka_corp@hotmail.com",
+
     emailDirector: "subrahmanyam549@gmail.com",
     webmailUrl: "http://webmail.kanyakacorporation.com:2095",
   },
@@ -59,7 +63,7 @@ export const companyInfo = {
       state: "Telangana",
       pincode: "500085",
       country: "India",
-      googleMapsQuery: "SV'S VJ Mansion KPHB Colony Kukatpally Hyderabad",
+      googleMapsQuery: "Kanyaka Corporation, KPHB Colony, Kukatpally, Hyderabad",
     },
     warehouseDepot: {
       title: "Warehouse",
@@ -78,6 +82,10 @@ export const companyInfo = {
       id: "office",
       kind: "office" as const,
       title: "Office",
+      /** Shown under the "Office" heading */
+      company: "Kanyaka Corporation",
+      /** Opens Kanyaka Corporation's own Google Maps listing (not just the building) */
+      mapsQuery: "Kanyaka Corporation, KPHB Colony, Kukatpally, Hyderabad",
       place: "KPHB Colony, Kukatpally, Hyderabad",
       lines: ["Flat No. 202, SV'S VJ Mansion, MIG 401-404", "KPHB Colony, Kukatpally", "Hyderabad 500085, Telangana"],
       dms: `17°29'21.5"N 78°23'44.0"E`,

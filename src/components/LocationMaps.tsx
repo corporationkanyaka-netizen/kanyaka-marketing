@@ -2,15 +2,14 @@
 
 import React, { useState } from "react";
 import { companyInfo } from "@/data/company";
+import { mapTarget } from "@/lib/maps";
 import { ArrowUpRight, Building2, Navigation, Warehouse, ZoomIn, ZoomOut } from "lucide-react";
 
 type Location = (typeof companyInfo.locations)[number];
 
-const satelliteSrc = (loc: Location, zoom: number) =>
-  `https://maps.google.com/maps?q=${loc.lat},${loc.lng}&t=k&z=${zoom}&hl=en&output=embed`;
-const directionsHref = (loc: Location) =>
-  `https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`;
-const openHref = (loc: Location) => `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`;
+const satelliteSrc = (loc: Location, zoom: number) => `https://maps.google.com/maps?q=${mapTarget(loc)}&t=k&z=${zoom}&hl=en&output=embed`;
+const directionsHref = (loc: Location) => `https://www.google.com/maps/dir/?api=1&destination=${mapTarget(loc)}`;
+const openHref = (loc: Location) => `https://www.google.com/maps/search/?api=1&query=${mapTarget(loc)}`;
 
 /** Straight-line distance in km (haversine). */
 function distanceKm(a: Location, b: Location) {

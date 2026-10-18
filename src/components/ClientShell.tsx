@@ -3,7 +3,9 @@
 import React, { useState, createContext, useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import FloatingWhatsApp from "./FloatingWhatsApp";
+// Floating WhatsApp chat button — switched off for now. To bring it back, uncomment this import
+// and <FloatingWhatsApp /> below.
+// import FloatingWhatsApp from "./FloatingWhatsApp";
 import QuoteModal from "./QuoteModal";
 import BrochureModal from "./BrochureModal";
 
@@ -39,7 +41,7 @@ export default function ClientShell({ children }: { children: React.ReactNode })
         <Header onOpenQuote={openQuote} />
         <main className="flex-grow">{children}</main>
         <Footer />
-        <FloatingWhatsApp />
+        {/* <FloatingWhatsApp /> */}
         <QuoteModal
           isOpen={quoteOpen}
           onClose={() => setQuoteOpen(false)}

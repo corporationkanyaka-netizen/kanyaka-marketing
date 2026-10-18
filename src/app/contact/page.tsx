@@ -6,6 +6,7 @@ import Reveal from "@/components/chem/Reveal";
 import BrandKicker from "@/components/BrandKicker";
 import ProductSelect from "@/components/ProductSelect";
 import LocationMaps from "@/components/LocationMaps";
+import { mapTarget } from "@/lib/maps";
 import Flask from "@/components/chem/Flask";
 import { submitEnquiry, slugForProductName, newIdempotencyKey, type FieldErrors } from "@/lib/enquiry-client";
 import {
@@ -124,8 +125,9 @@ export default function ContactPage() {
     icon: loc.kind === "office" ? Building2 : Warehouse,
     tag: loc.place,
     title: loc.title,
+    company: "company" in loc ? loc.company : undefined,
     lines: loc.lines,
-    href: `https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,
+    href: `https://www.google.com/maps/dir/?api=1&destination=${mapTarget(loc)}`,
   }));
 
   return (
@@ -552,6 +554,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="mt-5 text-xl font-medium text-ink-900">{site.title}</h3>
                   <address className="mt-2 text-[15px] not-italic leading-relaxed text-slate-600">
+                    {site.company && <span className="block text-base font-semibold text-ink-950">{site.company}</span>}
                     {site.lines.map((line) => (
                       <span key={line} className="block">
                         {line}
