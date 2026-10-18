@@ -78,6 +78,24 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
     if (initialProduct) setSelectedProduct(initialProduct);
   }
 
+  // Every open starts on a fresh form, however the last one was closed (✕, Escape, backdrop).
+  // Contact details are kept so a repeat buyer doesn't retype them; the enquiry itself is cleared.
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
+    if (isOpen && isSubmitted) {
+      setIsSubmitted(false);
+      setEnquiryRef(null);
+      setQuantity("");
+      setLocation("");
+      setNotes("");
+    }
+    if (isOpen) {
+      setFormError("");
+      setFieldErrors({});
+    }
+  }
+
   // Keep the latest onClose without re-running the open/close effect (parent passes an inline arrow).
   const onCloseRef = useRef(onClose);
   useEffect(() => {
@@ -281,13 +299,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct }: QuoteMod
                 <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
                   <button
                     type="button"
-                    onClick={() => {
-                      idempotencyKeyRef.current = null;
-                      setEnquiryRef(null);
-                      setFormError("");
-                      setIsSubmitted(false);
-                      onClose();
-                    }}
+                    onClick={onClose}
                     className="inline-flex cursor-pointer items-center justify-center rounded-md px-6 py-3.5 text-sm font-medium text-ink-900 ring-1 ring-line transition-colors hover:bg-white"
                   >
                     Close window
